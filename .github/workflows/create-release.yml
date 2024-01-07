@@ -23,10 +23,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-#          cache: 'pnpm'
-#      - run: npm i -g pnpm
+          cache: 'pnpm'
       - run: pnpm i
-      - run: pnpm run build --if-present
+      - run: pnpm run build --if-present #      - run: npm i -g pnpm
 
       - name: Zip Files
         run: zip -r sllor.zip ./dist
