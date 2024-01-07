@@ -19,12 +19,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
 
-      - name: Install dependencies #
-        run: |
-          npm install -g pnpm
-          pnpm i
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        with:
+          version: 8
+          run_install: true
 
       - name: Build and ESLint
         run: npm run build && npm run lint
