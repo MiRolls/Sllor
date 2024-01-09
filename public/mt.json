@@ -1,17 +1,15 @@
 {
   "name": "sllor",
   "not-found-page": "index.html",
-  "frame": "vue",
+  "frame": "react",
   "config": {
     "site": {
-      "about": {
+      "name": {
         "type": "string",
-        "value": "markdown",
-        "placeholder": "# About \n > An apple ......",
-        "tag": "textarea",
-        "editor": "markdown",
-        "option-name": "About",
-        "tips": "Write them with markdown. Your text will show in a dictionary, /about"
+        "value": "string",
+        "placeholder": "Sllor",
+        "tag": "input",
+        "option-name": "Site Name"
       },
       "site-url": {
         "type": "string",
@@ -21,24 +19,42 @@
         "tips": "Your target domain / IP",
         "option-name": "Domain/IP"
       },
-      "logo": {
-        "type": "string",
-        "value": "image",
-        "option-name": "Site Logo",
-        "editor": "update"
-      },
       "main-color": {
         "type": "string",
         "value": "select",
         "placeholder": ["tomato","red","ruby","crimson","pink","plum","purple","violet","iris","indigo","blue","cyan","teal","jade","green","grass","brown","orange","sky","mint","lime","yellow","amber","gold","bronze","gray"],
         "option-name": "Main Color"
       },
+      "logo": {
+        "type": "string",
+        "value": "image",
+        "option-name": "Site Logo",
+        "editor": "update"
+      },
       "introduce": {
         "type": "string",
         "value": "markdown",
         "placeholder": "# Sllor /n A good and pretty site",
         "option-name": "Introduce",
-        "tips": "Write them with markdown. Your text will show in index page"
+        "tips": "[MARKDOWN] Your text will show in index page"
+      },
+      "about": {
+        "type": "string",
+        "value": "markdown",
+        "placeholder": "# About \n > An apple ......",
+        "tag": "textarea",
+        "editor": "markdown",
+        "option-name": "About",
+        "tips": "[MARKDOWN] Your text will show in a dictionary, /about"
+      },
+      "footer": {
+        "type": "string",
+        "value": "markdown",
+        "placeholder": "## Sllor \n [About](/about) | [......",
+        "tag": "textarea",
+        "edit": "markdown",
+        "option-name": "Footer",
+        "tips": "[MARKDOWN] Your text will show at the end of every page."
       }
     }
   }
