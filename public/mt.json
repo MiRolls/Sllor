@@ -1,0 +1,45 @@
+{
+  "name": "sllor",
+  "not-found-page": "index.html",
+  "frame": "vue",
+  "config": {
+    "site": {
+      "about": {
+        "type": "string",
+        "value": "markdown",
+        "placeholder": "# About \n > An apple ......",
+        "tag": "textarea",
+        "editor": "markdown",
+        "option-name": "About",
+        "tips": "Write them with markdown. Your text will show in a dictionary, /about"
+      },
+      "site-url": {
+        "type": "string",
+        "value": "url",
+        "placeholder": "https://www.example.com/",
+        "tag": "input",
+        "tips": "Your target domain / IP",
+        "option-name": "Domain/IP"
+      },
+      "logo": {
+        "type": "string",
+        "value": "image",
+        "option-name": "Site Logo",
+        "editor": "update"
+      },
+      "main-color": {
+        "type": "string",
+        "value": "select",
+        "placeholder": ["tomato","red","ruby","crimson","pink","plum","purple","violet","iris","indigo","blue","cyan","teal","jade","green","grass","brown","orange","sky","mint","lime","yellow","amber","gold","bronze","gray"],
+        "option-name": "Main Color"
+      },
+      "introduce": {
+        "type": "string",
+        "value": "markdown",
+        "placeholder": "# Sllor /n A good and pretty site",
+        "option-name": "Introduce",
+        "tips": "Write them with markdown. Your text will show in index page"
+      }
+    }
+  }
+}
