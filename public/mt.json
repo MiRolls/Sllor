@@ -25,6 +25,12 @@
         "placeholder": ["tomato","red","ruby","crimson","pink","plum","purple","violet","iris","indigo","blue","cyan","teal","jade","green","grass","brown","orange","sky","mint","lime","yellow","amber","gold","bronze","gray"],
         "option-name": "Main Color"
       },
+      "lang": {
+        "type": "string",
+        "value": "select",
+        "placeholder": ["zh-cn","en-us"],
+        "option-name": "Language"
+      },
       "logo": {
         "type": "string",
         "value": "image",
