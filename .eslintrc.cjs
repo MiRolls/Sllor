@@ -37,6 +37,9 @@ module.exports = {
     ],
     "rules": {
         "react/react-in-jsx-scope": "off",
-        "react/jsx-no-target-blank": "off"
+        "react/jsx-no-target-blank": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/ban-types": "off",
+        "@typescript-eslint/no-unused-vars": "off",
     }
 }

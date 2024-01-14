@@ -1,14 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './components/App/App.tsx'
+import Index from './components/App'
 import './index.css'
-import '@radix-ui/themes/styles.css';
-import {Theme} from "@radix-ui/themes";
+
+
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-      <Theme accentColor={"red"}>
-          <App />
-      </Theme>
-  </React.StrictMode>,
+    <React.StrictMode>
+        <Index/>
+    </React.StrictMode>,
 )
