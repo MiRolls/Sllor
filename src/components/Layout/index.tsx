@@ -3,10 +3,11 @@ import {Outlet} from "react-router-dom";
 import {Button, Flex, Theme} from "@radix-ui/themes";
 import '@radix-ui/themes/styles.css';
 import {HiMenu} from "react-icons/hi";
+import axios from "axios";
 
-export const SiteLoader = ()=>{
-
-    return {}
+export const SiteLoader = async ()=>{
+    const response = await axios.post("/site/get",{})
+    return response.data.data
 }
 
 export const Layout = () => {
