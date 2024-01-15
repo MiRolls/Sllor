@@ -28,7 +28,7 @@
       "lang": {
         "type": "string",
         "value": "select",
-        "placeholder": ["zh-cn","en-us"],
+        "placeholder": ["zhCn","enUs"],
         "option-name": "Language"
       },
       "logo": {

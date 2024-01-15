@@ -2,7 +2,7 @@ export interface Site {
     name: string;
     "site-url": string;
     "main-color": string;
-    lang: "zh" | "cn";
+    lang: "zhCn" | "enUs";
     logo: string;
     introduce: string;
     about: string;
