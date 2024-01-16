@@ -7,7 +7,7 @@ import axios from "axios";
 import {SiteGet} from "../../interfaces/response/site";
 import {useTranslation} from "react-i18next";
 import createI18n from "../../language";
-import {Site} from "../../interfaces/site";
+import changeSite from "../../config/changeSite.ts";
 
 export const SiteLoader = async (): Promise<[boolean, {}]> => {
 
@@ -19,18 +19,24 @@ export const SiteLoader = async (): Promise<[boolean, {}]> => {
     }
     // server impossible return ```code !== 200```
 
+    // Create i18n
     await createI18n(data.data.lang)
+
+    // Change Site
+    changeSite(data.data)
     return [true, data]
 }
 
 export const Layout = () => {
-    const [t, i18n] = useTranslation()
+    const [t, _] = useTranslation()
 
     const site: any = useLoaderData()
+    document.documentElement.lang = site[1].lang
     const reload = () => location.reload()
 
     return (
         <Theme appearance={"light"} accentColor={"tomato"}>
+            {/* Alert Dialog when MiRolls was error */}
             <AlertDialog.Root open={ !site[0] }>
                 <AlertDialog.Trigger >
                     {/*<Button className={"text-accent"}>something</Button>*/}
@@ -48,13 +54,14 @@ export const Layout = () => {
                 </AlertDialog.Content>
             </AlertDialog.Root>
 
+            {/* Main of Sllor */}
             <div className={"h-screen w-full"}>
+                {/* Flex is NavBar */}
                 <Flex className={"items-center bg-accent"} height={"9"} p={"3"}>
                     <Button radius="full"
                             className={"outline-none duration-200 flex items-center justify-center w-12 h-12"}>
                         <HiMenu className="flex h-10 w-10"/>
                     </Button>
-                    <Text>{i18n.language}</Text>
                 </Flex>
                 <Outlet></Outlet>
             </div>
