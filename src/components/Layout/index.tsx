@@ -8,19 +8,22 @@ import {SiteGet} from "../../interfaces/response/site";
 import {useTranslation} from "react-i18next";
 import createI18n from "../../language";
 
-export const SiteLoader = async () => {
+export const SiteLoader = async ():Promise<[boolean, {}]> => {
 
-    const data: SiteGet = (await axios.post("/site/get", {}))
-
-    if (data.code !== 200) { // request error
-        return false
+    let data: SiteGet
+    try {
+        data = await axios.post("/site/get", {})
+    } catch (error) {
+        return [false, {}]
     }
-    createI18n(data.date.lang)
-    return data.data
+    // server impossible return ```code !== 200```
+
+    await createI18n(data.data.lang)
+    return [true, data.data]
 }
 
 export const Layout = () => {
-    const [t, i18n] = useTranslation()
+    const [t, _] = useTranslation()
 
     return (
         <Theme appearance={"light"} accentColor={"tomato"}>
