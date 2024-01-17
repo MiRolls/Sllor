@@ -42,34 +42,29 @@ export const Layout = () => {
 
     const reload = () => location.reload()
 
+    // get state dark in zustand
+    const stateDark = useDark(state => (state as DarkState).dark)
+
     // on mounted
-    let dark: "dark" | "light" | undefined;
     // changeDark api
-    const changeDark = useDark(state => (state as DarkState).changeDark)
+    const changeDark:any = useDark(state => (state as DarkState).changeDark)
     useEffect(() => {
         const matches = window.matchMedia('(prefers-color-scheme: dark)').matches
-        dark = matches ? "dark" : "light"
-
         // on mounted
-        changeDark(dark)
+        changeDark(matches ? "dark" : "light")
     }, [])
 
     // create state dark
-    const stateDark = useDark(state=>(state as DarkState).dark)
-
     useEffect(() => {
         document.documentElement.className = `${stateDark}-theme`
         document.documentElement.style.colorScheme = stateDark;
     }, [stateDark]);
-
-
 
     return (
         <Theme accentColor={"tomato"} appearance={stateDark}>
             {/* Alert Dialog when MiRolls was error */}
             <AlertDialog.Root open={!site[0]}>
                 <AlertDialog.Trigger>
-                    {/*<Button className={"text-accent"}>something</Button>*/}
                 </AlertDialog.Trigger>
                 <AlertDialog.Content>
                     <AlertDialog.Title>{t("Boom")}</AlertDialog.Title>
@@ -88,7 +83,6 @@ export const Layout = () => {
             <div className={"h-screen w-full"}>
                 {/* Flex is NavBar */}
                 <NavBar></NavBar>
-                <Button onClick={changeDark as any}></Button>
                 <Outlet></Outlet>
             </div>
         </Theme>
