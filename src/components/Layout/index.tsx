@@ -2,12 +2,15 @@
 import {Outlet, useLoaderData} from "react-router-dom";
 import {AlertDialog, Button, Flex, Text, Theme} from "@radix-ui/themes";
 import '@radix-ui/themes/styles.css';
-import {HiMenu} from "react-icons/hi";
 import axios from "axios";
 import {SiteGet} from "../../interfaces/response/site";
 import {useTranslation} from "react-i18next";
 import createI18n from "../../language";
 import changeSite from "../../config/changeSite.ts";
+import NavBar from "../NavBar.tsx";
+import {SiteState, useSite} from "../../store/site.ts";
+import {useEffect} from "react";
+import {DarkState, useDark} from "../../store/dark.ts";
 
 export const SiteLoader = async (): Promise<[boolean, {}]> => {
 
@@ -24,21 +27,48 @@ export const SiteLoader = async (): Promise<[boolean, {}]> => {
 
     // Change Site
     changeSite(data.data)
-    return [true, data]
+
+    return [true, data.data]
 }
 
 export const Layout = () => {
     const [t, _] = useTranslation()
 
     const site: any = useLoaderData()
-    document.documentElement.lang = site[1].lang
+
+    // Change useSite api
+    const changeUseSite = useSite(state => (state as SiteState).changeSite)
+    changeUseSite(site[1])
+
     const reload = () => location.reload()
 
+    // on mounted
+    let dark: "dark" | "light" | undefined;
+    // changeDark api
+    const changeDark = useDark(state => (state as DarkState).changeDark)
+    useEffect(() => {
+        const matches = window.matchMedia('(prefers-color-scheme: dark)').matches
+        dark = matches ? "dark" : "light"
+
+        // on mounted
+        changeDark(dark)
+    }, [])
+
+    // create state dark
+    const stateDark = useDark(state=>(state as DarkState).dark)
+
+    useEffect(() => {
+        document.documentElement.className = `${stateDark}-theme`
+        document.documentElement.style.colorScheme = stateDark;
+    }, [stateDark]);
+
+
+
     return (
-        <Theme appearance={"light"} accentColor={"tomato"}>
+        <Theme accentColor={"tomato"} appearance={stateDark}>
             {/* Alert Dialog when MiRolls was error */}
-            <AlertDialog.Root open={ !site[0] }>
-                <AlertDialog.Trigger >
+            <AlertDialog.Root open={!site[0]}>
+                <AlertDialog.Trigger>
                     {/*<Button className={"text-accent"}>something</Button>*/}
                 </AlertDialog.Trigger>
                 <AlertDialog.Content>
@@ -57,12 +87,8 @@ export const Layout = () => {
             {/* Main of Sllor */}
             <div className={"h-screen w-full"}>
                 {/* Flex is NavBar */}
-                <Flex className={"items-center bg-accent"} height={"9"} p={"3"}>
-                    <Button radius="full"
-                            className={"outline-none duration-200 flex items-center justify-center w-12 h-12"}>
-                        <HiMenu className="flex h-10 w-10"/>
-                    </Button>
-                </Flex>
+                <NavBar></NavBar>
+                <Button onClick={changeDark as any}></Button>
                 <Outlet></Outlet>
             </div>
         </Theme>
