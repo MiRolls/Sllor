@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.dark-theme .rt-Button{
+    color: white;
+}
+
+.light-theme .rt-Button{
+    color: black;
+}
