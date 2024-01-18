@@ -3,6 +3,7 @@ import {HiMenu} from "react-icons/hi";
 import {SiteState, useSite} from "../store/site.ts";
 import {DarkState, useDark} from "../store/dark.ts";
 import {CiDark, CiLight} from "react-icons/ci";
+import {motion} from 'framer-motion';
 
 const NavBar = () => {
     const site = useSite(state => (state as SiteState).site)
@@ -23,9 +24,25 @@ const NavBar = () => {
             <IconButton onClick={changeDark} radius="full" size="3"
                         className={"outline-none duration-200"}>
                 {stateDark === "light" &&
-                    <CiDark color={stateDark === "light" ? "black" : "white"} className="w-6 h-6 stroke-1"/>}
+                    (
+                        <motion.div
+                            exit={{ rotate: 180 }}
+                            initial={{rotate: 180}}
+                            animate={{ rotate: 0 }}
+                        >
+                            <CiDark color={stateDark === "light" ? "black" : "white"} className="w-6 h-6 stroke-1"/>
+                        </motion.div>
+                    )}
                 {stateDark === "dark" &&
-                    <CiLight color={stateDark === "dark" ? "white" : "black"} className="w-6 h-6 stroke-1"/>}
+                    (
+                        <motion.div
+                            initial={{rotate: 180}}
+                            animate={{ rotate: 0 }}
+                            exit={{ rotate: 180 }}
+                        >
+                            <CiLight color={stateDark === "dark" ? "white" : "black"} className="w-6 h-6 stroke-1"/>
+                        </motion.div>
+                    )}
             </IconButton>
         </Flex>
     );
