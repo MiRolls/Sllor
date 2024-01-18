@@ -61,7 +61,7 @@ export const Layout = () => {
     }, [stateDark]);
 
     return (
-        <Theme accentColor={"plum"} appearance={stateDark}>
+        <Theme accentColor={site[1]["main-color"]} appearance={stateDark}>
             {/* Alert Dialog when MiRolls was error */}
             <AlertDialog.Root open={!site[0]}>
                 <AlertDialog.Trigger>
