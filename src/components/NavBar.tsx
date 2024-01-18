@@ -26,9 +26,9 @@ const NavBar = () => {
                 {stateDark === "light" &&
                     (
                         <motion.div
-                            exit={{ rotate: 180 }}
-                            initial={{rotate: 180}}
-                            animate={{ rotate: 0 }}
+                            exit={{ rotate: 180, scale: 0.9 }}
+                            initial={{rotate: 180, scale: 0.9 }}
+                            animate={{ rotate: 0, scale: 1 }}
                         >
                             <CiDark color={stateDark === "light" ? "black" : "white"} className="w-6 h-6 stroke-1"/>
                         </motion.div>
@@ -36,9 +36,9 @@ const NavBar = () => {
                 {stateDark === "dark" &&
                     (
                         <motion.div
-                            initial={{rotate: 180}}
-                            animate={{ rotate: 0 }}
-                            exit={{ rotate: 180 }}
+                            initial={{rotate: 180, scale: 0.9 }}
+                            animate={{ rotate: 0, scale: 1 }}
+                            exit={{ rotate: 180, scale: 0.9 }}
                         >
                             <CiLight color={stateDark === "dark" ? "white" : "black"} className="w-6 h-6 stroke-1"/>
                         </motion.div>
