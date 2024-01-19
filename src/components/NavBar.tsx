@@ -4,6 +4,7 @@ import {SiteState, useSite} from "../store/site.ts";
 import {DarkState, useDark} from "../store/dark.ts";
 import {CiDark, CiLight} from "react-icons/ci";
 import {motion} from 'framer-motion';
+import {useUpdateEffect} from "usehooks-ts";
 
 const NavBar = () => {
     const site = useSite(state => (state as SiteState).site)
@@ -11,6 +12,14 @@ const NavBar = () => {
     // Get dark api
     const stateDark = useDark(state => (state as DarkState).dark)
     const changeDark: any = useDark(state => (state as DarkState).changeDark)
+
+    const changeDarkAndStorage = () => {
+        changeDark()
+    }
+
+    useUpdateEffect(() => {
+        localStorage.setItem("dark", stateDark)
+    }, [stateDark]);
 
     return (
         <Flex className={"items-center bg-accent "} justify="between" height={"9"} p={"3"}>
@@ -21,7 +30,7 @@ const NavBar = () => {
             </IconButton>
             <Avatar src={site.logo} fallback={site.name} size="2" className={"sm:ml-1"}></Avatar>
             <Box className="ml-2 hidden sm:block sm:ml-3 flex-1"><Heading>{site.name}</Heading></Box>
-            <IconButton onClick={changeDark} radius="full" size="3"
+            <IconButton onClick={changeDarkAndStorage} radius="full" size="3"
                         className={"outline-none duration-200"}>
                 {stateDark === "light" &&
                     (

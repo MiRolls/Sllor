@@ -49,9 +49,16 @@ export const Layout = () => {
     // changeDark api
     const changeDark:any = useDark(state => (state as DarkState).changeDark)
     useEffect(() => {
-        const matches = window.matchMedia('(prefers-color-scheme: dark)').matches
-        // on mounted
-        changeDark(matches ? "dark" : "light")
+        // get localstorage
+        const dark = localStorage.getItem("dark")
+        console.log(dark);
+        if (dark === null){
+            const matches = window.matchMedia('(prefers-color-scheme: dark)').matches
+            changeDark(matches ? "dark" : "light")
+        }
+
+        // use dark
+        changeDark(dark)
     }, [])
 
     // create state dark
