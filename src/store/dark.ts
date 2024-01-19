@@ -3,10 +3,9 @@ import {create} from "zustand";
 export interface DarkState {
     dark: "dark" | "light",
     changeDark: (dark?: "dark" | "light") => void,
-    onDarkChange: () => "dark" | "light"
 }
 
-export const useDark = create((set, get): DarkState => ({
+export const useDark = create((set): DarkState => ({
     dark: "light",
     changeDark: (dark?) => set((state: any) => {
         let darkMode
@@ -23,11 +22,6 @@ export const useDark = create((set, get): DarkState => ({
         return {
             dark: darkMode
         }
-    }),
-    onDarkChange() {
-        document.documentElement.className = "dark-theme"
-        document.documentElement.style.colorScheme = "dark";
-        return (get() as DarkState).dark
-    }
+    })
 }))
 

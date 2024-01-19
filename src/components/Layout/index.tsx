@@ -11,6 +11,8 @@ import NavBar from "../NavBar.tsx";
 import {SiteState, useSite} from "../../store/site.ts";
 import {useEffect} from "react";
 import {DarkState, useDark} from "../../store/dark.ts";
+import Control from "../Control";
+import {useControl} from "../../store/control.ts";
 
 export const SiteLoader = async (): Promise<[boolean, {}]> => {
 
@@ -40,6 +42,8 @@ export const Layout = () => {
     // Change useSite api
     const changeUseSite = useSite(state => (state as SiteState).changeSite)
     changeUseSite(site[1])
+
+    const control = useControl(state => (state as any).control)
 
     const reload = () => location.reload()
 
@@ -91,8 +95,11 @@ export const Layout = () => {
             <div className={"h-screen w-full"}>
                 {/* Flex is NavBar */}
                 <NavBar></NavBar>
-                {/* Main Things */}
+
                 <div className={navigation.state === "loading" ? "pt-16 opacity-10 w-full grayscale min-h-screen duration-200" : "duration-200 pt-16 w-full min-h-screen"}>
+                    {/* Control */}
+                    <Control control={control}></Control>
+                    {/* Main Thing */}
                     <Outlet></Outlet>
                 </div>
             </div>
