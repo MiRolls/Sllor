@@ -5,9 +5,12 @@ import {DarkState, useDark} from "../store/dark.ts";
 import {CiDark, CiLight} from "react-icons/ci";
 import {motion} from 'framer-motion';
 import {useUpdateEffect} from "usehooks-ts";
+import {Link} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 const NavBar = () => {
     const site = useSite(state => (state as SiteState).site)
+    const [t, _] = useTranslation()
 
     // Get dark api
     const stateDark = useDark(state => (state as DarkState).dark)
@@ -22,7 +25,7 @@ const NavBar = () => {
     }, [stateDark]);
 
     return (
-        <Flex className={"items-center bg-accent "} justify="between" height={"9"} p={"3"}>
+        <Flex className={"items-center bg-accent fixed w-full z-20"} justify="between" height={"9"} p={"3"}>
             <IconButton radius="full" size="3"
                 // className={"outline-none duration-200 flex items-center justify-center w-12 h-12"}>
                         className="duration-200 outline-none">
@@ -33,19 +36,20 @@ const NavBar = () => {
 
             <Box className={"hidden sm:block"}>
                 <Button>
-                    {/*<Link></Link>*/}
+                    <Link to="/document">{t("Document")}</Link>
                 </Button>
-                <Button></Button>
-                <Button></Button>
+                <Button>
+                    <Link to="/questionnaire">{t("Home")}</Link>
+                </Button>
             </Box>
             <IconButton onClick={changeDarkAndStorage} radius="full" size="3"
                         className={"outline-none duration-200"}>
                 {stateDark === "light" &&
                     (
                         <motion.div
-                            exit={{ rotate: 180, scale: 0.9 }}
-                            initial={{rotate: 180, scale: 0.9 }}
-                            animate={{ rotate: 0, scale: 1 }}
+                            exit={{rotate: 180, scale: 0.9}}
+                            initial={{rotate: 180, scale: 0.9}}
+                            animate={{rotate: 0, scale: 1}}
                         >
                             <CiDark color={stateDark === "light" ? "black" : "white"} className="w-6 h-6 stroke-1"/>
                         </motion.div>
@@ -53,9 +57,9 @@ const NavBar = () => {
                 {stateDark === "dark" &&
                     (
                         <motion.div
-                            initial={{rotate: 180, scale: 0.9 }}
-                            animate={{ rotate: 0, scale: 1 }}
-                            exit={{ rotate: 180, scale: 0.9 }}
+                            initial={{rotate: 180, scale: 0.9}}
+                            animate={{rotate: 0, scale: 1}}
+                            exit={{rotate: 180, scale: 0.9}}
                         >
                             <CiLight color={stateDark === "dark" ? "white" : "black"} className="w-6 h-6 stroke-1"/>
                         </motion.div>

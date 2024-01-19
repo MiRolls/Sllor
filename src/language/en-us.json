@@ -1,6 +1,9 @@
 {
   "translation": {
     "Boom": "Boom! ",
-    "Get site return err": "Server was blown up! "
+    "Get site return err": "Server was blown up! ",
+    "Try Again": "Try Again",
+    "Document": "Document",
+    "Home": "Home"
   }
 }

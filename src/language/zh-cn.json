@@ -1,6 +1,9 @@
 {
   "translation": {
     "Boom": "啪! ",
-    "Get site return err": "服务器被炸掉了"
+    "Get site return err": "服务器被炸掉了",
+    "Document": "文档",
+    "Try Again": "重新尝试！",
+    "Home": "首页"
   }
 }

@@ -1,5 +1,5 @@
 // @flow
-import {Outlet, useLoaderData} from "react-router-dom";
+import {Outlet, useLoaderData, useNavigation} from "react-router-dom";
 import {AlertDialog, Button, Flex, Text, Theme} from "@radix-ui/themes";
 import '@radix-ui/themes/styles.css';
 import axios from "axios";
@@ -35,6 +35,7 @@ export const Layout = () => {
     const [t, _] = useTranslation()
 
     const site: any = useLoaderData()
+    const navigation = useNavigation()
 
     // Change useSite api
     const changeUseSite = useSite(state => (state as SiteState).changeSite)
@@ -80,7 +81,7 @@ export const Layout = () => {
                     </AlertDialog.Description>
                     <Flex mt="4" justify="end">
                         <Button onClick={reload}>
-                            Try Again
+                            {t('Try Again')}
                         </Button>
                     </Flex>
                 </AlertDialog.Content>
@@ -90,7 +91,10 @@ export const Layout = () => {
             <div className={"h-screen w-full"}>
                 {/* Flex is NavBar */}
                 <NavBar></NavBar>
-                <Outlet></Outlet>
+                {/* Main Things */}
+                <div className={navigation.state === "loading" ? "pt-16 opacity-10 w-full grayscale min-h-screen duration-200" : "duration-200 pt-16 w-full min-h-screen"}>
+                    <Outlet></Outlet>
+                </div>
             </div>
         </Theme>
     );

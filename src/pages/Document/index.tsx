@@ -1,5 +1,5 @@
 export async function DocumentLoader(){
-
+    return {}
 }
 
 export function Document() {
