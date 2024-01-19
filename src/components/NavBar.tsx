@@ -1,4 +1,4 @@
-import {Avatar, Box, Flex, Heading, IconButton} from "@radix-ui/themes";
+import {Avatar, Box, Button, Flex, Heading, IconButton} from "@radix-ui/themes";
 import {HiMenu} from "react-icons/hi";
 import {SiteState, useSite} from "../store/site.ts";
 import {DarkState, useDark} from "../store/dark.ts";
@@ -30,6 +30,14 @@ const NavBar = () => {
             </IconButton>
             <Avatar src={site.logo} fallback={site.name} size="2" className={"sm:ml-1"}></Avatar>
             <Box className="ml-2 hidden sm:block sm:ml-3 flex-1"><Heading>{site.name}</Heading></Box>
+
+            <Box className={"hidden sm:block"}>
+                <Button>
+                    {/*<Link></Link>*/}
+                </Button>
+                <Button></Button>
+                <Button></Button>
+            </Box>
             <IconButton onClick={changeDarkAndStorage} radius="full" size="3"
                         className={"outline-none duration-200"}>
                 {stateDark === "light" &&
