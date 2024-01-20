@@ -33,7 +33,7 @@ export const useControl = create((set): ControlState => ({
         }
     }),
     clear() {
-        set(()=> ({}))
+        set(()=> ({control: []}))
     }
 }))
 
