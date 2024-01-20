@@ -17,7 +17,7 @@ export function createRouter(): NonNullable<any> {
                         loader: QuestionnaireLoader
                     },
                     {
-                        path: "/document",
+                        path: "/about",
                         element: <About />,
                         loader: AboutLoader
                     }
