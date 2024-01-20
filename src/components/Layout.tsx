@@ -13,14 +13,14 @@ import {useEffect} from "react";
 import {DarkState, useDark} from "../store/dark.ts";
 import Control from "./Control.tsx";
 import {useControl} from "../store/control.ts";
+import { Site } from "../interfaces/site";
 
-export const SiteLoader = async (): Promise<[boolean, {}]> => {
-
+export const SiteLoader = async (): Promise<[boolean, Site | null]> => {
     let data: SiteGet
     try {
         data = (await axios.post("/site/get", {})).data
     } catch (error) {
-        return [false, {}]
+        return [false, null]
     }
     // server impossible return ```code !== 200```
 
@@ -54,9 +54,8 @@ export const Layout = () => {
     // changeDark api
     const changeDark:any = useDark(state => (state as DarkState).changeDark)
     useEffect(() => {
-        // get localstorage
+        // get localStorage
         const dark = localStorage.getItem("dark")
-        console.log(dark);
         if (dark === null){
             const matches = window.matchMedia('(prefers-color-scheme: dark)').matches
             changeDark(matches ? "dark" : "light")
