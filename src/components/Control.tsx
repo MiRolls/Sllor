@@ -1,5 +1,5 @@
 import {Button, Flex, Text} from "@radix-ui/themes";
-import {ControlData} from "../interfaces/control.ts";
+import { ControlData } from "../interfaces/control";
 import React from "react";
 
 
@@ -12,7 +12,7 @@ const Control = ({control}: { control: ControlData }) => {
                     <Button key={item.toString() + index}
                         className="p-10 flex flex-nowrap !h-10 !justify-start" radius="full">
                         {React.cloneElement(item.icon, {
-                            className: "h-6 w-6 ml-3"
+                            className: "h-6 w-6 ml-2"
                         })}
                         <Text>{item.name}</Text>
                     </Button>
@@ -22,4 +22,4 @@ const Control = ({control}: { control: ControlData }) => {
     );
 };
 
-export default Control;null
+export default Control
