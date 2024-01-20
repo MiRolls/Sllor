@@ -1,5 +1,5 @@
 import {Button, Flex, Text} from "@radix-ui/themes";
-import { ControlData } from "../interfaces/control";
+import {ControlData} from "../interfaces/control.d";
 import React from "react";
 
 
