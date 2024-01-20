@@ -3,16 +3,16 @@ import {Outlet, useLoaderData, useNavigation} from "react-router-dom";
 import {AlertDialog, Button, Flex, Text, Theme} from "@radix-ui/themes";
 import '@radix-ui/themes/styles.css';
 import axios from "axios";
-import {SiteGet} from "../../interfaces/response/site";
+import {SiteGet} from "../interfaces/response/site";
 import {useTranslation} from "react-i18next";
-import createI18n from "../../language";
-import changeSite from "../../config/changeSite.ts";
-import NavBar from "../NavBar.tsx";
-import {SiteState, useSite} from "../../store/site.ts";
+import createI18n from "../language";
+import changeSite from "../config/changeSite.ts";
+import NavBar from "./NavBar.tsx";
+import {SiteState, useSite} from "../store/site.ts";
 import {useEffect} from "react";
-import {DarkState, useDark} from "../../store/dark.ts";
-import Control from "../Control";
-import {useControl} from "../../store/control.ts";
+import {DarkState, useDark} from "../store/dark.ts";
+import Control from "./Control.tsx";
+import {useControl} from "../store/control.ts";
 
 export const SiteLoader = async (): Promise<[boolean, {}]> => {
 

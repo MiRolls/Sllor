@@ -1,5 +1,5 @@
 import {Box, Flex} from "@radix-ui/themes";
-import {ControlData} from "../../interfaces/control.ts";
+import {ControlData} from "../interfaces/control.ts";
 
 
 const Control = ({control}: { control: ControlData }) => {

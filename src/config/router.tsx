@@ -1,7 +1,7 @@
 import {createBrowserRouter,} from "react-router-dom";
-import {Layout, SiteLoader} from "../components/Layout";
-import {QuestionnaireLoader, QuestionnairePage} from "../pages/Questionnaire/Index";
-import {Document, DocumentLoader} from "../pages/Document";
+import {Layout, SiteLoader} from "../components/Layout.tsx";
+import {QuestionnaireLoader, QuestionnairePage} from "../pages/Questionnaire/IndexPage.tsx";
+import {About, AboutLoader} from "../pages/About.tsx";
 
 export function createRouter(): NonNullable<any> {
     return createBrowserRouter(
@@ -18,8 +18,8 @@ export function createRouter(): NonNullable<any> {
                     },
                     {
                         path: "/document",
-                        element: <Document />,
-                        loader: DocumentLoader
+                        element: <About />,
+                        loader: AboutLoader
                     }
                 ]
             }

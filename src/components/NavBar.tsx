@@ -36,7 +36,7 @@ const NavBar = () => {
 
             <Box className={"hidden sm:block"}>
                 <Button>
-                    <Link to="/document">{t("Document")}</Link>
+                    <Link to="/about">{t("About")}</Link>
                 </Button>
                 <Button>
                     <Link to="/questionnaire">{t("Home")}</Link>
