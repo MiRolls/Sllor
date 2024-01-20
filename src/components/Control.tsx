@@ -6,17 +6,24 @@ import { ControlState, useControl } from "../store/control";
 
 const Control = () => {
 	const control = useControl((state) => (state as ControlState).control);
+	const show = useControl((state) => (state as ControlState).show);
 	return (
 		<AnimatePresence mode="wait">
-			{control.length > 0 && (
+			{control.length > 0 && show && (
 				<motion.div
-					initial={{ marginLeft: "-25%" }}
-					animate={{ marginLeft: 0 }}
-					exit={{ marginLeft: "-25%" }}
+					initial={{ x: "-100%" }}
+					animate={{ x: 0 }}
+					exit={{ x: "-100%" }}
+					className="h-screen w-fix lg:w-1/5 md:w-4/12 w-4/5"
+					transition={{
+						damping: 10,
+						stiffness: 100,
+						duration: 0.2,
+					}}
 				>
 					<Flex
 						direction="column"
-						className="p-3 gap-1 pt-2 flex fixed bg-accent w-1/5 h-full border-t-2 border-accent-800"
+						className="p-3 gap-1 pt-2 flex fixed bg-accent w-full h-full border-t-2 border-accent-800"
 					>
 						{control.map((item, index) => {
 							return (
