@@ -9,6 +9,7 @@ export async function QuestionnaireLoader(){
 
 export const QuestionnairePage = () => {
     const changeControl = useControl(state => (state as ControlState).changeControl)
+    const control = useControl(state => (state as ControlState).control)
 
     useEffect(() => {
         changeControl([
@@ -26,7 +27,7 @@ export const QuestionnairePage = () => {
             }
         ])
         return () => {
-            changeControl([])
+            changeControl([]);
         }
     }, []);
 

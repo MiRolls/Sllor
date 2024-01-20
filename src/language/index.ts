@@ -4,8 +4,8 @@ import enUs from "./en-us.json";
 import zhCn from "./zh-cn.json";
 
 const resources = {
-    enUs,
-    zhCn,
+    enUs: { translation: enUs },
+    zhCn: { translation: zhCn },
 };
 
 function createI18n(lang: "zhCn"|"enUs"){
