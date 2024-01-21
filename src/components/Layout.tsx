@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { DarkState, useDark } from "../store/dark.ts";
 import Control from "./Control.tsx";
 import { Site } from "../interfaces/site";
+import { ControlState, useControl } from "../store/control.ts";
 
 export const SiteLoader = async (): Promise<[boolean, Site | null]> => {
 	let data: SiteGet;
@@ -39,36 +40,58 @@ export const Layout = () => {
 	const navigation = useNavigation();
 
 	// Change useSite api
-	const changeUseSite = useSite((state) => (state as SiteState).changeSite);
-	changeUseSite(site[1]);
+	const changeUseSite = useSite(state => (state as SiteState).changeSite);
 
 	const reload = () => location.reload();
+	const control = useControl(state => (state as ControlState).control);
+	const show = useControl(state => (state as ControlState).show);
 
 	// get state dark in zustand
-	const stateDark = useDark((state) => (state as DarkState).dark);
+	const stateDark = useDark(state => (state as DarkState).dark);
 
 	// on mounted
 	// changeDark api
-	const changeDark: any = useDark((state) => (state as DarkState).changeDark);
+	const changeDark: any = useDark(state => (state as DarkState).changeDark);
+
+	// show control api
+	const changeShow = useControl(state => (state as ControlState).changeShow);
+
 	useEffect(() => {
 		// get localStorage
 		const dark = localStorage.getItem("dark");
 		if (dark === null) {
-			const matches = window.matchMedia(
-				"(prefers-color-scheme: dark)"
-			).matches;
+			const matches = window.matchMedia("(prefers-color-scheme: dark)").matches;
 			changeDark(matches ? "dark" : "light");
 		}
 
 		// use dark
 		changeDark(dark);
+
+		// init site data
+		changeUseSite(site[1]);
 	}, []);
 
 	// create state dark
 	useEffect(() => {
+		// set dark in DOM
 		document.documentElement.className = `${stateDark}-theme`;
 		document.documentElement.style.colorScheme = stateDark;
 	}, [stateDark]);
+
+	useEffect(() => {
+		function handle() {
+			if (window.innerWidth <= 768) {
+				changeShow(false);
+				// phone, mobile
+			}
+		}
+		// reactive control
+		window.addEventListener("resize", handle);
+		handle();
+		return () => {
+			window.removeEventListener("resize", handle);
+		};
+	}, []);
 
 	return (
 		<Theme accentColor={site[1]["main-color"]} appearance={stateDark}>
@@ -94,14 +117,22 @@ export const Layout = () => {
 				<div
 					className={
 						navigation.state === "loading"
-							? "pt-16 opacity-10 w-full grayscale min-h-screen duration-200"
-							: "duration-200 pt-16 w-full min-h-screen"
+							? "pt-16 opacity-10 w-full grayscale h-full duration-200"
+							: "duration-200 pt-16 w-full h-full"
 					}
 				>
 					{/* Control */}
 					<Control></Control>
 					{/* Main Thing */}
-					<Outlet></Outlet>
+					<div
+						className={
+							control.length > 0 && show
+								? "lg:pl-[20%] md:pl-[33.333333%] duration-200"
+								: "duration-200"
+						}
+					>
+						<Outlet></Outlet>
+					</div>
 				</div>
 			</div>
 		</Theme>

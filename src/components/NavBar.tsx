@@ -1,11 +1,4 @@
-import {
-	Avatar,
-	Box,
-	Button,
-	Flex,
-	Heading,
-	IconButton,
-} from "@radix-ui/themes";
+import { Avatar, Box, Button, Flex, Heading, IconButton } from "@radix-ui/themes";
 import { HiMenu } from "react-icons/hi";
 import { SiteState, useSite } from "../store/site.ts";
 import { DarkState, useDark } from "../store/dark.ts";
@@ -17,20 +10,18 @@ import { useTranslation } from "react-i18next";
 import { ControlState, useControl } from "../store/control.ts";
 
 const NavBar = () => {
-	const site = useSite((state) => (state as SiteState).site);
+	const site = useSite(state => (state as SiteState).site);
 	const [t, _] = useTranslation();
 
 	// Get dark api
-	const stateDark = useDark((state) => (state as DarkState).dark);
-	const changeDark: any = useDark((state) => (state as DarkState).changeDark);
+	const stateDark = useDark(state => (state as DarkState).dark);
+	const changeDark: any = useDark(state => (state as DarkState).changeDark);
 
 	const changeDarkAndStorage = () => {
 		changeDark();
 	};
 
-	const changeShow = useControl(
-		(state) => (state as ControlState).changeShow
-	);
+	const changeShow = useControl(state => (state as ControlState).changeShow);
 
 	function chgShow() {
 		changeShow();
@@ -55,28 +46,20 @@ const NavBar = () => {
 				className="duration-200 outline-none"
 				onClick={chgShow}
 			>
-				<HiMenu
-					color={stateDark === "dark" ? "white" : "black"}
-					className="w-6 h-6"
-				/>
+				<HiMenu color={stateDark === "dark" ? "white" : "black"} className="w-6 h-6" />
 			</IconButton>
-			<Avatar
-				src={site.logo}
-				fallback={site.name}
-				size="2"
-				className={"sm:ml-1"}
-			></Avatar>
+			<Avatar src={site.logo} fallback={site.name} size="2" className={"sm:ml-1"}></Avatar>
 			<Box className="ml-2 sm:block sm:ml-3 hidden flex-1">
 				<Heading>{site.name}</Heading>
 			</Box>
 
 			<Box className={"hidden sm:block"}>
-				<Button>
-					<Link to="/about">{t("About")}</Link>
-				</Button>
-				<Button>
-					<Link to="/questionnaire">{t("Home")}</Link>
-				</Button>
+				<Link to="/about">
+					<Button>{t("About")}</Button>
+				</Link>
+				<Link to="/questionnaire">
+					<Button>{t("Home")}</Button>
+				</Link>
 			</Box>
 			<IconButton
 				onClick={changeDarkAndStorage}

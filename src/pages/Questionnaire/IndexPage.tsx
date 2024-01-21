@@ -8,10 +8,9 @@ export async function QuestionnaireLoader() {
 }
 
 export const QuestionnairePage = () => {
-	const changeControl = useControl(
-		(state) => (state as ControlState).changeControl
-	);
-	const clear = useControl((state) => (state as ControlState).clear);
+	const changeControl = useControl(state => (state as ControlState).changeControl);
+	const clear = useControl(state => (state as ControlState).clear);
+	const changeShow = useControl(state => (state as ControlState).changeShow);
 
 	useEffect(() => {
 		changeControl([
@@ -34,10 +33,11 @@ export const QuestionnairePage = () => {
 		]);
 		return () => {
 			clear();
+			changeShow(true);
 		};
 	}, []);
 
-	return <div></div>;
+	return <div>111</div>;
 };
 
 export default QuestionnairePage;
