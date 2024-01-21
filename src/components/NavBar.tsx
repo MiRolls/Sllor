@@ -9,7 +9,6 @@ import { useUpdateEffect } from "usehooks-ts";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ControlState, useControl } from "../store/control.ts";
-import classNames from "../utils/classNames";
 
 const NavBar = () => {
 	const site = useSite(state => (state as SiteState).site);

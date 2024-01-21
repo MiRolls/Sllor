@@ -9,7 +9,7 @@ import createI18n from "../language";
 import changeSite from "../config/changeSite.ts";
 import NavBar from "./NavBar.tsx";
 import { SiteState, useSite } from "../store/site.ts";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { DarkState, useDark } from "../store/dark.ts";
 import Control from "./Control.tsx";
 import { Site } from "../interfaces/site";
@@ -131,7 +131,9 @@ export const Layout = () => {
 								: "duration-200"
 						}
 					>
-						<Outlet></Outlet>
+						<Suspense>
+							<Outlet></Outlet>
+						</Suspense>
 					</div>
 				</div>
 			</div>
