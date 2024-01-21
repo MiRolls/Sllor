@@ -1,11 +1,7 @@
-export async function AboutLoader(){
-    return {}
+export async function AboutLoader() {
+	return {};
 }
 
 export const About = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+	return <div></div>;
 };

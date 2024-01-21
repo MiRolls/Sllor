@@ -1,7 +1,3 @@
 export const IndexPage = () => {
-    return (
-        <div>
-
-        </div>
-    );
+	return <div></div>;
 };

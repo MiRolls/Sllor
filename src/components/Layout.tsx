@@ -40,35 +40,35 @@ export const Layout = () => {
 	const navigation = useNavigation();
 
 	// Change useSite api
-	const changeUseSite = useSite((state) => (state as SiteState).changeSite);
-	changeUseSite(site[1]);
+	const changeUseSite = useSite(state => (state as SiteState).changeSite);
 
 	const reload = () => location.reload();
+	const control = useControl(state => (state as ControlState).control);
+	const show = useControl(state => (state as ControlState).show);
 
 	// get state dark in zustand
-	const stateDark = useDark((state) => (state as DarkState).dark);
+	const stateDark = useDark(state => (state as DarkState).dark);
 
 	// on mounted
 	// changeDark api
-	const changeDark: any = useDark((state) => (state as DarkState).changeDark);
+	const changeDark: any = useDark(state => (state as DarkState).changeDark);
 
 	// show control api
-	const changeShow = useControl(
-		(state) => (state as ControlState).changeShow
-	);
+	const changeShow = useControl(state => (state as ControlState).changeShow);
 
 	useEffect(() => {
 		// get localStorage
 		const dark = localStorage.getItem("dark");
 		if (dark === null) {
-			const matches = window.matchMedia(
-				"(prefers-color-scheme: dark)"
-			).matches;
+			const matches = window.matchMedia("(prefers-color-scheme: dark)").matches;
 			changeDark(matches ? "dark" : "light");
 		}
 
 		// use dark
 		changeDark(dark);
+
+		// init site data
+		changeUseSite(site[1]);
 	}, []);
 
 	// create state dark
@@ -124,7 +124,15 @@ export const Layout = () => {
 					{/* Control */}
 					<Control></Control>
 					{/* Main Thing */}
-					<Outlet></Outlet>
+					<div
+						className={
+							control.length > 0 && show
+								? "lg:pl-[20%] md:pl-[33.333333%] duration-200"
+								: "duration-200"
+						}
+					>
+						<Outlet></Outlet>
+					</div>
 				</div>
 			</div>
 		</Theme>

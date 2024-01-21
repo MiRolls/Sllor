@@ -5,8 +5,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ControlState, useControl } from "../store/control";
 
 const Control = () => {
-	const control = useControl((state) => (state as ControlState).control);
-	const show = useControl((state) => (state as ControlState).show);
+	const control = useControl(state => (state as ControlState).control);
+	const show = useControl(state => (state as ControlState).show);
 	return (
 		<AnimatePresence mode="wait">
 			{control.length > 0 && show && (
@@ -14,7 +14,7 @@ const Control = () => {
 					initial={{ x: "-100%" }}
 					animate={{ x: 0 }}
 					exit={{ x: "-100%" }}
-					className="h-full w-fix lg:w-1/5 md:w-4/12 w-4/5"
+					className="h-full w-fix lg:w-1/5 md:w-4/12 w-4/5 fixed"
 					transition={{
 						damping: 10,
 						stiffness: 100,
@@ -23,7 +23,7 @@ const Control = () => {
 				>
 					<Flex
 						direction="column"
-						className="p-3 gap-1 pt-2 flex fixed bg-accent w-full h-full border-t-2 border-accent-800"
+						className="p-3 gap-1 pt-2 flex bg-accent w-full h-full border-t-2 border-accent-800"
 					>
 						{control.map((item, index) => {
 							return (
