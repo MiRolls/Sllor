@@ -14,7 +14,7 @@ const Control = () => {
 					initial={{ x: "-100%" }}
 					animate={{ x: 0 }}
 					exit={{ x: "-100%" }}
-					className="h-screen w-fix lg:w-1/5 md:w-4/12 w-4/5"
+					className="h-full w-fix lg:w-1/5 md:w-4/12 w-4/5"
 					transition={{
 						damping: 10,
 						stiffness: 100,

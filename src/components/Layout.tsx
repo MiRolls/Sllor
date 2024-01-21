@@ -9,10 +9,11 @@ import createI18n from "../language";
 import changeSite from "../config/changeSite.ts";
 import NavBar from "./NavBar.tsx";
 import { SiteState, useSite } from "../store/site.ts";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { DarkState, useDark } from "../store/dark.ts";
 import Control from "./Control.tsx";
 import { Site } from "../interfaces/site";
+import { ControlState, useControl } from "../store/control.ts";
 
 export const SiteLoader = async (): Promise<[boolean, Site | null]> => {
 	let data: SiteGet;
@@ -50,6 +51,12 @@ export const Layout = () => {
 	// on mounted
 	// changeDark api
 	const changeDark: any = useDark((state) => (state as DarkState).changeDark);
+
+	// show control api
+	const changeShow = useControl(
+		(state) => (state as ControlState).changeShow
+	);
+
 	useEffect(() => {
 		// get localStorage
 		const dark = localStorage.getItem("dark");
@@ -66,9 +73,25 @@ export const Layout = () => {
 
 	// create state dark
 	useEffect(() => {
+		// set dark in DOM
 		document.documentElement.className = `${stateDark}-theme`;
 		document.documentElement.style.colorScheme = stateDark;
 	}, [stateDark]);
+
+	useEffect(() => {
+		function handle() {
+			if (window.innerWidth <= 768) {
+				changeShow(false);
+				// phone, mobile
+			}
+		}
+		// reactive control
+		window.addEventListener("resize", handle);
+		handle();
+		return () => {
+			window.removeEventListener("resize", handle);
+		};
+	}, []);
 
 	return (
 		<Theme accentColor={site[1]["main-color"]} appearance={stateDark}>
@@ -94,8 +117,8 @@ export const Layout = () => {
 				<div
 					className={
 						navigation.state === "loading"
-							? "pt-16 opacity-10 w-full grayscale min-h-screen duration-200"
-							: "duration-200 pt-16 w-full min-h-screen"
+							? "pt-16 opacity-10 w-full grayscale h-full duration-200"
+							: "duration-200 pt-16 w-full h-full"
 					}
 				>
 					{/* Control */}

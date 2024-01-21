@@ -43,7 +43,7 @@ export const useControl = create(
 		},
 		changeShow: (value?: boolean) =>
 			set((state: ControlState) => {
-				if (value) {
+				if (value !== undefined) {
 					// if value != null
 					return { show: value };
 				} else {
