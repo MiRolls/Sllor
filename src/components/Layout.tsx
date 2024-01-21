@@ -9,7 +9,7 @@ import createI18n from "../language";
 import changeSite from "../config/changeSite.ts";
 import NavBar from "./NavBar.tsx";
 import { SiteState, useSite } from "../store/site.ts";
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 import { DarkState, useDark } from "../store/dark.ts";
 import Control from "./Control.tsx";
 import { Site } from "../interfaces/site";
