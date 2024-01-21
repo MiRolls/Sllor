@@ -114,9 +114,27 @@ const NavBar = () => {
 				{/* Phone dropdown menu */}
 				<Box className="sm:hidden inline">
 					<DropdownMenu.Root>
-						<IconButton radius="full" size="3" className={"outline-none duration-200"}>
-							<IoMdMore className="w-6 h-6 stroke-1" />
-						</IconButton>
+						<DropdownMenu.Trigger>
+							<IconButton
+								radius="full"
+								size="3"
+								className={"outline-none duration-200"}
+							>
+								<IoMdMore className="w-6 h-6 stroke-1" />
+							</IconButton>
+						</DropdownMenu.Trigger>
+						<DropdownMenu.Content>
+							<Link to="/about">
+								<DropdownMenu.Item className="!bg-transparent">
+									{t("About")}
+								</DropdownMenu.Item>
+							</Link>
+							<Link to="/questionnaire">
+								<DropdownMenu.Item className="!bg-transparent">
+									{t("Home")}
+								</DropdownMenu.Item>
+							</Link>
+						</DropdownMenu.Content>
 					</DropdownMenu.Root>
 				</Box>
 			</Box>

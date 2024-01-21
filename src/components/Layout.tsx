@@ -1,6 +1,6 @@
 // @flow
 import { Outlet, useLoaderData, useNavigation } from "react-router-dom";
-import { AlertDialog, Button, Flex, Text, Theme } from "@radix-ui/themes";
+import { AlertDialog, Box, Button, Flex, Text, Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import axios from "axios";
 import { SiteGet } from "../interfaces/response/site";
@@ -55,6 +55,10 @@ export const Layout = () => {
 
 	// show control api
 	const changeShow = useControl(state => (state as ControlState).changeShow);
+
+	function close() {
+		changeShow(false);
+	}
 
 	useEffect(() => {
 		// get localStorage
@@ -123,6 +127,9 @@ export const Layout = () => {
 				>
 					{/* Control */}
 					<Control></Control>
+					{show && control.length > 0 && (
+						<Box className="md:hidden ml-[80%] w-1/5 h-full" onClick={close}></Box>
+					)}
 					{/* Main Thing */}
 					<div
 						className={
