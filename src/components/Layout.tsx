@@ -134,8 +134,8 @@ export const Layout = () => {
 					<div
 						className={
 							control.length > 0 && show
-								? "lg:pl-[20%] md:pl-[33.333333%] duration-200"
-								: "duration-200"
+								? "lg:pl-[20%] h-full md:pl-[33.333333%] duration-200"
+								: "duration-200 h-full"
 						}
 					>
 						<Suspense>

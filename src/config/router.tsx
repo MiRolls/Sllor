@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout, SiteLoader } from "../components/Layout.tsx";
-import { QuestionnaireLoader } from "../pages/Questionnaire/QuestionnaireLoader.tsx";
+import { QuestionnaireLoader } from "../pages/Questionnaire/IndexPage.tsx";
 import { AboutLoader } from "../pages/About.tsx";
 import { lazy } from "react";
 // import QuestionnairePage from "../pages/Questionnaire/IndexPage";
@@ -23,6 +23,10 @@ export function createRouter(): NonNullable<any> {
 					path: "/about",
 					Component: lazy(() => import("../pages/About.tsx")),
 					loader: AboutLoader,
+				},
+				{
+					path: "/",
+					Component: lazy(() => import("../pages/IndexPage.tsx")),
 				},
 			],
 		},

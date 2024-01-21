@@ -4,6 +4,10 @@ import { HiMenu } from "react-icons/hi";
 import { IoCreateOutline } from "react-icons/io5";
 import isPhone from "../../utils/isPhone.ts";
 
+export async function QuestionnaireLoader() {
+	return {};
+}
+
 const QuestionnairePage = () => {
 	const changeControl = useControl(state => (state as ControlState).changeControl);
 	const clear = useControl(state => (state as ControlState).clear);
