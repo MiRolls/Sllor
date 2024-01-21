@@ -52,7 +52,7 @@ const NavBar = () => {
 					<HiMenu color={stateDark === "dark" ? "white" : "black"} className="w-6 h-6" />
 				</IconButton>
 				{/* Just support css */}
-				<IconButton size="3" className="opacity-0" />
+				<IconButton size="3" className="opacity-0 sm:!hidden" />
 			</Box>
 			{/* Site info(Click to go to indexPage) */}
 			<Link to="/" className="block">
