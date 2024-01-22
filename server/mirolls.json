@@ -1,16 +1,17 @@
 {
-  "get-site": {
-    "code": 200,
-    "data": {
-      "name": "Sllor",
-      "site-url": "http://localhost:5137/",
-      "main-color": "green",
-      "lang": "zhCn",
-      "logo": "https://i2.100024.xyz/2023/12/31/icy8ip.webp",
-      "introduce": "# Sllor",
-      "about": "# About",
-      "footer": "# Footer"
-    },
-    "message": "success"
-  }
+	"get-site": {
+		"code": 200,
+		"data": {
+			"name": "Sllor",
+			"site-url": "http://localhost:5137/",
+			"main-color": "green",
+			"lang": "enUs",
+			"logo": "https://i2.100024.xyz/2023/12/31/icy8ip.webp",
+			"introduce": "# Sllor",
+			"about": "# About",
+			"footer": "# Footer",
+			"short-introduce": "Sllor is a good way to make your questionnaire"
+		},
+		"message": "success"
+	}
 }

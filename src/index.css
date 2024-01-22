@@ -9,3 +9,31 @@
 .light-theme .rt-Button {
 	color: black;
 }
+
+.text-shadow {
+	text-shadow: 0 2px 0 var(--tw-shadow-color);
+}
+
+.text-shadow-md {
+	text-shadow: 0 2px 2px var(--tw-shadow-color);
+}
+
+.text-shadow-lg {
+	text-shadow: 0 0 3px var(--tw-shadow-color), 0 0 5px var(--tw-shadow-color);
+}
+
+.text-shadow-2xl {
+	text-shadow: 0 0 3px var(--tw-shadow-color), 0 0 5px var(--tw-shadow-color);
+}
+
+.text-shadow-3xl {
+	text-shadow: 0px 13px 50px var(--tw-shadow-color), -5px 12px 45px var(--tw-shadow-color),
+		5px 12px 45px var(--tw-shadow-color);
+}
+
+.gradient-white-main {
+	background: linear-gradient(to bottom, var(--accent-a1), var(--accent-10));
+	-webkit-background-clip: text;
+	color: transparent;
+	display: inline-block;
+}
