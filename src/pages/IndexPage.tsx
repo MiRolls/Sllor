@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Text } from "@radix-ui/themes";
+import { Box, Button, Flex, Heading } from "@radix-ui/themes";
 import { SiteState, useSite } from "../store/site";
 import { BsArrowReturnLeft } from "react-icons/bs";
 import { Site } from "../interfaces/site";
@@ -16,9 +16,13 @@ const IndexPage = () => {
 				align="center"
 			>
 				{/* Main Title */}
-				<Flex width="100%" height={"100%"} justify={"center"} align={"center"}>
+				<Flex
+					width="100%"
+					className="lg:!justify-center lg:!items-center sm:!justify-start"
+					height={"100%"}
+				>
 					<Flex
-						className="lg:max-w-4/12 sm:max-w-3/5 lg:scale-100 md:scale-110 !items-center sm:p-0 sm:mr-20 p-10 sm:!items-start"
+						className="sm:ml-20 lg:ml-0 lg:max-w-4/12 sm:max-w-3/5 !items-center sm:p-0 sm:mr-20 p-10 sm:!items-start"
 						direction="column"
 						justify="center"
 					>
@@ -32,7 +36,7 @@ const IndexPage = () => {
 							Getting Started <BsArrowReturnLeft className="stroke-1" />
 						</Button>
 					</Flex>
-					<Flex className="!hidden xl:!block h-full " justify="center" align="center">
+					<Flex className="!hidden lg:!block h-full " justify="center" align="center">
 						{/* Background */}
 						<Box className="rounded-full absolute right-[-10px] bottom-7 w-96 h-96 scale-[2.3] blur-3xl z-[-1] bg-accent-400A"></Box>
 						{/* Card */}
@@ -40,7 +44,7 @@ const IndexPage = () => {
 							<div className="h-full p-2 rounded-lg w-fit bg-accent-500">
 								<iframe src={showPage[0]} className="h-full"></iframe>
 							</div>
-							<div className="h-full p-2 rounded-lg w-fit bg-accent-500">
+							<div className="h-full hidden xl:block p-2 rounded-lg w-fit bg-accent-500">
 								<iframe src={showPage[1]} className="h-full"></iframe>
 							</div>
 						</Flex>
