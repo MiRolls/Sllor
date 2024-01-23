@@ -120,7 +120,10 @@ const NavBar = () => {
 								size="3"
 								className={"outline-none duration-200"}
 							>
-								<IoMdMore className="w-6 h-6 stroke-1" />
+								<IoMdMore
+									className="w-6 h-6 stroke-1"
+									color={stateDark === "dark" ? "white" : "black"}
+								/>
 							</IconButton>
 						</DropdownMenu.Trigger>
 						<DropdownMenu.Content>
