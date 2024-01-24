@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading } from "@radix-ui/themes";
+import { Box, Button, Container, Flex, Heading } from "@radix-ui/themes";
 import { SiteState, useSite } from "../store/site";
 import { BsArrowReturnLeft } from "react-icons/bs";
 import { Site } from "../interfaces/site";
@@ -8,7 +8,7 @@ const IndexPage = () => {
 	const site: Site = useSite(state => (state as SiteState).site);
 
 	return (
-		<Box className="h-full overflow-hidden relative ">
+		<Box className="h-full relative overflow-hidden">
 			{/* Main Things */}
 			<Flex
 				direction="row"
@@ -38,14 +38,20 @@ const IndexPage = () => {
 					</Flex>
 					<Flex className="!hidden lg:!block h-full " justify="center" align="center">
 						{/* Background */}
-						<Box className="rounded-full absolute right-[-10px] bottom-7 w-96 h-96 scale-[2.3] blur-3xl z-[-1] bg-accent-400A"></Box>
+						<Box className="rounded-full absolute right-[-10px] bottom-7 w-96 h-96 scale-[2.3] blur-3xl z-[-1] bg-accent-300A"></Box>
 						{/* Card */}
-						<Flex className="h-full gap-3 py-10">
+						<Flex className="h-full gap-3 py-10 pt-[55px]">
 							<div className="h-full p-2 rounded-lg w-fit bg-accent-500">
-								<iframe src={showPage[0]} className="h-full"></iframe>
+								<iframe
+									src={showPage[0]}
+									className="pointer-events-none h-full"
+								></iframe>
 							</div>
 							<div className="h-full hidden xl:block p-2 rounded-lg w-fit bg-accent-500">
-								<iframe src={showPage[1]} className="h-full"></iframe>
+								<iframe
+									src={showPage[1]}
+									className="pointer-events-none h-full"
+								></iframe>
 							</div>
 						</Flex>
 					</Flex>
