@@ -8,13 +8,27 @@ interface MarkdownProps {
 	align?: "center" | "justify" | "left" | "right" | "start" | "end";
 	loadAnimation?: boolean;
 	lazyImage?: boolean;
+	size?:
+		| "base"
+		| "xs"
+		| "sm"
+		| "lg"
+		| "xl"
+		| "2xl"
+		| "3xl"
+		| "4xl"
+		| "5xl"
+		| "6xl"
+		| "7xl"
+		| "8xl"
+		| "9xl";
 }
 
-const Markdown = ({ children, className, align }: MarkdownProps) => {
-	const cloneClassName = className + ` text-${align}`;
+const Markdown = ({ children, className, align, size }: MarkdownProps) => {
+	const cloneClassName = className + ` text-${align} text-${size}`;
 	return (
 		<Box className={cloneClassName}>
-			<Box className="leading-5">
+			<Box className="leading-4">
 				<MarkdownComponent options={markdownConfig}>{children}</MarkdownComponent>
 			</Box>
 		</Box>

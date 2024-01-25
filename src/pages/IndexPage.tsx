@@ -11,7 +11,7 @@ const IndexPage = () => {
 
 			{/* Introduce */}
 			<Box className="p-20">
-				<Markdown className="w-full" align="center">
+				<Markdown className="w-full" size="lg" align="center">
 					{string}
 				</Markdown>
 			</Box>
