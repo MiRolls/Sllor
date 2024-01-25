@@ -37,3 +37,7 @@
 	color: transparent;
 	display: inline-block;
 }
+
+p {
+	white-space: normal;
+}

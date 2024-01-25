@@ -14,7 +14,9 @@ const Markdown = ({ children, className, align }: MarkdownProps) => {
 	const cloneClassName = className + ` text-${align}`;
 	return (
 		<Box className={cloneClassName}>
-			<MarkdownComponent options={markdownConfig}>{children}</MarkdownComponent>
+			<Box className="leading-5">
+				<MarkdownComponent options={markdownConfig}>{children}</MarkdownComponent>
+			</Box>
 		</Box>
 	);
 };
