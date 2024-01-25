@@ -7,7 +7,9 @@ const IndexPage = () => {
 		<Box className="h-full relative overflow-hidden">
 			{/* Title */}
 			<IndexTitle></IndexTitle>
-			<Markdown>#I love markdown</Markdown>
+			<Markdown className="w-full" align="center">
+				#I love markdown
+			</Markdown>
 		</Box>
 	);
 };

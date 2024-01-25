@@ -30,9 +30,9 @@ const IndexTitle = () => {
 						Getting Started <BsArrowReturnLeft className="stroke-1" />
 					</Button>
 				</Flex>
+				{/* Background */}
+				<Box className="rounded-full fixed right-[-10px] bottom-7 w-96 h-96 scale-[2.3] blur-3xl z-[-1] bg-accent-100A md:bg-accent-300A"></Box>
 				<Flex className="!hidden lg:!block h-full " justify="center" align="center">
-					{/* Background */}
-					<Box className="rounded-full absolute right-[-10px] bottom-7 w-96 h-96 scale-[2.3] blur-3xl z-[-1] bg-accent-300A"></Box>
 					{/* Card */}
 					<Flex className="h-full gap-3 py-10 pt-[55px]">
 						<div className="h-full p-2 rounded-lg w-fit bg-accent-500">
