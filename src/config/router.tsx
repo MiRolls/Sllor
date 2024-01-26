@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout, SiteLoader } from "../components/Layout.tsx";
-import { QuestionnaireLoader } from "../pages/Questionnaire/IndexPage.tsx";
-import { AboutLoader } from "../pages/About.tsx";
+import { QuestionnaireLoader } from "../pages/questionnaire/index.tsx";
+import { AboutLoader } from "../pages/about.tsx";
 import { lazy } from "react";
 // import QuestionnairePage from "../pages/Questionnaire/IndexPage";
 export function createRouter(): NonNullable<any> {
@@ -16,17 +16,17 @@ export function createRouter(): NonNullable<any> {
 					// element: import("../pages/Questionnaire/IndexPage.tsx"),
 					// lazy: () => import("../pages/Questionnaire/IndexPage.tsx"),
 					// lazy: () => import("../components/NavBar.tsx"),
-					Component: lazy(() => import("../pages/Questionnaire/IndexPage.tsx")),
+					Component: lazy(() => import("../pages/questionnaire/index.tsx")),
 					loader: QuestionnaireLoader,
 				},
 				{
 					path: "/about",
-					Component: lazy(() => import("../pages/About.tsx")),
+					Component: lazy(() => import("../pages/about.tsx")),
 					loader: AboutLoader,
 				},
 				{
 					path: "/",
-					Component: lazy(() => import("../pages/IndexPage.tsx")),
+					Component: lazy(() => import("../pages/index.tsx")),
 				},
 			],
 		},
