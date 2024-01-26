@@ -1,6 +1,6 @@
 import { RouterProvider } from "react-router-dom";
 import { createRouter } from "../config/router";
-import "./index.css";
+import "./style.css";
 
 export default () => {
 	return (

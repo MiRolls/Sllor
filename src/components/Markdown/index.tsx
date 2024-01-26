@@ -1,6 +1,6 @@
 import { Box } from "@radix-ui/themes";
 import MarkdownComponent from "markdown-to-jsx";
-import markdownConfig from "../config/markdownConfig";
+import markdownConfig from "./markdownConfig";
 import "../config/markdown/style.css";
 
 interface MarkdownProps {
