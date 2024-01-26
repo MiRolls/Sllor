@@ -7,7 +7,7 @@ interface MarkdownProps {
 	children: string;
 	className?: string;
 	align?: "center" | "justify" | "left" | "right" | "start" | "end";
-	loadAnimation?: boolean;
+	loadingAnimation?: boolean;
 	lazyImage?: boolean;
 	size?:
 		| "base"
@@ -25,11 +25,11 @@ interface MarkdownProps {
 		| "9xl";
 }
 
-const Markdown = ({ children, className, align, size }: MarkdownProps) => {
+const Markdown = ({ children, className, align, size, loadingAnimation }: MarkdownProps) => {
 	const cloneClassName = className + ` text-${align} text-${size}`;
 	return (
 		<Box className={cloneClassName}>
-			<Box className="leading-4 load-animation">
+			<Box className={"leading-4 " + (loadingAnimation ? "" : "load-animation")}>
 				<MarkdownComponent options={markdownConfig}>{children}</MarkdownComponent>
 			</Box>
 		</Box>

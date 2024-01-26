@@ -8,10 +8,9 @@ const IndexPage = () => {
 		<Box className="h-full relative overflow-x-hidden">
 			{/* Title */}
 			<IndexTitle></IndexTitle>
-
 			{/* Introduce */}
 			<Box className="p-20">
-				<Markdown className="w-full" size="lg" align="center">
+				<Markdown loadingAnimation={true} className="w-full" size="lg" align="center">
 					{string}
 				</Markdown>
 			</Box>
