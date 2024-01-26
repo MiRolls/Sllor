@@ -1,6 +1,6 @@
 // @flow
 import { Outlet, useLoaderData, useNavigation } from "react-router-dom";
-import { AlertDialog, Button, Flex, Text, Theme } from "@radix-ui/themes";
+import { AlertDialog, Box, Button, Flex, Text, Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import axios from "axios";
 import { SiteGet } from "../interfaces/response/site";
@@ -9,7 +9,7 @@ import createI18n from "../language";
 import changeSite from "../config/changeSite.ts";
 import NavBar from "./NavBar.tsx";
 import { SiteState, useSite } from "../store/site.ts";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { DarkState, useDark } from "../store/dark.ts";
 import Control from "./Control.tsx";
 import { Site } from "../interfaces/site";
@@ -55,6 +55,10 @@ export const Layout = () => {
 
 	// show control api
 	const changeShow = useControl(state => (state as ControlState).changeShow);
+
+	function close() {
+		changeShow(false);
+	}
 
 	useEffect(() => {
 		// get localStorage
@@ -123,15 +127,20 @@ export const Layout = () => {
 				>
 					{/* Control */}
 					<Control></Control>
+					{show && control.length > 0 && (
+						<Box className="md:hidden ml-[80%] w-1/5 h-full" onClick={close}></Box>
+					)}
 					{/* Main Thing */}
 					<div
 						className={
 							control.length > 0 && show
-								? "lg:pl-[20%] md:pl-[33.333333%] duration-200"
-								: "duration-200"
+								? "lg:pl-[20%] h-full md:pl-[33.333333%] duration-200"
+								: "duration-200 h-full"
 						}
 					>
-						<Outlet></Outlet>
+						<Suspense>
+							<Outlet></Outlet>
+						</Suspense>
 					</div>
 				</div>
 			</div>
