@@ -1,0 +1,19 @@
+@keyframes load {
+	from {
+		opacity: 0;
+		transform: translateY(25%);
+		scale: 0.9;
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+		scale: 1;
+	}
+}
+
+.load-animation * {
+	/* Selector will select all Markdown element */
+	animation-timeline: view() !important;
+	animation: load linear;
+	animation-range-end: cover 30%;
+}

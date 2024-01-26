@@ -1,6 +1,7 @@
 import { Box } from "@radix-ui/themes";
 import MarkdownComponent from "markdown-to-jsx";
 import markdownConfig from "../config/markdownConfig";
+import "../config/markdown/style.css";
 
 interface MarkdownProps {
 	children: string;
@@ -28,7 +29,7 @@ const Markdown = ({ children, className, align, size }: MarkdownProps) => {
 	const cloneClassName = className + ` text-${align} text-${size}`;
 	return (
 		<Box className={cloneClassName}>
-			<Box className="leading-4">
+			<Box className="leading-4 load-animation">
 				<MarkdownComponent options={markdownConfig}>{children}</MarkdownComponent>
 			</Box>
 		</Box>
