@@ -29,7 +29,7 @@ const Markdown = ({ children, className, align, size, loadingAnimation }: Markdo
 	const cloneClassName = className + ` text-${align} text-${size}`;
 	return (
 		<Box className={cloneClassName}>
-			<Box className={"leading-4 " + (loadingAnimation ? "" : "load-animation")}>
+			<Box className={"leading-4 " + (!loadingAnimation ? "" : "load-animation")}>
 				<MarkdownComponent options={markdownConfig}>{children}</MarkdownComponent>
 			</Box>
 		</Box>
