@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { ControlState, useControl } from "../../store/control.ts";
+import { ControlState, useControl } from "../../../store/control.ts";
 import { HiMenu } from "react-icons/hi";
 import { IoCreateOutline } from "react-icons/io5";
-import isPhone from "../../utils/isPhone.ts";
+import isPhone from "../../../utils/isPhone.ts";
 
 export async function QuestionnaireLoader() {
 	return {};
