@@ -1,7 +1,7 @@
 import { Box } from "@radix-ui/themes";
 import MarkdownComponent from "markdown-to-jsx";
 import markdownConfig from "./markdownConfig";
-import "../config/markdown/style.css";
+import "./style.css";
 
 interface MarkdownProps {
 	children: string;

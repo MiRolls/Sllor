@@ -1,7 +1,7 @@
 import { MarkdownToJSX } from "markdown-to-jsx";
-import { H1, H2, H3, H4, H5, H6 } from "./markdown/Title.tsx";
+import { H1, H2, H3, H4, H5, H6 } from "./children/Title.tsx";
 import { Link } from "@radix-ui/themes";
-import { Span, P } from "./markdown/Text.tsx";
+import { Span, P } from "./children/Text.tsx";
 
 const markdownConfig: MarkdownToJSX.Options = {
 	overrides: {
