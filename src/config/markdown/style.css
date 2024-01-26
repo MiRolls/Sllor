@@ -1,8 +1,8 @@
 @keyframes load {
 	from {
-		opacity: 0;
-		transform: translateY(25%);
-		scale: 0.9;
+		opacity: 0.5;
+		transform: translateY(5%);
+		scale: 0.95;
 	}
 	to {
 		opacity: 1;
