@@ -1,8 +1,14 @@
 /** @type {import('next').NextConfig} */
 
-const nextConfig = {
-	output: "export", // Outputs a Single-Page Application (SPA).
-	distDir: "./dist", // Changes the build output directory to `./dist/`.
+const rewrites = () => {
+    return [
+        {
+            source: "/site/get",
+            destination: "http://localhost:2333/site/get",
+        },
+    ];
 };
+
+const nextConfig = { rewrites };
 
 export default nextConfig;
