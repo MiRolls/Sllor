@@ -145,7 +145,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 						</div>
 					</Theme>
 				</div>
-				<script type="module" src="/src/main.tsx"></script>
 				<noscript>
 					<h1>This site can&apos;t run without JavaScript.</h1>
 				</noscript>
