@@ -1,14 +1,14 @@
 import { Avatar, Box, Button, DropdownMenu, Flex, Heading, IconButton } from "@radix-ui/themes";
 import { HiMenu } from "react-icons/hi";
-import { SiteState, useSite } from "../store/site.ts";
-import { DarkState, useDark } from "../store/dark.ts";
+import { SiteState, useSite } from "@/store/site";
+import { DarkState, useDark } from "@/store/dark";
 import { CiDark, CiLight } from "react-icons/ci";
 import { IoMdMore } from "react-icons/io";
 import { motion } from "framer-motion";
 import { useUpdateEffect } from "usehooks-ts";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import { ControlState, useControl } from "../store/control.ts";
+import { ControlState, useControl } from "@/store/control";
 
 const NavBar = () => {
 	const site = useSite(state => (state as SiteState).site);
@@ -54,7 +54,7 @@ const NavBar = () => {
 				<IconButton size="3" className="opacity-0 sm:!hidden" />
 			</Box>
 			{/* Site info(Click to go to indexPage) */}
-			<Link to="/" className="block">
+			<Link href="/" className="block">
 				{/* Site Logo */}
 				<Avatar
 					src={site.logo}
@@ -64,16 +64,16 @@ const NavBar = () => {
 				></Avatar>
 			</Link>
 
-			<Link to="/" className="ml-2 sm:block sm:ml-3 hidden flex-1">
+			<Link href="/" className="ml-2 sm:block sm:ml-3 hidden flex-1">
 				{/* Site Name */}
 				<Heading>{site.name}</Heading>
 			</Link>
 
 			<Box className={"hidden sm:block"}>
-				<Link to="/about">
+				<Link href="/about">
 					<Button>{t("About")}</Button>
 				</Link>
-				<Link to="/questionnaire">
+				<Link href="/questionnaire">
 					<Button>{t("Home")}</Button>
 				</Link>
 			</Box>
@@ -127,12 +127,12 @@ const NavBar = () => {
 							</IconButton>
 						</DropdownMenu.Trigger>
 						<DropdownMenu.Content>
-							<Link to="/about">
+							<Link href="/about">
 								<DropdownMenu.Item className="!bg-transparent">
 									{t("About")}
 								</DropdownMenu.Item>
 							</Link>
-							<Link to="/questionnaire">
+							<Link href="/questionnaire">
 								<DropdownMenu.Item className="!bg-transparent">
 									{t("Home")}
 								</DropdownMenu.Item>

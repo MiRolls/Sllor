@@ -1,6 +1,6 @@
 import { Button, Flex, Text } from "@radix-ui/themes";
 import React from "react";
-import classNames from "../utils/classNames.ts";
+import classNames from "@/utils/classNames";
 import { AnimatePresence, motion } from "framer-motion";
 import { ControlState, useControl } from "../store/control";
 
