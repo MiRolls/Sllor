@@ -1,4 +1,4 @@
-"use server";
+"use client";
 import { Theme } from "@radix-ui/themes";
 import React, { Suspense } from "react";
 import { useTranslation } from "react-i18next";

@@ -83,9 +83,15 @@ export const DataLoader = ({ children }: { children: React.ReactNode }) => {
 
     if (showState === "success") {
         return (
-            <Layout data={site[1]} dark={stateDark} control={control} show={show}>
-                {children}
-            </Layout>
+            <Layout
+                children={children}
+                data={site[1]}
+                dark={stateDark}
+                control={control}
+                show={show}
+            />
+            // {/* {children} */}
+            // </Layout>
         );
     } else if (showState === "error") {
         return <ErrorBox></ErrorBox>;
