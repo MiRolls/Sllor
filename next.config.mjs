@@ -1,9 +1,14 @@
 /** @type {import('next').NextConfig} */
+
+const isProd = process.env.NODE_ENV === "production";
+function get_rewrites(origin) {
+    return (isProd ? "/[[[serverURL]]]" : process.env.MIROLLS_URL) + origin;
+}
 const rewrites = () => {
     return [
         {
             source: "/site/get",
-            destination: `${process.env.MIROLLS_URL}/site/get`,
+            destination: get_rewrites("site/get"),
         },
     ];
 };

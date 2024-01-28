@@ -3,10 +3,10 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "cross-env MIROLLS_URL=http://localhost:2333/ next dev & node server/mirolls.mjs",
-        "serve": "cross-env MIROLLS_URL=http://localhost:2333/ next dev",
-        "build": "cross-env NODE_ENV=production MIROLLS_URL=http://localhost:2333/ next build",
-        "start": "cross-env NODE_ENV=production MIROLLS_URL=http://localhost:2333/ next start",
+        "dev": "cross-env NODE_ENV=development MIROLLS_URL=http://localhost:2333/ next dev & node server/mirolls.mjs",
+        "serve": "cross-env NODE_ENV=development MIROLLS_URL=http://localhost:2333/ next dev",
+        "build": "cross-env NODE_ENV=production next build && node mirolls_standalone.cjs",
+        "start": "cross-env NODE_ENV=development MIROLLS_URL=http://localhost:2333/ next start",
         "lint": "next lint",
         "mock": "node server/mirolls.mjs"
     },
