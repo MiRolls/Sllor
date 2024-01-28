@@ -1,5 +1,5 @@
 // "use client";
-import { Box, Theme } from "@radix-ui/themes";
+import { Theme } from "@radix-ui/themes";
 import React, { Suspense, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useControl } from "@/store/control";
