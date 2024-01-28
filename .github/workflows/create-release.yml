@@ -14,7 +14,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [18.x, 20.x]
+                node-version: [20.x]
 
         steps:
             - uses: actions/checkout@v3
@@ -31,7 +31,7 @@ jobs:
             - run: pnpm build #
 
             - name: Zip Files
-              run: zip -r sllor.zip ./dist/standalone
+              run: cd dist/standalone/ && zip -r sllor.zip . && mv sllor.zip ../../
 
             - name: Create Release and Upload Release Asset
               uses: softprops/action-gh-release@v1
