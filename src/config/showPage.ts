@@ -1,1 +1,2 @@
-export default ["/questionnaire", "/"];
+const showPages = ["/questionnaire", "/"];
+export default showPages;

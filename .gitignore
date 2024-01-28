@@ -13,6 +13,7 @@ dist-ssr
 *.local
 .next
 src_before
+standalone
 
 # Editor directories and files
 .vscode/*

@@ -3,10 +3,10 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev & node server/mirolls.mjs",
-        "serve": "next dev",
-        "build": "next build",
-        "start": "next start",
+        "dev": "cross-env MIROLLS_URL=http://localhost:2333/ next dev & node server/mirolls.mjs",
+        "serve": "cross-env MIROLLS_URL=http://localhost:2333/ next dev",
+        "build": "cross-env NODE_ENV=production MIROLLS_URL=http://localhost:2333/ next build",
+        "start": "cross-env NODE_ENV=production MIROLLS_URL=http://localhost:2333/ next start",
         "lint": "next lint",
         "mock": "node server/mirolls.mjs"
     },
@@ -36,6 +36,7 @@
         "@typescript-eslint/parser": "^6.18.0",
         "@vitejs/plugin-react": "^4.2.1",
         "autoprefixer": "^10.4.16",
+        "cross-env": "^7.0.3",
         "eslint": "^8.56.0",
         "eslint-config-next": "^14.1.0",
         "eslint-plugin-react": "^7.33.2",

@@ -73,6 +73,7 @@ export const DataLoader = ({ children }: { children: React.ReactNode }) => {
                 setShowState("error");
             }
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -83,15 +84,9 @@ export const DataLoader = ({ children }: { children: React.ReactNode }) => {
 
     if (showState === "success") {
         return (
-            <Layout
-                children={children}
-                data={site[1]}
-                dark={stateDark}
-                control={control}
-                show={show}
-            />
-            // {/* {children} */}
-            // </Layout>
+            <Layout data={site[1]} dark={stateDark} control={control} show={show}>
+                {children}
+            </Layout>
         );
     } else if (showState === "error") {
         return <ErrorBox></ErrorBox>;
