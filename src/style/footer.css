@@ -1,0 +1,3 @@
+.bg-gradient {
+    background: linear-gradient(transparent, var(--accent-3));
+}
