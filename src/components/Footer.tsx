@@ -1,5 +1,5 @@
 "use client";
-import { Box } from "@radix-ui/themes";
+import { Flex } from "@radix-ui/themes";
 import React from "react";
 import "@/style/footer.css";
 import { SiteState, useSite } from "@/store/site";
@@ -9,17 +9,21 @@ import Markdown from "./Markdown";
 const Footer = () => {
     const site: Site = useSite(state => (state as SiteState).site);
     return (
-        <Box className="relative bg-gradient min-h-[20%]">
+        <Flex
+            className="relative bg-gradient min-h-[50%] lg:min-h-[30%]"
+            direction={"column"}
+            justify={"center"}
+        >
             <Markdown
                 align="start"
-                className="px-24 py-10"
+                className="sm:px-24 px-6 py-10"
                 loadingAnimation={false}
                 size="base"
                 lazyImage={false}
             >
                 {site.footer}
             </Markdown>
-        </Box>
+        </Flex>
     );
 };
 

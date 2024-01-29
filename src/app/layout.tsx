@@ -11,9 +11,6 @@ function RootLayout({ children }: { children: React.ReactNode }) {
             </head>
             <body>
                 <DataLoader>{children}</DataLoader>
-                <noscript>
-                    <h1>This site can&apos;t run without JavaScript.</h1>
-                </noscript>
             </body>
         </html>
     );

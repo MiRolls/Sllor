@@ -10,10 +10,3 @@
         scale: 1;
     }
 }
-
-.load-animation * {
-    /* Selector will select all Markdown element */
-    animation-timeline: view() !important;
-    animation: load ease;
-    animation-range-end: cover 30%;
-}

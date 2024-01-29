@@ -9,7 +9,11 @@ const IndexTitle = () => {
     const site: Site = useSite(state => (state as SiteState).site);
 
     return (
-        <Flex direction="row" className="!w-full h-5/6 sm:items-start items-center" align="center">
+        <Flex
+            direction="row"
+            className="!w-full lg:h-5/6 h-fix lg:mt-0 mt-20 lg:scale-100 scale-110 sm:items-start items-center"
+            align="center"
+        >
             {/* Main Title */}
             <Flex
                 width="100%"
