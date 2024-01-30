@@ -2,6 +2,7 @@ import { Box } from "@radix-ui/themes";
 import MarkdownComponent from "markdown-to-jsx";
 import markdownConfig from "./markdownConfig";
 import "./style.css";
+import getMarkdownConfig from "./markdownConfig";
 
 interface MarkdownProps {
     children: string;
@@ -25,12 +26,21 @@ interface MarkdownProps {
         | "9xl";
 }
 
-const Markdown = ({ children, className, align, size, loadingAnimation }: MarkdownProps) => {
+const Markdown = ({
+    children,
+    className,
+    align,
+    size,
+    loadingAnimation,
+    lazyImage,
+}: MarkdownProps) => {
     const cloneClassName = className + ` text-${align} text-${size}`;
     return (
         <Box className={cloneClassName}>
             <Box className={"leading-4 " + (!loadingAnimation ? "" : "load-animation")}>
-                <MarkdownComponent options={markdownConfig}>{children}</MarkdownComponent>
+                <MarkdownComponent options={getMarkdownConfig(lazyImage as boolean)}>
+                    {children}
+                </MarkdownComponent>
             </Box>
         </Box>
     );
