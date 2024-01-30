@@ -7,7 +7,6 @@ import NavBar from "./NavBar";
 import { Site } from "@/interfaces/site";
 import CloseBox from "./CloseBox";
 import { ControlData } from "@/interfaces/control";
-import Footer from "./Footer";
 
 export default function Layout({
     data,
