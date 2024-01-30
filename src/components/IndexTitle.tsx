@@ -9,7 +9,11 @@ const IndexTitle = () => {
     const site: Site = useSite(state => (state as SiteState).site);
 
     return (
-        <Flex direction="row" className="!w-full h-5/6 sm:items-start items-center" align="center">
+        <Flex
+            direction="row"
+            className="!w-full lg:h-5/6 h-fix lg:mt-0 mt-20 lg:scale-100 scale-110 sm:items-start items-center"
+            align="center"
+        >
             {/* Main Title */}
             <Flex
                 width="100%"
@@ -21,7 +25,7 @@ const IndexTitle = () => {
                     direction="column"
                     justify="center"
                 >
-                    <Box className="!text-[4.5rem] font-bold text-shadow-3xl gradient-white-main shadow-accent-500">
+                    <Box className="!text-[4.5rem] font-bold text-shadow-3xl gradient-white-main shadow-accent-500 ">
                         {site.name}
                     </Box>
                     <Heading className="text-accent-500 sm:text-left text-center">
@@ -31,8 +35,6 @@ const IndexTitle = () => {
                         Getting Started <BsArrowReturnLeft className="stroke-1" />
                     </Button>
                 </Flex>
-                {/* Background */}
-                <Box className="rounded-full fixed right-[-10px] bottom-7 w-96 h-96 scale-[2.3] blur-3xl z-[-1] bg-accent-100A md:bg-accent-300A"></Box>
                 <Flex className="!hidden lg:!block h-full " justify="center" align="center">
                     {/* Card */}
                     <Flex className="h-full gap-3 py-10 pt-[55px]">

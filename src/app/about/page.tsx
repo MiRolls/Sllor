@@ -1,9 +1,5 @@
-export async function AboutLoader() {
-	return {};
-}
-
 const About = () => {
-	return <div></div>;
+    return <div></div>;
 };
 
 export default About;

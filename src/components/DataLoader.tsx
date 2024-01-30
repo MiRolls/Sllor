@@ -28,12 +28,14 @@ export const SiteLoader = async (): Promise<[boolean, Site | null]> => {
 };
 
 export const DataLoader = ({ children }: { children: React.ReactNode }) => {
+    const stateDark = useDark(state => (state as any).dark);
     const [showState, setShowState] = useState("loading");
     const [site, setSite]: any = useState([false, null]);
     const changeUseSite = useSite(state => (state as any).changeSite);
-    // changeDark api
     const changeDark: any = useDark(state => (state as any).changeDark);
     const changeShow = useControl(state => (state as any).changeShow);
+    const control = useControl(state => (state as any).control);
+    const show = useControl(state => (state as any).show);
 
     useEffect(() => {
         SiteLoader().then(siteData => {
@@ -71,9 +73,21 @@ export const DataLoader = ({ children }: { children: React.ReactNode }) => {
                 setShowState("error");
             }
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        // set dark in DOM
+        document.documentElement.className = `${stateDark}-theme`;
+        document.documentElement.style.colorScheme = stateDark;
+    }, [stateDark]);
+
     if (showState === "success") {
-        return <Layout data={site[1]}>{children}</Layout>;
+        return (
+            <Layout data={site[1]} dark={stateDark} control={control} show={show}>
+                {children}
+            </Layout>
+        );
     } else if (showState === "error") {
         return <ErrorBox></ErrorBox>;
     }
