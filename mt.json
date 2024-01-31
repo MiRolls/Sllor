@@ -1,101 +1,105 @@
 {
-	"name": "sllor",
-	"not-found-page": "index.html",
-	"frame": "react",
-	"config": {
-		"site": {
-			"name": {
-				"type": "string",
-				"value": "string",
-				"placeholder": "Sllor",
-				"tag": "input",
-				"option-name": "Site Name"
-			},
-			"short-introduce": {
-				"type": "string",
-				"value": "string",
-				"placeholder": "Introduce your site in one sentence (no more than 15 words)",
-				"tag": "input",
-				"option-name": "One sentence introduction"
-			},
-			"site-url": {
-				"type": "string",
-				"value": "url",
-				"placeholder": "https://www.example.com/",
-				"tag": "input",
-				"tips": "Your target domain / IP",
-				"option-name": "Domain/IP"
-			},
-			"main-color": {
-				"type": "string",
-				"value": "select",
-				"placeholder": [
-					"tomato",
-					"red",
-					"ruby",
-					"crimson",
-					"pink",
-					"plum",
-					"purple",
-					"violet",
-					"iris",
-					"indigo",
-					"blue",
-					"cyan",
-					"teal",
-					"jade",
-					"green",
-					"grass",
-					"brown",
-					"orange",
-					"sky",
-					"mint",
-					"lime",
-					"yellow",
-					"amber",
-					"gold",
-					"bronze",
-					"gray"
-				],
-				"option-name": "Main Color"
-			},
-			"lang": {
-				"type": "string",
-				"value": "select",
-				"placeholder": ["zhCn", "enUs"],
-				"option-name": "Language"
-			},
-			"logo": {
-				"type": "string",
-				"value": "image",
-				"option-name": "Site Logo",
-				"editor": "update"
-			},
-			"introduce": {
-				"type": "string",
-				"value": "markdown",
-				"placeholder": "# Sllor /n A good and pretty site",
-				"option-name": "Introduce",
-				"tips": "[MARKDOWN] Your text will show in index page"
-			},
-			"about": {
-				"type": "string",
-				"value": "markdown",
-				"placeholder": "# About \n > An apple ......",
-				"tag": "textarea",
-				"editor": "markdown",
-				"option-name": "About",
-				"tips": "[MARKDOWN] Your text will show in a dictionary, /about"
-			},
-			"footer": {
-				"type": "string",
-				"value": "markdown",
-				"placeholder": "## Sllor \n [About](/about) | [......",
-				"tag": "textarea",
-				"edit": "markdown",
-				"option-name": "Footer",
-				"tips": "[MARKDOWN] Your text will show at the end of every page."
-			}
-		}
-	}
+    "name": "sllor",
+    "not-found-page": "index.html",
+    "frame": "nextJS",
+    "start": {
+        "type": "SSR",
+        "command": "SERVERURL=${SERVERURL} PORT=${PORT} node server.js"
+    },
+    "config": {
+        "site": {
+            "name": {
+                "type": "string",
+                "value": "string",
+                "placeholder": "Sllor",
+                "tag": "input",
+                "option-name": "Site Name"
+            },
+            "short-introduce": {
+                "type": "string",
+                "value": "string",
+                "placeholder": "Introduce your site in one sentence (no more than 15 words)",
+                "tag": "input",
+                "option-name": "One sentence introduction"
+            },
+            "site-url": {
+                "type": "string",
+                "value": "url",
+                "placeholder": "https://www.example.com/",
+                "tag": "input",
+                "tips": "Your target domain / IP",
+                "option-name": "Domain/IP"
+            },
+            "main-color": {
+                "type": "string",
+                "value": "select",
+                "placeholder": [
+                    "tomato",
+                    "red",
+                    "ruby",
+                    "crimson",
+                    "pink",
+                    "plum",
+                    "purple",
+                    "violet",
+                    "iris",
+                    "indigo",
+                    "blue",
+                    "cyan",
+                    "teal",
+                    "jade",
+                    "green",
+                    "grass",
+                    "brown",
+                    "orange",
+                    "sky",
+                    "mint",
+                    "lime",
+                    "yellow",
+                    "amber",
+                    "gold",
+                    "bronze",
+                    "gray"
+                ],
+                "option-name": "Main Color"
+            },
+            "lang": {
+                "type": "string",
+                "value": "select",
+                "placeholder": ["zhCn", "enUs"],
+                "option-name": "Language"
+            },
+            "logo": {
+                "type": "string",
+                "value": "image",
+                "option-name": "Site Logo",
+                "editor": "update"
+            },
+            "introduce": {
+                "type": "string",
+                "value": "markdown",
+                "placeholder": "# Sllor /n A good and pretty site",
+                "option-name": "Introduce",
+                "tips": "[MARKDOWN] Your text will show in index page"
+            },
+            "about": {
+                "type": "string",
+                "value": "markdown",
+                "placeholder": "# About \n > An apple ......",
+                "tag": "textarea",
+                "editor": "markdown",
+                "option-name": "About",
+                "tips": "[MARKDOWN] Your text will show in a dictionary, /about"
+            },
+            "footer": {
+                "type": "string",
+                "value": "markdown",
+                "placeholder": "## Sllor \n [About](/about) | [......",
+                "tag": "textarea",
+                "edit": "markdown",
+                "option-name": "Footer",
+                "tips": "[MARKDOWN] Your text will show at the end of every page."
+            }
+        }
+    }
 }
