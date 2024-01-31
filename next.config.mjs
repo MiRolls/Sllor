@@ -16,7 +16,7 @@ const rewrites = () => {
 const nextConfig = {
     rewrites,
     output: "standalone",
-    distDir: "dist",
+    // distDir: "dist",
     experimental: {
         serverMinification: true,
         useDeploymentId: true,

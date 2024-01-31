@@ -1,6 +1,9 @@
 const fs = require("fs");
 
-const filePath = "dist/standalone/server.js";
+const distPath = ".next";
+const filePath = `${distPath}/standalone/server.js`;
+const originMtJSON = "mt.json";
+const destinationMtJSON = `${distPath}/standalone/mt.json`;
 
 // ReadFile
 fs.readFile(filePath, "utf8", (err, data) => {
@@ -12,10 +15,10 @@ fs.readFile(filePath, "utf8", (err, data) => {
     // Add some thing
     const modifiedContent = data.replace(
         /\'0.0.0.0\'/g,
-        '"0.0.0.0";const serverURL = process.env.SERVERURL'
+        '"0.0.0.0"; const serverURL = process.env.SERVERURL;'
     );
 
-    // change [[[serverURL]]] to serverURL + "
+    // change /[[[serverURL]]] to serverURL + "
     const finalContent = modifiedContent.replace(/\"\/\[\[\[serverURL\]\]\]/g, 'serverURL + "');
 
     // Write File
@@ -24,6 +27,23 @@ fs.readFile(filePath, "utf8", (err, data) => {
             console.error(err);
             return;
         }
-        console.log("File modified successfully.");
+        console.log("[MIROLLS] File write successfully.");
+    });
+
+    /* copy mt.json */
+    //create streams
+    const readStream = fs.createReadStream(originMtJSON);
+    const writeStream = fs.createWriteStream(destinationMtJSON);
+    // copy file
+    readStream.pipe(writeStream);
+    writeStream.on("finish", () => {
+        console.log("[MIROLLS] Mt.json copy completed.");
+    });
+    readStream.on("error", err => {
+        console.error("[MIROLLS] ERROR: Can't read file ", err);
+    });
+
+    writeStream.on("error", err => {
+        console.error("[MIROLLS] ERROR: Can't write file ", err);
     });
 });
