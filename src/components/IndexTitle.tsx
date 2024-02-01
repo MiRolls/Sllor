@@ -33,7 +33,7 @@ const IndexTitle = () => {
                         {site["short-introduce"]}
                     </Heading>
                     <Button className="!bg-accent-500 !mt-4 w-fit">
-                        {t("Getting Stsarted")} <BsArrowReturnLeft className="stroke-1" />
+                        {t("Getting Started")} <BsArrowReturnLeft className="stroke-1" />
                     </Button>
                 </Flex>
                 <Flex className="!hidden lg:!block h-full " justify="center" align="center">
