@@ -4,6 +4,7 @@ import { BsArrowReturnLeft } from "react-icons/bs";
 import showPage from "../config/showPage";
 import { SiteState, useSite } from "../store/site";
 import { Site } from "../interfaces/site";
+import { t } from "i18next";
 
 const IndexTitle = () => {
     const site: Site = useSite(state => (state as SiteState).site);
@@ -32,7 +33,7 @@ const IndexTitle = () => {
                         {site["short-introduce"]}
                     </Heading>
                     <Button className="!bg-accent-500 !mt-4 w-fit">
-                        Getting Started <BsArrowReturnLeft className="stroke-1" />
+                        {t("Getting Stsarted")} <BsArrowReturnLeft className="stroke-1" />
                     </Button>
                 </Flex>
                 <Flex className="!hidden lg:!block h-full " justify="center" align="center">

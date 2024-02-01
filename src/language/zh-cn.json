@@ -1,7 +1,8 @@
 {
-	"Boom": "啪! ",
-	"Get site return err": "服务器被炸掉了",
-	"Try Again": "重新尝试！",
-	"Home": "首页",
-	"About": "关于"
+    "Boom": "啪! ",
+    "Get site return err": "服务器被炸掉了",
+    "Try Again": "重新尝试！",
+    "Home": "首页",
+    "About": "关于",
+    "Getting Started": "快速开始"
 }
