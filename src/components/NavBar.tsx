@@ -130,12 +130,12 @@ const NavBar = () => {
                         </DropdownMenu.Trigger>
                         <DropdownMenu.Content>
                             <Link href="/about">
-                                <DropdownMenu.Item className="!bg-transparent">
+                                <DropdownMenu.Item className="!bg-transparent hover:!text-slate-800">
                                     {t("About")}
                                 </DropdownMenu.Item>
                             </Link>
                             <Link href="/questionnaire">
-                                <DropdownMenu.Item className="!bg-transparent">
+                                <DropdownMenu.Item className="!bg-transparent hover:!text-slate-800">
                                     {t("Home")}
                                 </DropdownMenu.Item>
                             </Link>
