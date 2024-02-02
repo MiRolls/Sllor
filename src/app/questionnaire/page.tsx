@@ -2,8 +2,9 @@
 import { useEffect } from "react";
 import { ControlState, useControl } from "@/store/control";
 import { HiMenu } from "react-icons/hi";
-import { IoCreateOutline } from "react-icons/io5";
+import { IoCreateOutline, IoCreateSharp } from "react-icons/io5";
 import isPhone from "@/utils/isPhone";
+import { t } from "i18next";
 
 const QuestionnairePage = () => {
     const changeControl = useControl(state => (state as ControlState).changeControl);
@@ -14,7 +15,7 @@ const QuestionnairePage = () => {
         changeControl([
             {
                 type: "choice",
-                name: "choice",
+                name: "Mine",
                 action: () => {
                     console.log(111);
                 },
@@ -27,6 +28,10 @@ const QuestionnairePage = () => {
                     console.log(111);
                 },
                 icon: <IoCreateOutline />,
+            },
+            {
+                type: "group",
+                name: "choice",
             },
         ]);
         return () => {

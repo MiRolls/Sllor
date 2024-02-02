@@ -1,4 +1,4 @@
-import { Button, Flex, Text } from "@radix-ui/themes";
+import { Box, Button, Flex, Text } from "@radix-ui/themes";
 import React from "react";
 import classNames from "@/utils/classNames";
 import { AnimatePresence, motion } from "framer-motion";
@@ -26,22 +26,37 @@ const Control = () => {
                         className="p-3 gap-1 pt-4 flex bg-none w-full h-full border-r-[1px] border-slate-100"
                     >
                         {control.map((item, index) => {
-                            return (
-                                <Button
-                                    key={item.toString() + index}
-                                    className={classNames(
-                                        "p-10 !py-4 flex flex-nowrap !h-10 !justify-start !bg-transparent hover:!bg-slate-200",
-                                        { "!bg-accent-800": item.active }
-                                    )}
-                                    onClick={item.action}
-                                    radius="full"
-                                >
-                                    {React.cloneElement(item.icon, {
-                                        className: "h-6 w-6 ml-2",
-                                    })}
-                                    <Text>{item.name}</Text>
-                                </Button>
-                            );
+                            if (item.type === "choice") {
+                                return (
+                                    <Button
+                                        key={item.toString() + index + "ChoiceKey"}
+                                        className={classNames(
+                                            "p-10 !py-4 flex flex-nowrap !h-10 !justify-start !bg-transparent hover:!bg-slate-200",
+                                            { "!bg-accent-800": item.active }
+                                        )}
+                                        onClick={item.action}
+                                        radius="full"
+                                    >
+                                        {React.cloneElement(item.icon, {
+                                            className: "h-[1.35rem] w-[1.35rem] ml-2",
+                                        })}
+                                        <Text>{item.name}</Text>
+                                    </Button>
+                                );
+                            } else {
+                                // group
+                                return (
+                                    <>
+                                        <Text
+                                            className="text-slate-500"
+                                            key={item.toString() + index + "GroupKey"}
+                                        >
+                                            {item.name}
+                                        </Text>
+                                        {item.children?.map((childrenItem, childrenIndex) => {})}
+                                    </>
+                                );
+                            }
                         })}
                     </Flex>
                 </motion.div>
