@@ -1,7 +1,6 @@
 "use client";
 import { Theme } from "@radix-ui/themes";
 import React, { Suspense } from "react";
-import { useTranslation } from "react-i18next";
 import Control from "./Control";
 import NavBar from "./NavBar";
 import { Site } from "@/interfaces/site";
@@ -21,15 +20,6 @@ export default function Layout({
     control: ControlData;
     show: Boolean;
 }) {
-    const [t, _] = useTranslation();
-    // Change useSite api
-
-    // get state dark in zustand
-
-    // show control api
-
-    // create state dark
-
     return (
         <Theme accentColor={data["main-color"] as any} appearance={dark}>
             {/* Alert Dialog when MiRolls was error */}
