@@ -10,7 +10,6 @@ import Layout from "./Layout";
 import { useSite } from "@/store/site";
 import { useDark } from "@/store/dark";
 import { useControl } from "@/store/control";
-import { error } from "console";
 
 export const SiteLoader = async (): Promise<[boolean, Site | null]> => {
     let data: SiteGet;
@@ -35,7 +34,6 @@ export const DataLoader = ({
 }) => {
     const stateDark = useDark(state => (state as any).dark);
     const [showState, setShowState] = useState("loading");
-    const [site]: any = useState([false, null]);
     const changeUseSite = useSite(state => (state as any).changeSite);
     const changeDark: any = useDark(state => (state as any).changeDark);
     const changeShow = useControl(state => (state as any).changeShow);
