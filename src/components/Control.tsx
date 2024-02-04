@@ -48,7 +48,7 @@ const Control = () => {
                                 return (
                                     <>
                                         <Text
-                                            className="text-slate-500"
+                                            className="text-slate-600 pl-1"
                                             key={item.toString() + index + "GroupKey"}
                                         >
                                             {item.name}
