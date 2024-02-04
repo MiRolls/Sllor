@@ -32,6 +32,16 @@ const QuestionnairePage = () => {
             {
                 type: "group",
                 name: "choice",
+                children: [
+                    {
+                        name: "choice",
+                        action: () => {
+                            console.log(111);
+                        },
+                        icon: <IoCreateSharp />,
+                        active: false,
+                    },
+                ],
             },
         ]);
         return () => {

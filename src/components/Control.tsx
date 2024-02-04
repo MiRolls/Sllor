@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Text } from "@radix-ui/themes";
-import React from "react";
+import React, { ReactElement } from "react";
 import classNames from "@/utils/classNames";
 import { AnimatePresence, motion } from "framer-motion";
 import { ControlState, useControl } from "../store/control";
@@ -37,7 +37,7 @@ const Control = () => {
                                         onClick={item.action}
                                         radius="full"
                                     >
-                                        {React.cloneElement(item.icon, {
+                                        {React.cloneElement(item.icon as ReactElement, {
                                             className: "h-[1.35rem] w-[1.35rem] ml-2",
                                         })}
                                         <Text>{item.name}</Text>
@@ -53,7 +53,28 @@ const Control = () => {
                                         >
                                             {item.name}
                                         </Text>
-                                        {item.children?.map((childrenItem, childrenIndex) => {})}
+                                        {item.children?.map((childrenItem, childrenIndex) => {
+                                            return (
+                                                <Button
+                                                    key={
+                                                        childrenItem.toString() +
+                                                        index +
+                                                        "ChoiceKey"
+                                                    }
+                                                    className={classNames(
+                                                        "p-10 !py-4 flex flex-nowrap !h-10 !justify-start !bg-transparent hover:!bg-slate-200",
+                                                        { "!bg-accent-800": childrenItem.active }
+                                                    )}
+                                                    onClick={childrenItem.action}
+                                                    radius="full"
+                                                >
+                                                    {React.cloneElement(childrenItem.icon as any, {
+                                                        className: "h-[1.35rem] w-[1.35rem] ml-2",
+                                                    })}
+                                                    <Text>{childrenItem.name}</Text>
+                                                </Button>
+                                            );
+                                        })}
                                     </>
                                 );
                             }

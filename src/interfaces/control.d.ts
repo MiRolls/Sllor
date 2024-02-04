@@ -4,7 +4,7 @@ export type ControlData = Control[];
 
 export interface Control {
     type: "choice" | "group";
-    children?: { name: string; action: () => {}; icon: FC; active: boolean }[];
+    children?: { name: string; action: () => any; icon: ReactElement<any, any>; active: boolean }[];
     name: string;
     action?: () => any;
     icon?: ReactElement<any, any>;
