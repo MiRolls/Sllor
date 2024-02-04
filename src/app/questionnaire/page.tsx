@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { ControlState, useControl } from "@/store/control";
 import isPhone from "@/utils/isPhone";
+import { t } from "i18next";
 
 const QuestionnairePage = () => {
     const changeControl = useControl(state => (state as ControlState).changeControl);
@@ -12,19 +13,11 @@ const QuestionnairePage = () => {
         changeControl([
             {
                 type: "group",
-                name: "Guide",
+                name: t("Guide"),
             },
             {
                 type: "group",
-                name: "Mine",
-            },
-            {
-                type: "group",
-                name: "Create",
-            },
-            {
-                type: "group",
-                name: "Answer",
+                name: t("Questionnaire"),
             },
         ]);
         return () => {
