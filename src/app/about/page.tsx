@@ -6,7 +6,7 @@ import { Box } from "@radix-ui/themes";
 const About = () => {
     const { site } = useSite() as SiteState;
     return (
-        <Box className="p-40">
+        <Box className="sm:p-40 p-10">
             <Markdown lazyImage size="lg">
                 {site.about}
             </Markdown>

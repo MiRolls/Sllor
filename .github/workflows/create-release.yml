@@ -31,7 +31,7 @@ jobs:
             - run: pnpm build #
 
             - name: Zip Files
-              run: cd ./standalone/ && zip -r sllor.zip . && mv sllor.zip ../../
+              run: cd .next/standalone/ && zip -r sllor.zip . && mv sllor.zip ../../
 
             - name: Create Release and Upload Release Asset
               uses: softprops/action-gh-release@v1

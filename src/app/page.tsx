@@ -13,7 +13,7 @@ export default async function Home() {
             {/* Background */}
             <Box className="rounded-full fixed right-[-10px] bottom-7 w-96 h-96 scale-[2.3] blur-3xl z-[-1] bg-accent-100A md:bg-accent-300A"></Box>
             {/* Introduce */}
-            <Box className="p-20">
+            <Box className="sm:p-20 p-10">
                 <MarkdownInIndexPage></MarkdownInIndexPage>
             </Box>
             <Footer />
