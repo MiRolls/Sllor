@@ -5,6 +5,7 @@ import { HiMenu } from "react-icons/hi";
 import { IoCreateOutline, IoCreateSharp } from "react-icons/io5";
 import isPhone from "@/utils/isPhone";
 import { t } from "i18next";
+import { P } from "@/components/Markdown/children/Text";
 
 const QuestionnairePage = () => {
     const changeControl = useControl(state => (state as ControlState).changeControl);
@@ -14,34 +15,20 @@ const QuestionnairePage = () => {
     useEffect(() => {
         changeControl([
             {
-                type: "choice",
-                name: "Mine",
-                action: () => {
-                    console.log(111);
-                },
-                icon: <HiMenu />,
-            },
-            {
-                type: "choice",
-                name: "choice",
-                action: () => {
-                    console.log(111);
-                },
-                icon: <IoCreateOutline />,
+                type: "group",
+                name: "Guide",
             },
             {
                 type: "group",
-                name: "choice",
-                children: [
-                    {
-                        name: "choice",
-                        action: () => {
-                            console.log(111);
-                        },
-                        icon: <IoCreateSharp />,
-                        active: false,
-                    },
-                ],
+                name: "Mine",
+            },
+            {
+                type: "group",
+                name: "Create",
+            },
+            {
+                type: "group",
+                name: "Answer",
             },
         ]);
         return () => {
