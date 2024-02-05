@@ -7,7 +7,7 @@ import { FiUser } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import { IoAdd } from "react-icons/io5";
 
-const QUestionnaireLayout = ({ children }: { children: ReactNode }) => {
+const QuestionnaireLayout = ({ children }: { children: ReactNode }) => {
     const changeControl = useControl(state => (state as ControlState).changeControl);
     const clear = useControl(state => (state as ControlState).clear);
     const changeShow = useControl(state => (state as ControlState).changeShow);
@@ -39,9 +39,9 @@ const QUestionnaireLayout = ({ children }: { children: ReactNode }) => {
                 changeShow(true);
             }
         };
-    }, [changeControl, changeShow, clear]);
+    }, []);
 
     return children;
 };
 
-export default QUestionnaireLayout;
+export default QuestionnaireLayout;
