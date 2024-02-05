@@ -18,7 +18,7 @@ export default function Main() {
             />
             <Box className="mt-5 block">
                 <Button size={"3"} radius="full" className="!text-white">
-                    <Flex gap="1">
+                    <Flex gap="1" align={"center"}>
                         <IoMdAdd size={25} className=" text-white mr-0" />
                         <Text>Add Question</Text>
                     </Flex>
