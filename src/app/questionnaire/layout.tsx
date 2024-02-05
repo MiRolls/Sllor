@@ -5,7 +5,7 @@ import isPhone from "@/utils/isPhone";
 import { t } from "i18next";
 import { FaRegUser } from "react-icons/fa";
 
-const QuestionnairePage = ({ children }: { children: ReactNode }) => {
+const QUestionnaireLayout = ({ children }: { children: ReactNode }) => {
     const changeControl = useControl(state => (state as ControlState).changeControl);
     const clear = useControl(state => (state as ControlState).clear);
     const changeShow = useControl(state => (state as ControlState).changeShow);
@@ -30,4 +30,4 @@ const QuestionnairePage = ({ children }: { children: ReactNode }) => {
     return children;
 };
 
-export default QuestionnairePage;
+export default QUestionnaireLayout;
