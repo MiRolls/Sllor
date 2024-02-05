@@ -2,13 +2,14 @@
 
 A sufficiently crisp and elegant theme for the questionnaire system.
 
-A frontend for [MiRolls](https://github.com/MiRolls)
+A theme for [MiRolls](https://github.com/MiRolls)
 
 Welcome to use and experience Sllor's charm with MiRolls.
 
 ## Features
 
-- pass
+-   pass
+
 ## Build
 
 ```bash
@@ -17,17 +18,16 @@ pnpm run build
 ```
 
 ## Develop
+
 ```bash
 pnpm install
 pnpm dev
 ```
 
 ## Thanks and License
-This project is released under the MIT License.
 
-Thanks to JetBrains for their OSS License
+This project is released under the Apache License.
 
-Thank MiRolls develop team and broad masses of support
+Thanks for your support
 
 2024 © Liangmi
-
