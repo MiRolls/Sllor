@@ -28,3 +28,5 @@ export interface Slider extends Question {
     range: [number, number];
     unit: number;
 }
+
+export type QuestionType = "radio" | "checkbox" | "input" | "textarea" | "select" | "slider";

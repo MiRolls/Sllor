@@ -1,14 +1,23 @@
 "use client";
-import { Box, Button, Dialog, Flex, Select, Text } from "@radix-ui/themes";
-import React, { useState } from "react";
+import { Box, Button, Dialog, Flex, Text } from "@radix-ui/themes";
+import React, { useRef, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import { Question, Questionnaire } from "../../../../interfaces/questionnaire";
+import CreateQuestion from "./CreateQuestion";
 
 export default function Main() {
-    const [questionnaire, setQuestionnaire] = useState({});
-    function addQuestion(question: Question) {
-        setQuestionnaire({ ...questionnaire, question });
+    // global page questionnaire
+    const [questionnaire, setQuestionnaire] = useState({} as Questionnaire);
+    const DialogComponent = useRef();
+
+    // add a question to the questionnaire
+    function addQuestion() {
+        const question = (DialogComponent.current as any).getQuestion();
+        const tempQuestionnaire = questionnaire;
+        tempQuestionnaire.questions.push(question);
+        setQuestionnaire(tempQuestionnaire);
     }
+
     return (
         <Flex className="p-10 sm:p-32 min-h-full w-full" direction={"column"} align={"center"}>
             <textarea
@@ -20,9 +29,12 @@ export default function Main() {
                     }
                 }}
             />
+
+            {/* Dialog */}
             <Box className="mt-5 block">
                 <Dialog.Root>
                     <Dialog.Trigger>
+                        {/* Button to open dialog */}
                         <Button size={"3"} radius="full" className="!text-white">
                             <Flex gap="1" align={"center"}>
                                 <IoMdAdd size={25} className=" text-white mr-0" />
@@ -32,18 +44,7 @@ export default function Main() {
                     </Dialog.Trigger>
                     <Dialog.Content>
                         <Dialog.Title>Add Question</Dialog.Title>
-                        <Flex align="center" gap="2">
-                            <Text>1. Your Question Type</Text>
-                            <Select.Root defaultValue="input">
-                                <Select.Trigger />
-                                <Select.Content>
-                                    <Select.Item value="input">
-                                        Multiple Choice Questions
-                                    </Select.Item>
-                                    <Select.Item value="apple">Apple</Select.Item>
-                                </Select.Content>
-                            </Select.Root>
-                        </Flex>
+                        <CreateQuestion ref={DialogComponent} />
                         <Flex className="gap-1 !justify-end mt-2">
                             <Dialog.Close>
                                 <Button variant="soft" color="gray">
@@ -51,7 +52,7 @@ export default function Main() {
                                 </Button>
                             </Dialog.Close>
                             <Dialog.Close>
-                                <Button>OK</Button>
+                                <Button onClick={addQuestion}>OK</Button>
                             </Dialog.Close>
                         </Flex>
                     </Dialog.Content>
