@@ -1,9 +1,10 @@
 "use client";
 import { Question, QuestionType } from "@/interfaces/questionnaire";
-import { Flex, Select, Text } from "@radix-ui/themes";
+import { Box, Flex, Select, Text, TextFieldInput } from "@radix-ui/themes";
 import { forwardRef, useImperativeHandle, useState } from "react";
+import classNames from "../../../../utils/classNames";
 
-const CreateQuestion = forwardRef((_, ref) => {
+const CreateQuestion = forwardRef((_, ref: any) => {
     // a question while dialog is open
     const [tempQuestion, setTempQuestion] = useState({} as Question);
 
@@ -21,19 +22,13 @@ const CreateQuestion = forwardRef((_, ref) => {
         getQuestion;
     });
     return (
-        <>
-            <Flex align="center" gap="2">
-                {/* Question No.1: Question Type */}
-                <Text>1. Your Question Type</Text>
-                <Select.Root defaultValue="input" onValueChange={changeTempQuestionType}>
-                    <Select.Trigger />
-                    <Select.Content>
-                        <Select.Item value="input">Multiple Choice Questions</Select.Item>
-                        <Select.Item value="apple">Apple</Select.Item>
-                    </Select.Content>
-                </Select.Root>
+        <Flex ref={ref} gap="1" direction={"column"}>
+            {/* Question No.1: Question Type */}
+            <Flex align="center" justify={"between"}>
+                <Text>2. Title</Text>
+                <TextFieldInput></TextFieldInput>
             </Flex>
-        </>
+        </Flex>
     );
 });
 // to fix the error: "Property 'displayName' is missing in type 'ForwardRefExoticComponent<ForwardRefRenderFunction<unknown, {}>>' but required in type 'ForwardRefExoticComponent<ForwardRefRenderFunction<unknown, {}>>'."

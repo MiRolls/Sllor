@@ -8,7 +8,7 @@ import CreateQuestion from "./CreateQuestion";
 export default function Main() {
     // global page questionnaire
     const [questionnaire, setQuestionnaire] = useState({} as Questionnaire);
-    const DialogComponent = useRef();
+    const DialogComponent = useRef(null);
 
     // add a question to the questionnaire
     function addQuestion() {
@@ -16,6 +16,7 @@ export default function Main() {
         const tempQuestionnaire = questionnaire;
         tempQuestionnaire.questions.push(question);
         setQuestionnaire(tempQuestionnaire);
+        console.log(questionnaire);
     }
 
     return (
@@ -42,7 +43,7 @@ export default function Main() {
                             </Flex>
                         </Button>
                     </Dialog.Trigger>
-                    <Dialog.Content>
+                    <Dialog.Content className="!max-w-96">
                         <Dialog.Title>Add Question</Dialog.Title>
                         <CreateQuestion ref={DialogComponent} />
                         <Flex className="gap-1 !justify-end mt-2">
