@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.dark-theme .rt-Button {
-    color: white;
-}
-
-.light-theme .rt-Button {
-    color: black;
-}
-
 .text-shadow {
     text-shadow: 0 2px 0 var(--tw-shadow-color);
 }

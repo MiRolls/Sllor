@@ -4,6 +4,7 @@ import { Box } from "@radix-ui/themes";
 import "@/style/IndexPage.css";
 import Footer from "@/components/Footer";
 import MarkdownInIndexPage from "@/components/MarkdownInIndexPage";
+import "@/app/special.css";
 
 export default async function Home() {
     return (

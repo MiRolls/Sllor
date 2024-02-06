@@ -9,6 +9,7 @@ import { useUpdateEffect } from "usehooks-ts";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { ControlState, useControl } from "@/store/control";
+import "@/app/special.css";
 
 const NavBar = () => {
     const site = useSite(state => (state as SiteState).site);

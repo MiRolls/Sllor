@@ -1,4 +1,5 @@
-export interface Questionnaire {  //main interface
+export interface Questionnaire {
+    //main interface
     title: string;
     // the title of questionnaire
     questions: (RadioCheckboxAndSelect | InputAndTextarea | Slider)[];
@@ -27,4 +28,3 @@ export interface Slider extends Question {
     range: [number, number];
     unit: number;
 }
-

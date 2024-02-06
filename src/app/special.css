@@ -1,0 +1,7 @@
+.dark-theme .rt-Button {
+    color: white;
+}
+
+.light-theme .rt-Button {
+    color: black;
+}
