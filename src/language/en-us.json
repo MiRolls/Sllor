@@ -6,5 +6,16 @@
     "About": "About",
     "Getting Started": "Getting Started",
     "My": "My",
-    "Create": "Create"
+    "Create": "Create",
+    "New Questionnaire": "New Questionnaire",
+    "OK": "OK",
+    "Cancel": "Cancel",
+    "Add Question": "Add Question",
+    "1. Type": "1. Type",
+    "Single choice": "Single choice",
+    "Multiple choice": "Multiple choice",
+    "Simple explanation": "Simple explanation",
+    "Long explanation": "Long explanation",
+    "Dropdown list": "Dropdown list",
+    "Slider": "Slider"
 }

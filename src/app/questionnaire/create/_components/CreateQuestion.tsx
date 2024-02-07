@@ -3,6 +3,8 @@ import { Question, QuestionType } from "@/interfaces/questionnaire";
 import { Flex } from "@radix-ui/themes";
 import { forwardRef, useImperativeHandle, useState } from "react";
 import QuestionOption from "./QuestionOption";
+import { text } from "stream/consumers";
+import { t } from "i18next";
 
 const CreateQuestion = forwardRef((_, ref: any) => {
     // a question while dialog is open
@@ -24,14 +26,18 @@ const CreateQuestion = forwardRef((_, ref: any) => {
     return (
         <Flex ref={ref} gap="1" direction={"column"}>
             {/* Questions */}
+            {/* QuestionType */}
             <QuestionOption
                 onChange={undefined}
                 type={"select"}
                 tips="1. Type"
                 selectOptions={{
-                    radio: "Single choice",
-                    checkbox: "Multiple choice",
-                    input: "Text",
+                    radio: t("Single choice"),
+                    checkbox: t("Multiple choice"),
+                    input: t("Simple explanation"),
+                    textarea: t("Long explanation"),
+                    select: t("Dropdown list"),
+                    slider: t("Slider"),
                 }}
             ></QuestionOption>
         </Flex>

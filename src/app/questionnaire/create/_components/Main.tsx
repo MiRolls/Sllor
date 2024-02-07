@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import { Question, Questionnaire } from "../../../../interfaces/questionnaire";
 import CreateQuestion from "./CreateQuestion";
+import { t } from "i18next";
 
 export default function Main() {
     // global page questionnaire
@@ -22,7 +23,7 @@ export default function Main() {
     return (
         <Flex className="p-10 sm:p-32 min-h-full w-full" direction={"column"} align={"center"}>
             <textarea
-                placeholder="Please enter your title"
+                placeholder={t("New Questionnaire")}
                 className="[resize:none] !border-none !outline-none h-auto block font-bold !text-2xl sm:!text-4xl w-full text-center"
                 onKeyDown={event => {
                     if (event.key === "Enter") {
@@ -39,21 +40,21 @@ export default function Main() {
                         <Button size={"3"} radius="full" className="!text-white">
                             <Flex gap="1" align={"center"}>
                                 <IoMdAdd size={25} className=" text-white mr-0" />
-                                <Text>Add Question</Text>
+                                <Text>{t("Add Question")}</Text>
                             </Flex>
                         </Button>
                     </Dialog.Trigger>
                     <Dialog.Content>
-                        <Dialog.Title>Add Question</Dialog.Title>
+                        <Dialog.Title>{t("Add Question")}</Dialog.Title>
                         <CreateQuestion ref={DialogComponent} />
                         <Flex className="gap-1 !justify-end mt-2">
                             <Dialog.Close>
                                 <Button variant="soft" color="gray">
-                                    Cancel
+                                    {t("Cancel")}
                                 </Button>
                             </Dialog.Close>
                             <Dialog.Close>
-                                <Button onClick={addQuestion}>OK</Button>
+                                <Button onClick={addQuestion}>{t("OK")}</Button>
                             </Dialog.Close>
                         </Flex>
                     </Dialog.Content>
