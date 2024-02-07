@@ -1,8 +1,8 @@
 "use client";
 import { Question, QuestionType } from "@/interfaces/questionnaire";
-import { Box, Flex, Select, Text, TextFieldInput } from "@radix-ui/themes";
+import { Flex } from "@radix-ui/themes";
 import { forwardRef, useImperativeHandle, useState } from "react";
-import classNames from "../../../../utils/classNames";
+import QuestionOption from "./QuestionOption";
 
 const CreateQuestion = forwardRef((_, ref: any) => {
     // a question while dialog is open
@@ -23,11 +23,17 @@ const CreateQuestion = forwardRef((_, ref: any) => {
     });
     return (
         <Flex ref={ref} gap="1" direction={"column"}>
-            {/* Question No.1: Question Type */}
-            <Flex align="center" justify={"between"}>
-                <Text>2. Title</Text>
-                <TextFieldInput></TextFieldInput>
-            </Flex>
+            {/* Questions */}
+            <QuestionOption
+                onChange={undefined}
+                type={"select"}
+                tips="1. Type"
+                selectOptions={{
+                    radio: "Single choice",
+                    checkbox: "Multiple choice",
+                    input: "Text",
+                }}
+            ></QuestionOption>
         </Flex>
     );
 });

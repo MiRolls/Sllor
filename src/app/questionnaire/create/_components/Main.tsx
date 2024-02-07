@@ -43,7 +43,7 @@ export default function Main() {
                             </Flex>
                         </Button>
                     </Dialog.Trigger>
-                    <Dialog.Content className="!max-w-96">
+                    <Dialog.Content>
                         <Dialog.Title>Add Question</Dialog.Title>
                         <CreateQuestion ref={DialogComponent} />
                         <Flex className="gap-1 !justify-end mt-2">
