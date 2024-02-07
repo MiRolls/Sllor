@@ -3,7 +3,6 @@ import { Question, QuestionType } from "@/interfaces/questionnaire";
 import { Flex } from "@radix-ui/themes";
 import { forwardRef, useImperativeHandle, useState } from "react";
 import QuestionOption from "./QuestionOption";
-import { text } from "stream/consumers";
 import { t } from "i18next";
 
 const CreateQuestion = forwardRef((_, ref: any) => {
@@ -13,6 +12,11 @@ const CreateQuestion = forwardRef((_, ref: any) => {
     function changeTempQuestionType(type: QuestionType) {
         const tempTempQuestion = tempQuestion;
         tempTempQuestion.type = type;
+        setTempQuestion(tempTempQuestion);
+    }
+    function changeTempQuestionTitle(title: string) {
+        const tempTempQuestion = tempQuestion;
+        tempTempQuestion.title = title;
         setTempQuestion(tempTempQuestion);
     }
 
@@ -26,11 +30,11 @@ const CreateQuestion = forwardRef((_, ref: any) => {
     return (
         <Flex ref={ref} gap="1" direction={"column"}>
             {/* Questions */}
-            {/* QuestionType */}
+            {/* Question No.1 Type */}
             <QuestionOption
-                onChange={undefined}
+                onChange={changeTempQuestionType}
                 type={"select"}
-                tips="1. Type"
+                tips={t("1. Type")}
                 selectOptions={{
                     radio: t("Single choice"),
                     checkbox: t("Multiple choice"),
@@ -39,6 +43,13 @@ const CreateQuestion = forwardRef((_, ref: any) => {
                     select: t("Dropdown list"),
                     slider: t("Slider"),
                 }}
+            ></QuestionOption>
+            {/* Question No.2 Title  */}
+            <QuestionOption
+                type="text"
+                onChange={changeTempQuestionTitle}
+                tips={t("2. Title")}
+                placeholder={t("Awesome Question")}
             ></QuestionOption>
         </Flex>
     );

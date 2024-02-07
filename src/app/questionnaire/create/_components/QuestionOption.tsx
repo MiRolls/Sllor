@@ -6,16 +6,23 @@ interface QuestionOptionProps {
     type: "select" | "text" | "number";
     selectOptions?: any;
     tips: string;
+    placeholder?: string;
 }
 
-const QuestionOption = ({ onChange, type, selectOptions, tips }: QuestionOptionProps) => {
+const QuestionOption = ({
+    onChange,
+    type,
+    selectOptions,
+    tips,
+    placeholder,
+}: QuestionOptionProps) => {
     return (
         <Flex align="center" justify={"between"}>
             <Text>{tips}</Text>
             {/* Select Question */}
             {type === "select" && (
                 <Select.Root defaultValue="input" onValueChange={onChange}>
-                    <Select.Trigger />
+                    <Select.Trigger placeholder={placeholder} />
                     <Select.Content>
                         {/* Select options */}
                         {Object.keys(selectOptions).map((key: any, index: number) => {
@@ -29,7 +36,9 @@ const QuestionOption = ({ onChange, type, selectOptions, tips }: QuestionOptionP
                     </Select.Content>
                 </Select.Root>
             )}
-            {type === "text" && <TextFieldInput onChange={onChange}></TextFieldInput>}
+            {type === "text" && (
+                <TextFieldInput placeholder={placeholder} onChange={onChange}></TextFieldInput>
+            )}
         </Flex>
     );
 };
