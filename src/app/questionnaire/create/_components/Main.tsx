@@ -10,6 +10,7 @@ export default function Main() {
     // global page questionnaire
     const [questionnaire, setQuestionnaire] = useState({} as Questionnaire);
     const DialogComponent = useRef(null);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     // add a question to the questionnaire
     function addQuestion() {
@@ -34,7 +35,7 @@ export default function Main() {
 
             {/* Dialog */}
             <Box className="mt-5 block">
-                <Dialog.Root>
+                <Dialog.Root open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                     <Dialog.Trigger>
                         {/* Button to open dialog */}
                         <Button size={"3"} radius="full" className="!text-white">

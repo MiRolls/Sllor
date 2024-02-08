@@ -1,5 +1,4 @@
-import { Flex, Select, Text, TextFieldInput } from "@radix-ui/themes";
-import { AnimatePresence, motion } from "framer-motion";
+import { Select, Text, TextFieldInput } from "@radix-ui/themes";
 import React from "react";
 
 interface QuestionOptionProps {
