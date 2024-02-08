@@ -4,6 +4,7 @@ import { Flex } from "@radix-ui/themes";
 import { forwardRef, useImperativeHandle, useState } from "react";
 import QuestionOption from "./QuestionOption";
 import { t } from "i18next";
+import { AnimatePresence } from "framer-motion";
 
 const CreateQuestion = forwardRef((_, ref: any) => {
     // a question while dialog is open
@@ -42,6 +43,7 @@ const CreateQuestion = forwardRef((_, ref: any) => {
         <Flex ref={ref} gap="1" direction={"column"}>
             {/* Questions */}
             {/* Question No.1 Type */}
+            {/* <AnimatePresence> */}
             <QuestionOption
                 onChange={changeTempQuestionType}
                 type={"select"}
@@ -81,6 +83,7 @@ const CreateQuestion = forwardRef((_, ref: any) => {
                     tips={t("3. Range")}
                 ></QuestionOption>
             ) : null}
+            {/* </AnimatePresence> */}
         </Flex>
     );
 });

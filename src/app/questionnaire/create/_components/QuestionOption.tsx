@@ -1,5 +1,5 @@
 import { Flex, Select, Text, TextFieldInput } from "@radix-ui/themes";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 
 interface QuestionOptionProps {
@@ -20,10 +20,11 @@ const QuestionOption = ({
     defaultValue,
 }: QuestionOptionProps) => {
     return (
-        <motion.div
+        <div
             className="flex items-center justify-between origin-top"
-            initial={{ opacity: 0.5, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+            // initial={{ opacity: 0.5, scale: 0.97 }}
+            // animate={{ opacity: 1, scale: 1 }}
+            // exit={{ opacity: 0.5, scale: 0.97 }}
         >
             <Text>{tips}</Text>
             {/* Select Question */}
@@ -54,7 +55,7 @@ const QuestionOption = ({
                     className="appearance-none"
                 ></TextFieldInput>
             )}
-        </motion.div>
+        </div>
     );
 };
 // QuestionOption.displayName = "QuestionOption";
