@@ -44,7 +44,7 @@ export default function Main() {
                             </Flex>
                         </Button>
                     </Dialog.Trigger>
-                    <Dialog.Content>
+                    <Dialog.Content className="duration-200">
                         <Dialog.Title>{t("Add Question")}</Dialog.Title>
                         <CreateQuestion ref={DialogComponent} />
                         <Flex className="gap-1 !justify-end mt-2">

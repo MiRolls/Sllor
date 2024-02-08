@@ -73,9 +73,14 @@ const CreateQuestion = forwardRef((_, ref: any) => {
                     tips={t("3. Number Of Options")}
                     placeholder={"3"}
                 ></QuestionOption>
-            ) : (
-                111
-            )}
+            ) : tempQuestion.type === "slider" ? (
+                /* Question No.3.2 Range */
+                <QuestionOption
+                    onChange={undefined}
+                    type={"number"}
+                    tips={t("3. Range")}
+                ></QuestionOption>
+            ) : null}
         </Flex>
     );
 });
