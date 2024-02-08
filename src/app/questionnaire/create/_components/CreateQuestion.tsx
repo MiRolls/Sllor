@@ -40,6 +40,10 @@ const CreateQuestion = forwardRef((_, ref: any) => {
         const range: [number, number] = [tempQuestion.range![0], endNumber];
         setTempQuestion({ ...tempQuestion, range });
     }
+    function changePlaceholder(event: any) {
+        const placeholder: string = event.target.value;
+        setTempQuestion({ ...tempQuestion, placeholder });
+    }
 
     // there is a function and a hook, can be used to get the question from the parent component
     function getQuestion(): Question {
@@ -92,7 +96,11 @@ const CreateQuestion = forwardRef((_, ref: any) => {
                     tips={t("3. Start Number")}
                 ></QuestionOption>
             ) : (
-                <></>
+                <QuestionOption
+                    onChange={changePlaceholder}
+                    type={"text"}
+                    tips={t("3. Tips")}
+                ></QuestionOption>
                 // <QuestionOption></QuestionOption>
             )}
             {/* </AnimatePresence> */}
