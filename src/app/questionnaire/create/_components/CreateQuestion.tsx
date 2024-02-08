@@ -7,17 +7,18 @@ import { t } from "i18next";
 
 const CreateQuestion = forwardRef((_, ref: any) => {
     // a question while dialog is open
-    const [tempQuestion, setTempQuestion] = useState({} as Question);
+    const [tempQuestion, setTempQuestion] = useState({
+        type: "radio",
+        title: "",
+    } as Question);
 
     function changeTempQuestionType(type: QuestionType) {
-        const tempTempQuestion = tempQuestion;
-        tempTempQuestion.type = type;
-        setTempQuestion(tempTempQuestion);
+        // set the type of the question
+        setTempQuestion({ ...tempQuestion, type });
     }
-    function changeTempQuestionTitle(title: string) {
-        const tempTempQuestion = tempQuestion;
-        tempTempQuestion.title = title;
-        setTempQuestion(tempTempQuestion);
+    function changeTempQuestionTitle(event: any) {
+        // set the title of the question
+        setTempQuestion({ ...tempQuestion, title: event.target.value });
     }
 
     // there is a function and a hook, can be used to get the question from the parent component
@@ -38,11 +39,12 @@ const CreateQuestion = forwardRef((_, ref: any) => {
                 selectOptions={{
                     radio: t("Single choice"),
                     checkbox: t("Multiple choice"),
+                    select: t("Dropdown list"),
                     input: t("Simple explanation"),
                     textarea: t("Long explanation"),
-                    select: t("Dropdown list"),
                     slider: t("Slider"),
                 }}
+                defaultValue="radio"
             ></QuestionOption>
             {/* Question No.2 Title  */}
             <QuestionOption
@@ -51,6 +53,19 @@ const CreateQuestion = forwardRef((_, ref: any) => {
                 tips={t("2. Title")}
                 placeholder={t("Awesome Question")}
             ></QuestionOption>
+            {/* Question No.3.1 Options */}
+            {tempQuestion.type === "radio" ||
+            tempQuestion.type === "checkbox" ||
+            tempQuestion.type === "select" ? (
+                <QuestionOption
+                    type="number"
+                    onChange={changeTempQuestionTitle}
+                    tips={t("3. Number Of Options")}
+                    placeholder={"3"}
+                ></QuestionOption>
+            ) : (
+                111
+            )}
         </Flex>
     );
 });

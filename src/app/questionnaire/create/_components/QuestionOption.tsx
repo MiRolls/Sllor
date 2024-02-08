@@ -7,6 +7,7 @@ interface QuestionOptionProps {
     selectOptions?: any;
     tips: string;
     placeholder?: string;
+    defaultValue?: string;
 }
 
 const QuestionOption = ({
@@ -15,13 +16,14 @@ const QuestionOption = ({
     selectOptions,
     tips,
     placeholder,
+    defaultValue,
 }: QuestionOptionProps) => {
     return (
         <Flex align="center" justify={"between"}>
             <Text>{tips}</Text>
             {/* Select Question */}
             {type === "select" && (
-                <Select.Root defaultValue="input" onValueChange={onChange}>
+                <Select.Root defaultValue={defaultValue} onValueChange={onChange}>
                     <Select.Trigger placeholder={placeholder} />
                     <Select.Content>
                         {/* Select options */}
@@ -38,6 +40,14 @@ const QuestionOption = ({
             )}
             {type === "text" && (
                 <TextFieldInput placeholder={placeholder} onChange={onChange}></TextFieldInput>
+            )}
+            {type === "number" && (
+                <TextFieldInput
+                    type="number"
+                    placeholder={placeholder}
+                    onChange={onChange}
+                    className="appearance-none"
+                ></TextFieldInput>
             )}
         </Flex>
     );
