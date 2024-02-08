@@ -30,6 +30,16 @@ const CreateQuestion = forwardRef((_, ref: any) => {
         }
         setTempQuestion({ ...tempQuestion, options });
     }
+    function changeRangeStartNumber(event: any) {
+        const startNumber: number = event.target.value;
+        const range: [number, number] = [startNumber, 0];
+        setTempQuestion({ ...tempQuestion, range });
+    }
+    function changeRangeEndNumber(event: any) {
+        const endNumber: number = event.target.value;
+        const range: [number, number] = [tempQuestion.range![0], endNumber];
+        setTempQuestion({ ...tempQuestion, range });
+    }
 
     // there is a function and a hook, can be used to get the question from the parent component
     function getQuestion(): Question {
@@ -75,13 +85,16 @@ const CreateQuestion = forwardRef((_, ref: any) => {
                     placeholder={"3"}
                 ></QuestionOption>
             ) : tempQuestion.type === "slider" ? (
-                /* Question No.3.2 Range */
+                /* Question No.3.2 StartNumber */
                 <QuestionOption
-                    onChange={undefined}
+                    onChange={changeRangeStartNumber}
                     type={"number"}
-                    tips={t("3. Range")}
+                    tips={t("3. Start Number")}
                 ></QuestionOption>
-            ) : null}
+            ) : (
+                <></>
+                // <QuestionOption></QuestionOption>
+            )}
             {/* </AnimatePresence> */}
         </Flex>
     );
