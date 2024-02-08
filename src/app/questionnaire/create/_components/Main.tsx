@@ -2,7 +2,7 @@
 import { Box, Button, Dialog, Flex, Text } from "@radix-ui/themes";
 import React, { useRef, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
-import { Question, Questionnaire } from "../../../../interfaces/questionnaire";
+import { QuestionOrigin, Questionnaire } from "../../../../interfaces/questionnaire";
 import CreateQuestion from "./CreateQuestion";
 import { t } from "i18next";
 

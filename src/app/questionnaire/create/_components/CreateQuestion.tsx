@@ -10,6 +10,7 @@ const CreateQuestion = forwardRef((_, ref: any) => {
     const [tempQuestion, setTempQuestion] = useState({
         type: "radio",
         title: "",
+        options: [],
     } as Question);
 
     function changeTempQuestionType(type: QuestionType) {
@@ -19,6 +20,15 @@ const CreateQuestion = forwardRef((_, ref: any) => {
     function changeTempQuestionTitle(event: any) {
         // set the title of the question
         setTempQuestion({ ...tempQuestion, title: event.target.value });
+    }
+    function changeTempQuestionOptions(event: any) {
+        // set the options of the question
+        const numberOfOptions: number = event.target.value;
+        const options: string[] = [];
+        for (let i = 0; i < numberOfOptions; i++) {
+            options.push("");
+        }
+        setTempQuestion({ ...tempQuestion, options });
     }
 
     // there is a function and a hook, can be used to get the question from the parent component
@@ -59,7 +69,7 @@ const CreateQuestion = forwardRef((_, ref: any) => {
             tempQuestion.type === "select" ? (
                 <QuestionOption
                     type="number"
-                    onChange={changeTempQuestionTitle}
+                    onChange={changeTempQuestionOptions}
                     tips={t("3. Number Of Options")}
                     placeholder={"3"}
                 ></QuestionOption>
