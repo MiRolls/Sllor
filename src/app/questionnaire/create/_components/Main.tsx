@@ -24,7 +24,7 @@ export default function Main() {
         <Flex className="p-10 sm:p-32 min-h-full w-full" direction={"column"} align={"center"}>
             <textarea
                 placeholder={t("New Questionnaire")}
-                className="[resize:none] !border-none !outline-none h-auto block font-bold !text-2xl sm:!text-4xl w-full text-center"
+                className="[resize:none] bg-transparent !border-none !outline-none h-auto block font-bold !text-2xl sm:!text-4xl w-full text-center"
                 onKeyDown={event => {
                     if (event.key === "Enter") {
                         event.preventDefault();
