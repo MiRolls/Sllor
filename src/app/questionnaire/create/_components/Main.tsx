@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button, Dialog, Flex, Text } from "@radix-ui/themes";
+import { Box, Button, Dialog, Flex, RadioGroup, Text } from "@radix-ui/themes";
 import React, { useEffect, useRef, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import { Questionnaire } from "../../../../interfaces/questionnaire";
@@ -29,9 +29,10 @@ export default function Main() {
 
     return (
         <Flex className="p-10 sm:p-32 min-h-full w-full" direction={"column"} align={"center"}>
+            {/* Title */}
             <textarea
                 placeholder={t("New Questionnaire")}
-                className="[resize:none] bg-transparent !border-none !outline-none h-auto block font-bold !text-2xl sm:!text-4xl w-full text-center"
+                className="[resize:none] bg-transparent !border-none !outline-none h-auto block font-bold !text-3xl sm:!text-4xl w-full text-center"
                 onChange={event =>
                     setQuestionnaire({ ...questionnaire, title: event.target.value })
                 }
@@ -42,8 +43,39 @@ export default function Main() {
                 }}
             />
 
+            {/* 84.5 116 */}
             {/* Render Questions */}
-            <></>
+            <Box className="sm:w-4/5 w-11/12 sm:min-h-10 min-h-2 sm:py-10 py-2">
+                {questionnaire.questions.map((question, index) => {
+                    return (
+                        <Box key={question.toString() + index + "question"}>
+                            <Text>
+                                {index + 1}. {question.title}
+                            </Text>
+                            {question.type === "radio" && (
+                                <RadioGroup.Root>
+                                    <Flex gap="1" className="mt-1" direction="column">
+                                        {question.options.map((option, index) => {
+                                            return (
+                                                <Text
+                                                    as="label"
+                                                    size="2"
+                                                    key={option + index + question + "options"}
+                                                >
+                                                    <Flex gap="2">
+                                                        <RadioGroup.Item value="1" disabled />
+                                                        {option}
+                                                    </Flex>
+                                                </Text>
+                                            );
+                                        })}
+                                    </Flex>
+                                </RadioGroup.Root>
+                            )}
+                        </Box>
+                    );
+                })}
+            </Box>
 
             {/* Dialog */}
             <Box className="mt-5 block">
