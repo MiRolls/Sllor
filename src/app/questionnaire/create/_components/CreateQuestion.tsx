@@ -53,9 +53,10 @@ const CreateQuestion = forwardRef((_, ref: any) => {
     function getQuestion(): Question {
         return tempQuestion;
     }
-    useImperativeHandle(ref, () => {
-        getQuestion;
-    });
+    useImperativeHandle(ref, () => ({
+        getQuestion,
+    }));
+
     return (
         <Flex ref={ref} gap="1" direction={"column"}>
             {/* Questions */}

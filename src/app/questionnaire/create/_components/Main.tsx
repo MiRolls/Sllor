@@ -8,14 +8,17 @@ import { t } from "i18next";
 
 export default function Main() {
     // global page questionnaire
-    const [questionnaire, setQuestionnaire] = useState({} as Questionnaire);
+    const [questionnaire, setQuestionnaire] = useState({
+        title: "",
+        questions: [],
+    } as Questionnaire);
     const DialogComponent = useRef(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     // add a question to the questionnaire
     function addQuestion() {
         const question = (DialogComponent.current as any).getQuestion();
-        const tempQuestionnaire = questionnaire;
+        const tempQuestionnaire = { ...questionnaire };
         tempQuestionnaire.questions.push(question);
         setQuestionnaire(tempQuestionnaire);
         console.log(questionnaire);
@@ -26,12 +29,18 @@ export default function Main() {
             <textarea
                 placeholder={t("New Questionnaire")}
                 className="[resize:none] bg-transparent !border-none !outline-none h-auto block font-bold !text-2xl sm:!text-4xl w-full text-center"
+                onChange={event =>
+                    setQuestionnaire({ ...questionnaire, title: event.target.value })
+                }
                 onKeyDown={event => {
                     if (event.key === "Enter") {
                         event.preventDefault();
                     }
                 }}
             />
+
+            {/* Render Questions */}
+            <></>
 
             {/* Dialog */}
             <Box className="mt-5 block">
@@ -45,7 +54,7 @@ export default function Main() {
                             </Flex>
                         </Button>
                     </Dialog.Trigger>
-                    <Dialog.Content className="duration-200">
+                    <Dialog.Content>
                         <Dialog.Title>{t("Add Question")}</Dialog.Title>
                         <CreateQuestion ref={DialogComponent} />
                         <Flex className="gap-1 !justify-end mt-2">
