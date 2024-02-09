@@ -44,6 +44,10 @@ const CreateQuestion = forwardRef((_, ref: any) => {
         const placeholder: string = event.target.value;
         setTempQuestion({ ...tempQuestion, placeholder });
     }
+    function changeUnit(event: any) {
+        const unit: number = event.target.value;
+        setTempQuestion({ ...tempQuestion, unit });
+    }
 
     // there is a function and a hook, can be used to get the question from the parent component
     function getQuestion(): Question {
@@ -78,10 +82,12 @@ const CreateQuestion = forwardRef((_, ref: any) => {
                 tips={t("2. Title")}
                 placeholder={t("Awesome Question")}
             ></QuestionOption>
-            {/* Question No.3.1 Options */}
+
+            {/* Question No.3 */}
             {tempQuestion.type === "radio" ||
             tempQuestion.type === "checkbox" ||
             tempQuestion.type === "select" ? (
+                /* Question No.3.1 Options */
                 <QuestionOption
                     type="number"
                     onChange={changeTempQuestionOptions}
@@ -94,15 +100,36 @@ const CreateQuestion = forwardRef((_, ref: any) => {
                     onChange={changeRangeStartNumber}
                     type={"number"}
                     tips={t("3. Start Number")}
+                    placeholder={"0"}
                 ></QuestionOption>
             ) : (
+                /* Question No.3.3 Placeholder */
                 <QuestionOption
                     onChange={changePlaceholder}
                     type={"text"}
                     tips={t("3. Tips")}
+                    placeholder="Enter your answer there"
                 ></QuestionOption>
-                // <QuestionOption></QuestionOption>
             )}
+
+            {/* Question No.4 & Question No.5*/}
+            {tempQuestion.type === "slider" && (
+                <>
+                    {/* Question No.4 EndNumber */}
+                    <QuestionOption
+                        onChange={changeRangeEndNumber}
+                        tips={t("4. End Number")}
+                        type={"number"}
+                    ></QuestionOption>
+                    {/* Question No 5 Unit */}
+                    <QuestionOption
+                        onChange={changeUnit}
+                        type={"number"}
+                        tips={t("5. Unit")}
+                    ></QuestionOption>
+                </>
+            )}
+
             {/* </AnimatePresence> */}
         </Flex>
     );

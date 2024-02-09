@@ -1,4 +1,4 @@
-import { Select, Text, TextFieldInput } from "@radix-ui/themes";
+import { Box, Select, Text, TextFieldInput } from "@radix-ui/themes";
 import React from "react";
 
 interface QuestionOptionProps {
@@ -25,7 +25,7 @@ const QuestionOption = ({
             // animate={{ opacity: 1, scale: 1 }}
             // exit={{ opacity: 0.5, scale: 0.97 }}
         >
-            <Text>{tips}</Text>
+            <Text className="flex-1">{tips}</Text>
             {/* Select Question */}
             {type === "select" && (
                 <Select.Root defaultValue={defaultValue} onValueChange={onChange}>
@@ -44,15 +44,19 @@ const QuestionOption = ({
                 </Select.Root>
             )}
             {type === "text" && (
-                <TextFieldInput placeholder={placeholder} onChange={onChange}></TextFieldInput>
+                <Box className="flex-2">
+                    <TextFieldInput placeholder={placeholder} onChange={onChange}></TextFieldInput>
+                </Box>
             )}
             {type === "number" && (
-                <TextFieldInput
-                    type="number"
-                    placeholder={placeholder}
-                    onChange={onChange}
-                    className="appearance-none"
-                ></TextFieldInput>
+                <Box className="flex-2">
+                    <TextFieldInput
+                        type="number"
+                        placeholder={placeholder}
+                        onChange={onChange}
+                        className="appearance-none"
+                    ></TextFieldInput>
+                </Box>
             )}
         </div>
     );
