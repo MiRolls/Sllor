@@ -1,6 +1,6 @@
 "use client";
 import { Box, Button, Dialog, Flex, Text } from "@radix-ui/themes";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import { Questionnaire } from "../../../../interfaces/questionnaire";
 import CreateQuestion from "./CreateQuestion";
@@ -23,6 +23,9 @@ export default function Main() {
         setQuestionnaire(tempQuestionnaire);
         console.log(questionnaire);
     }
+    useEffect(() => {
+        console.log(questionnaire);
+    }, [questionnaire]);
 
     return (
         <Flex className="p-10 sm:p-32 min-h-full w-full" direction={"column"} align={"center"}>

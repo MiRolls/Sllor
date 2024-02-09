@@ -10,7 +10,7 @@ const CreateQuestion = forwardRef((_, ref: any) => {
     const [tempQuestion, setTempQuestion] = useState({
         type: "radio",
         title: "",
-        options: [],
+        // options: [],
     } as Question);
 
     function changeTempQuestionType(type: QuestionType) {
