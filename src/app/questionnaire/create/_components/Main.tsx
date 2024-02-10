@@ -1,8 +1,8 @@
 "use client";
-import { Box, Button, Dialog, Flex, RadioGroup, Text } from "@radix-ui/themes";
+import { Box, Button, Dialog, Flex, RadioGroup, Text, TextFieldInput } from "@radix-ui/themes";
 import React, { useEffect, useRef, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
-import { Questionnaire } from "../../../../interfaces/questionnaire";
+import { Questionnaire, RadioCheckboxAndSelect } from "../../../../interfaces/questionnaire";
 import CreateQuestion from "./CreateQuestion";
 import { t } from "i18next";
 
@@ -22,6 +22,15 @@ export default function Main() {
         tempQuestionnaire.questions.push(question);
         setQuestionnaire(tempQuestionnaire);
         console.log(questionnaire);
+    }
+    function getChangeOption(questionNumber: number, optionNumber: number) {
+        return (event: any) => {
+            const tempQuestionnaire = { ...questionnaire };
+            (tempQuestionnaire.questions[questionNumber] as RadioCheckboxAndSelect).options[
+                optionNumber
+            ] = event.target.value;
+            setQuestionnaire(tempQuestionnaire);
+        };
     }
     useEffect(() => {
         console.log(questionnaire);
@@ -48,28 +57,41 @@ export default function Main() {
             <Box className="sm:w-4/5 w-11/12 sm:min-h-10 min-h-2 sm:py-10 py-2">
                 {questionnaire.questions.map((question, index) => {
                     return (
-                        <Box key={question.toString() + index + "question"}>
+                        <Box key={index + "questionKey"}>
                             <Text>
                                 {index + 1}. {question.title}
                             </Text>
                             {question.type === "radio" && (
                                 <RadioGroup.Root>
                                     <Flex gap="1" className="mt-1" direction="column">
-                                        {question.options.map((option, index) => {
+                                        {question.options.map((option, optionIndex) => {
                                             return (
                                                 <Text
                                                     as="label"
                                                     size="2"
-                                                    key={option + index + question + "options"}
+                                                    key={optionIndex + "optionKey"}
                                                 >
-                                                    <Flex gap="2">
+                                                    <Flex gap="2" align={"center"}>
                                                         <RadioGroup.Item value="1" disabled />
-                                                        {option}
+                                                        <input
+                                                            className="!outline-none !border-none text-base !bg-transparent"
+                                                            placeholder={
+                                                                t("Option") + " " + (index + 1)
+                                                            }
+                                                            value={option}
+                                                            onChange={getChangeOption(
+                                                                index,
+                                                                optionIndex
+                                                            )}
+                                                        ></input>
                                                     </Flex>
                                                 </Text>
                                             );
                                         })}
                                     </Flex>
+                                    <Button variant="soft" size={"1"} className="!mt-2">
+                                        {t("Add Option")}
+                                    </Button>
                                 </RadioGroup.Root>
                             )}
                         </Box>

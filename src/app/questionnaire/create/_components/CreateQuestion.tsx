@@ -26,7 +26,7 @@ const CreateQuestion = forwardRef((_, ref: any) => {
         const numberOfOptions: number = event.target.value;
         const options: string[] = [];
         for (let i = 0; i < numberOfOptions; i++) {
-            options.push(`${t("Option")} ${i + 1}`);
+            options.push("");
         }
         setTempQuestion({ ...tempQuestion, options });
     }
