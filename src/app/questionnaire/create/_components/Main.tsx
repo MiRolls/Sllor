@@ -1,5 +1,14 @@
 "use client";
-import { Box, Button, Dialog, Flex, RadioGroup, Text, TextFieldInput } from "@radix-ui/themes";
+import {
+    Box,
+    Button,
+    Checkbox,
+    Dialog,
+    Flex,
+    RadioGroup,
+    Text,
+    TextFieldInput,
+} from "@radix-ui/themes";
 import React, { useEffect, useRef, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import { Questionnaire, RadioCheckboxAndSelect } from "../../../../interfaces/questionnaire";
@@ -81,7 +90,8 @@ export default function Main() {
                                                     key={optionIndex + "optionKey"}
                                                 >
                                                     <Flex gap="2" align={"center"}>
-                                                        <RadioGroup.Item value="1" disabled />
+                                                        <RadioGroup.Item value="any" disabled />
+                                                        {/* RadioGroup's value is help react to get the group's value, but we don't need to get it, so we can write any in it */}
                                                         <input
                                                             className="!outline-none !border-none text-base !bg-transparent"
                                                             placeholder={
@@ -109,6 +119,46 @@ export default function Main() {
                                         {t("Add Option")}
                                     </Button>
                                 </RadioGroup.Root>
+                            )}
+                            {question.type === "checkbox" && (
+                                <>
+                                    <Flex gap="1" className="mt-1" direction="column">
+                                        {question.options.map((option, optionIndex) => {
+                                            return (
+                                                <Text
+                                                    as="label"
+                                                    size="2"
+                                                    key={optionIndex + "optionKey"}
+                                                >
+                                                    <Flex gap="2" align={"center"}>
+                                                        <Checkbox disabled />
+                                                        <input
+                                                            className="!outline-none !border-none text-base !bg-transparent"
+                                                            placeholder={
+                                                                t("Option") +
+                                                                " " +
+                                                                (optionIndex + 1)
+                                                            }
+                                                            value={option}
+                                                            onChange={getChangeOption(
+                                                                index,
+                                                                optionIndex
+                                                            )}
+                                                        ></input>
+                                                    </Flex>
+                                                </Text>
+                                            );
+                                        })}
+                                    </Flex>
+                                    <Button
+                                        variant="soft"
+                                        size={"1"}
+                                        className="!mt-2"
+                                        onClick={addOption(index)}
+                                    >
+                                        {t("Add Option")}
+                                    </Button>
+                                </>
                             )}
                         </Box>
                     );
