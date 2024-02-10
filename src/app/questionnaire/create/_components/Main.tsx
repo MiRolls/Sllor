@@ -38,11 +38,11 @@ export default function Main() {
                 // user leaves blank at options question
                 console.log(question);
                 setIsShowError(true);
+                (DialogComponent.current as any).cleanTempQuestion();
                 return;
             }
         }
         // the other types of question can leave blank
-        console.log(111);
         const tempQuestionnaire = { ...questionnaire };
         tempQuestionnaire.questions.push(question as any);
         setQuestionnaire(tempQuestionnaire);
@@ -70,6 +70,9 @@ export default function Main() {
     useEffect(() => {
         console.log(questionnaire);
     }, [questionnaire]);
+    useEffect(() => {
+        setIsShowError(false);
+    }, [isDialogOpen]);
 
     return (
         <Flex className="p-10 sm:p-32 min-h-full w-full" direction={"column"} align={"center"}>

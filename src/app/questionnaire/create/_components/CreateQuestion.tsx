@@ -52,6 +52,9 @@ const CreateQuestion = forwardRef(({ onInput }: createQuestionProps, ref: any) =
         const unit: number = event.target.value;
         setTempQuestion({ ...tempQuestion, unit });
     }
+    function cleanTempQuestion() {
+        setTempQuestion({ type: "radio", title: "" } as Question);
+    }
 
     // there is a function and a hook, can be used to get the question from the parent component
     function getQuestion(): Question {
@@ -59,6 +62,7 @@ const CreateQuestion = forwardRef(({ onInput }: createQuestionProps, ref: any) =
     }
     useImperativeHandle(ref, () => ({
         getQuestion,
+        cleanTempQuestion,
     }));
 
     return (
