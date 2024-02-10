@@ -76,7 +76,9 @@ export default function Main() {
                                                         <input
                                                             className="!outline-none !border-none text-base !bg-transparent"
                                                             placeholder={
-                                                                t("Option") + " " + (index + 1)
+                                                                t("Option") +
+                                                                " " +
+                                                                (optionIndex + 1)
                                                             }
                                                             value={option}
                                                             onChange={getChangeOption(
