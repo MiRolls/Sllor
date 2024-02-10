@@ -1,4 +1,5 @@
 import { Box, Select, Text, TextFieldInput } from "@radix-ui/themes";
+import { motion } from "framer-motion";
 import React from "react";
 
 interface QuestionOptionProps {
@@ -8,6 +9,7 @@ interface QuestionOptionProps {
     tips: string;
     placeholder?: string;
     defaultValue?: string;
+    animation?: boolean;
 }
 
 const QuestionOption = ({
@@ -17,10 +19,14 @@ const QuestionOption = ({
     tips,
     placeholder,
     defaultValue,
+    animation,
 }: QuestionOptionProps) => {
     return (
-        <div
+        <motion.div
             className="flex items-center justify-between origin-top"
+            initial={animation ? { opacity: 0.5, height: 0 } : {}}
+            animate={animation ? { opacity: 1, height: "auto" } : {}}
+            exit={animation ? { opacity: 0.5, height: 0 } : {}}
             // initial={{ opacity: 0.5, scale: 0.97 }}
             // animate={{ opacity: 1, scale: 1 }}
             // exit={{ opacity: 0.5, scale: 0.97 }}
@@ -58,7 +64,7 @@ const QuestionOption = ({
                     ></TextFieldInput>
                 </Box>
             )}
-        </div>
+        </motion.div>
     );
 };
 // QuestionOption.displayName = "QuestionOption";

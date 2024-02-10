@@ -4,6 +4,7 @@ import { Flex } from "@radix-ui/themes";
 import { t } from "i18next";
 import { forwardRef, useImperativeHandle, useState } from "react";
 import QuestionOption from "./QuestionOption";
+import { AnimatePresence } from "framer-motion";
 interface createQuestionProps {
     onInput: () => void;
 }

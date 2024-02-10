@@ -10,6 +10,7 @@ import {
 } from "../../../../interfaces/questionnaire";
 import CreateQuestion from "./CreateQuestion";
 import { t } from "i18next";
+import { AnimatePresence, AnimateSharedLayout, LayoutGroup, m, motion } from "framer-motion";
 
 export default function Main() {
     // global page questionnaire
@@ -193,30 +194,40 @@ export default function Main() {
                             </Flex>
                         </Button>
                     </Dialog.Trigger>
-                    <Dialog.Content>
-                        <Dialog.Title>{t("Add Question")}</Dialog.Title>
-                        <CreateQuestion
-                            onInput={() => setIsDialogOpen(false)}
-                            ref={DialogComponent}
-                        />
-                        {/* If user leaves blank */}
-                        {isShowError && (
-                            <Callout.Root color="red" size="1" className="mt-2">
-                                <Callout.Icon>
-                                    <MdErrorOutline size={"17"} />
-                                </Callout.Icon>
-                                <Callout.Text>{t("Do not leave blank")}</Callout.Text>
-                            </Callout.Root>
-                        )}
-                        <Flex className="gap-1 !justify-end mt-2">
-                            <Dialog.Close>
-                                <Button variant="soft" color="gray">
-                                    {t("Cancel")}
-                                </Button>
-                            </Dialog.Close>
-                            <Button onClick={addQuestion}>{t("OK")}</Button>
-                        </Flex>
-                    </Dialog.Content>
+                    <LayoutGroup>
+                        <Dialog.Content>
+                            <Dialog.Title>{t("Add Question")}</Dialog.Title>
+                            <CreateQuestion
+                                onInput={() => setIsDialogOpen(false)}
+                                ref={DialogComponent}
+                            />
+                            {/* If user leaves blank */}
+                            <AnimatePresence>
+                                {isShowError && (
+                                    <motion.div
+                                        layout
+                                        initial={{ opacity: 0.7, height: 0 }}
+                                        animate={{ opacity: 1, height: "auto" }}
+                                    >
+                                        <Callout.Root color="red" size="1" className="mt-2">
+                                            <Callout.Icon>
+                                                <MdErrorOutline size={"17"} />
+                                            </Callout.Icon>
+                                            <Callout.Text>{t("Do not leave blank")}</Callout.Text>
+                                        </Callout.Root>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                            <Flex className="gap-1 !justify-end mt-2">
+                                <Dialog.Close>
+                                    <Button variant="soft" color="gray">
+                                        {t("Cancel")}
+                                    </Button>
+                                </Dialog.Close>
+                                <Button onClick={addQuestion}>{t("OK")}</Button>
+                            </Flex>
+                        </Dialog.Content>
+                    </LayoutGroup>
                 </Dialog.Root>
             </Box>
         </Flex>
