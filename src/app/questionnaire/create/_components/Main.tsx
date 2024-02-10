@@ -1,17 +1,13 @@
 "use client";
-import {
-    Box,
-    Button,
-    Checkbox,
-    Dialog,
-    Flex,
-    RadioGroup,
-    Text,
-    TextFieldInput,
-} from "@radix-ui/themes";
+import { Box, Button, Callout, Checkbox, Dialog, Flex, RadioGroup, Text } from "@radix-ui/themes";
+import { MdErrorOutline } from "react-icons/md";
 import React, { useEffect, useRef, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
-import { Questionnaire, RadioCheckboxAndSelect } from "../../../../interfaces/questionnaire";
+import {
+    Question,
+    Questionnaire,
+    RadioCheckboxAndSelect,
+} from "../../../../interfaces/questionnaire";
 import CreateQuestion from "./CreateQuestion";
 import { t } from "i18next";
 
@@ -23,14 +19,34 @@ export default function Main() {
     } as Questionnaire);
     const DialogComponent = useRef(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isShowError, setIsShowError] = useState(false);
 
     // add a question to the questionnaire
     function addQuestion() {
-        const question = (DialogComponent.current as any).getQuestion();
+        // first, check
+        const question: Question = (DialogComponent.current as any).getQuestion();
+        if (
+            question.type === "checkbox" ||
+            question.type === "radio" ||
+            question.type === "select"
+        ) {
+            if (
+                typeof question.options === "undefined" ||
+                (question.options as string[]).length < 1
+            ) {
+                // user leaves blank at options question
+                console.log(question);
+                setIsShowError(true);
+                return;
+            }
+        }
+        // the other types of question can leave blank
+        console.log(111);
         const tempQuestionnaire = { ...questionnaire };
-        tempQuestionnaire.questions.push(question);
+        tempQuestionnaire.questions.push(question as any);
         setQuestionnaire(tempQuestionnaire);
         console.log(questionnaire);
+        setIsDialogOpen(false);
     }
     function getChangeOption(questionNumber: number, optionNumber: number) {
         return (event: any) => {
@@ -179,16 +195,26 @@ export default function Main() {
                     </Dialog.Trigger>
                     <Dialog.Content>
                         <Dialog.Title>{t("Add Question")}</Dialog.Title>
-                        <CreateQuestion ref={DialogComponent} />
+                        <CreateQuestion
+                            onInput={() => setIsDialogOpen(false)}
+                            ref={DialogComponent}
+                        />
+                        {/* If user leaves blank */}
+                        {isShowError && (
+                            <Callout.Root color="red" size="1" className="mt-2">
+                                <Callout.Icon>
+                                    <MdErrorOutline size={"17"} />
+                                </Callout.Icon>
+                                <Callout.Text>{t("Do not leave blank")}</Callout.Text>
+                            </Callout.Root>
+                        )}
                         <Flex className="gap-1 !justify-end mt-2">
                             <Dialog.Close>
                                 <Button variant="soft" color="gray">
                                     {t("Cancel")}
                                 </Button>
                             </Dialog.Close>
-                            <Dialog.Close>
-                                <Button onClick={addQuestion}>{t("OK")}</Button>
-                            </Dialog.Close>
+                            <Button onClick={addQuestion}>{t("OK")}</Button>
                         </Flex>
                     </Dialog.Content>
                 </Dialog.Root>

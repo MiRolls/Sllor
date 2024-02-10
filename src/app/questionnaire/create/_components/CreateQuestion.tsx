@@ -1,11 +1,14 @@
 "use client";
 import { Question, QuestionType } from "@/interfaces/questionnaire";
 import { Flex } from "@radix-ui/themes";
+import { t } from "i18next";
 import { forwardRef, useImperativeHandle, useState } from "react";
 import QuestionOption from "./QuestionOption";
-import { t } from "i18next";
+interface createQuestionProps {
+    onInput: () => void;
+}
 
-const CreateQuestion = forwardRef((_, ref: any) => {
+const CreateQuestion = forwardRef(({ onInput }: createQuestionProps, ref: any) => {
     // a question while dialog is open
     const [tempQuestion, setTempQuestion] = useState({
         type: "radio",
