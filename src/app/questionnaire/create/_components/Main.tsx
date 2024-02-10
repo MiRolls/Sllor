@@ -32,6 +32,15 @@ export default function Main() {
             setQuestionnaire(tempQuestionnaire);
         };
     }
+    function addOption(questionNumber: number) {
+        return (event: any) => {
+            const tempQuestionnaire = { ...questionnaire };
+            (tempQuestionnaire.questions[questionNumber] as RadioCheckboxAndSelect).options.push(
+                ""
+            );
+            setQuestionnaire(tempQuestionnaire);
+        };
+    }
     useEffect(() => {
         console.log(questionnaire);
     }, [questionnaire]);
@@ -91,7 +100,12 @@ export default function Main() {
                                             );
                                         })}
                                     </Flex>
-                                    <Button variant="soft" size={"1"} className="!mt-2">
+                                    <Button
+                                        variant="soft"
+                                        size={"1"}
+                                        className="!mt-2"
+                                        onClick={addOption(index)}
+                                    >
                                         {t("Add Option")}
                                     </Button>
                                 </RadioGroup.Root>
