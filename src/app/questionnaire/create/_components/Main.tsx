@@ -204,7 +204,7 @@ export default function Main() {
                                                     // className="!w-44 !h-[25px] !border-none !bg-none hover:!bg-none"
                                                     disabled
                                                 >
-                                                    g{/* {option} */}
+                                                    {/* {option} */}
                                                     <input
                                                         className="!outline-none !border-none !text-base !bg-transparent"
                                                         placeholder={
