@@ -1,5 +1,15 @@
 "use client";
-import { Box, Button, Callout, Checkbox, Dialog, Flex, RadioGroup, Text } from "@radix-ui/themes";
+import {
+    Box,
+    Button,
+    Callout,
+    Checkbox,
+    Dialog,
+    Flex,
+    RadioGroup,
+    Select,
+    Text,
+} from "@radix-ui/themes";
 import { MdErrorOutline } from "react-icons/md";
 import React, { useEffect, useRef, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
@@ -179,6 +189,39 @@ export default function Main() {
                                         {t("Add Option")}
                                     </Button>
                                 </>
+                            )}
+                            {question.type === "select" && (
+                                <Select.Root defaultValue={"0"}>
+                                    <Select.Trigger></Select.Trigger>
+                                    {/* trigger is itself */}
+                                    <Select.Content className="block">
+                                        {question.options.map((option, optionIndex) => {
+                                            return (
+                                                <Select.Item
+                                                    key={optionIndex + "optionKey"}
+                                                    // value={option}
+                                                    value={optionIndex.toString()}
+                                                    // className="!w-44 !h-[25px] !border-none !bg-none hover:!bg-none"
+                                                    disabled
+                                                >
+                                                    g{/* {option} */}
+                                                    <input
+                                                        className="!outline-none !border-none !text-base !bg-transparent"
+                                                        placeholder={
+                                                            t("Option") + " " + (optionIndex + 1)
+                                                        }
+                                                        value={option}
+                                                        onChange={getChangeOption(
+                                                            index,
+                                                            optionIndex
+                                                        )}
+                                                    ></input>
+                                                </Select.Item>
+                                            );
+                                        })}
+                                        <Select.Item value={"..."}></Select.Item>
+                                    </Select.Content>
+                                </Select.Root>
                             )}
                         </Box>
                     );
