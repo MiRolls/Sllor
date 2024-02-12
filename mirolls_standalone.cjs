@@ -35,15 +35,23 @@ fs.readFile(filePath, "utf8", (err, data) => {
     const readStream = fs.createReadStream(originMtJSON);
     const writeStream = fs.createWriteStream(destinationMtJSON);
     // copy file
-    readStream.pipe(writeStream);
-    writeStream.on("finish", () => {
-        console.log("[MIROLLS] Mt.json copy completed.");
-    });
-    readStream.on("error", err => {
-        console.error("[MIROLLS] ERROR: Can't read file ", err);
+    fs.cp(originMtJSON, destinationMtJSON, { recursive: true }, err => {
+        if (err) {
+            console.error("[MIROLLS] ERROR: Can't copy mt.json ", err);
+            return;
+        }
+        console.log("[MIROLLS] mt.json copy completed.");
     });
 
-    writeStream.on("error", err => {
-        console.error("[MIROLLS] ERROR: Can't write file ", err);
+    /* Fix bug, when use production mode, all static files will throw 404 not found*/
+    /* Fix method: copy filepath ./.next/static to ./.next/standalone/.next/static*/
+    const staticPath = `${distPath}/static`;
+    const standaloneStaticPath = `${distPath}/standalone/.next/static`;
+    fs.cp(staticPath, standaloneStaticPath, { recursive: true }, err => {
+        if (err) {
+            console.error("[MIROLLS] ERROR: Can't copy static files ", err);
+            return;
+        }
+        console.log("[MIROLLS] Static files copy completed.");
     });
 });

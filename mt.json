@@ -4,7 +4,8 @@
     "frame": "nextJS",
     "start": {
         "type": "SSR",
-        "command": "SERVERURL=${SERVERURL} PORT=${PORT} node server.js"
+        "command": "SERVERURL=${SERVERURL} PORT=${PORT} node server.js",
+        "dependencies": ["node.js"]
     },
     "config": {
         "site": {
