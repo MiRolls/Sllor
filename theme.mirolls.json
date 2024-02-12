@@ -1,9 +1,8 @@
 {
     "name": "sllor",
-    "not-found-page": "index.html",
     "frame": "nextJS",
     "start": {
-        "type": "SSR",
+        "type": "exec",
         "command": "SERVERURL=${SERVERURL} PORT=${PORT} node server.js",
         "dependencies": ["node.js"]
     },
