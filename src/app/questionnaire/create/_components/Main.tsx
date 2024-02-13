@@ -1,16 +1,6 @@
 "use client";
-import {
-    Box,
-    Button,
-    Callout,
-    Checkbox,
-    Dialog,
-    Flex,
-    RadioGroup,
-    Select,
-    Text,
-} from "@radix-ui/themes";
-import { MdErrorOutline } from "react-icons/md";
+import { Box, Button, Callout, Checkbox, Dialog, Flex, RadioGroup, Text } from "@radix-ui/themes";
+import { MdErrorOutline, MdKeyboardArrowDown } from "react-icons/md";
 import React, { useEffect, useRef, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import {
@@ -20,7 +10,7 @@ import {
 } from "../../../../interfaces/questionnaire";
 import CreateQuestion from "./CreateQuestion";
 import { t } from "i18next";
-import { AnimatePresence, AnimateSharedLayout, LayoutGroup, m, motion } from "framer-motion";
+import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 
 export default function Main() {
     // global page questionnaire
@@ -31,6 +21,7 @@ export default function Main() {
     const DialogComponent = useRef(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [isShowError, setIsShowError] = useState(false);
+    const [showSelectContentNumber, setShowSelectContentNumber] = useState(-1);
 
     // add a question to the questionnaire
     function addQuestion() {
@@ -77,9 +68,16 @@ export default function Main() {
             setQuestionnaire(tempQuestionnaire);
         };
     }
+    function showSelectContent(questionNumber: number) {
+        return (event: any) => {
+            setShowSelectContentNumber(questionNumber);
+        };
+    }
+
     useEffect(() => {
-        console.log(questionnaire);
+        // console.log(questionnaire);
     }, [questionnaire]);
+
     useEffect(() => {
         setIsShowError(false);
     }, [isDialogOpen]);
@@ -200,46 +198,61 @@ export default function Main() {
                                     <Text>
                                         {index + 1}. {question.title}
                                     </Text>
-                                    <Select.Root defaultValue={"0"}>
-                                        <Select.Trigger></Select.Trigger>
-                                        {/* trigger is itself */}
-                                        <Select.Content>
-                                            {question.options.map((option, optionIndex) => {
-                                                return (
-                                                    <Select.Item
-                                                        key={optionIndex + "optionKey"}
-                                                        // value={option}
-                                                        value={optionIndex.toString()}
-                                                        // className="!w-44 !h-[25px] !border-none !bg-none hover:!bg-none"
-                                                        disabled
-                                                        // change force to input tag on user click
-                                                        /*onClick={() => {
-                                                            (
-                                                                document.getElementsByClassName(
-                                                                    `useInput${index}`
-                                                                )[optionIndex] as HTMLInputElement
-                                                            ).focus();
-                                                        }}*/
+                                    <Box>
+                                        <Button variant="soft" onClick={showSelectContent(index)}>
+                                            {question.options[0] === ""
+                                                ? t("Option") + " 1"
+                                                : question.options[0]}
+                                            <MdKeyboardArrowDown />
+                                        </Button>
+                                        {/* act as select.content */}
+                                        <AnimatePresence>
+                                            {showSelectContentNumber === index && (
+                                                <>
+                                                    <Box
+                                                        className="w-full left-0 top-0  absolute h-screen z-10 bg-transparent"
+                                                        onClick={showSelectContent(-1)}
+                                                    ></Box>
+                                                    <motion.div
+                                                        className="origin-top-left absolute rounded-sm ml-1 p-2 mt-[-30px] z-20 shadow-xl bg-background"
+                                                        initial={{ opacity: 0, scale: 0.95 }}
+                                                        animate={{ opacity: 1, scale: 1 }}
+                                                        exit={{ opacity: 0, scale: 0.95 }}
+                                                        transition={{ duration: 0.075 }}
                                                     >
-                                                        {/* {option} */}
-                                                        <input
-                                                            className={`outline-none border-none h-[14px] !text-[14px] !bg-transparent useInput${index}`}
-                                                            placeholder={
-                                                                t("Option") +
-                                                                " " +
-                                                                (optionIndex + 1)
+                                                        {question.options.map(
+                                                            (option, optionIndex) => {
+                                                                return (
+                                                                    <Box
+                                                                        key={
+                                                                            optionIndex +
+                                                                            "optionKey"
+                                                                        }
+                                                                        className="pl-2"
+                                                                    >
+                                                                        {/* {option} */}
+                                                                        <input
+                                                                            className={`outline-none border-none h-[15px] !text-[14px] !bg-transparent useInput${index}`}
+                                                                            placeholder={
+                                                                                t("Option") +
+                                                                                " " +
+                                                                                (optionIndex + 1)
+                                                                            }
+                                                                            value={option}
+                                                                            onChange={getChangeOption(
+                                                                                index,
+                                                                                optionIndex
+                                                                            )}
+                                                                        ></input>
+                                                                    </Box>
+                                                                );
                                                             }
-                                                            value={option}
-                                                            onChange={getChangeOption(
-                                                                index,
-                                                                optionIndex
-                                                            )}
-                                                        ></input>
-                                                    </Select.Item>
-                                                );
-                                            })}
-                                        </Select.Content>
-                                    </Select.Root>
+                                                        )}
+                                                    </motion.div>
+                                                </>
+                                            )}
+                                        </AnimatePresence>
+                                    </Box>
                                 </Flex>
                             )}
                         </Box>
