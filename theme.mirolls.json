@@ -4,7 +4,7 @@
     "start": {
         "type": "exec",
         "command": "SERVERURL=${SERVERURL} PORT=${PORT} node server.js",
-        "dependencies": ["node.js"]
+        "dependencies": ["node@latest"]
     },
     "config": {
         "site": {

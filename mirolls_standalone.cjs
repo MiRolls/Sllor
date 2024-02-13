@@ -2,8 +2,8 @@ const fs = require("fs");
 
 const distPath = ".next";
 const filePath = `${distPath}/standalone/server.js`;
-const originMtJSON = "mt.json";
-const destinationMtJSON = `${distPath}/standalone/mt.json`;
+const originMtJSON = "theme.mirolls.json";
+const destinationMtJSON = `${distPath}/standalone/theme.mirolls.json`;
 
 // ReadFile
 fs.readFile(filePath, "utf8", (err, data) => {
