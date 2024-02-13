@@ -14,7 +14,9 @@ function ErrorBox() {
                     <Text>Server was blown up! </Text>
                 </AlertDialog.Description>
                 <Flex mt="4" justify="end">
-                    <Button onClick={reload}>Try Again</Button>
+                    <Button onClick={reload} color="green" className="!text-white">
+                        Try Again
+                    </Button>
                 </Flex>
             </AlertDialog.Content>
         </AlertDialog.Root>

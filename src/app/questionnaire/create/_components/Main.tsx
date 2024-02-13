@@ -105,53 +105,58 @@ export default function Main() {
             <Box className="sm:w-4/5 w-11/12 sm:min-h-10 min-h-2 sm:py-10 py-2">
                 {questionnaire.questions.map((question, index) => {
                     return (
-                        <Box key={index + "questionKey"}>
-                            <Text>
-                                {index + 1}. {question.title}
-                            </Text>
+                        <Box key={index + "questionKey"} className="mt-3">
                             {question.type === "radio" && (
-                                <RadioGroup.Root>
-                                    <Flex gap="1" className="mt-1" direction="column">
-                                        {question.options.map((option, optionIndex) => {
-                                            return (
-                                                <Text
-                                                    as="label"
-                                                    size="2"
-                                                    key={optionIndex + "optionKey"}
-                                                >
-                                                    <Flex gap="2" align={"center"}>
-                                                        <RadioGroup.Item value="any" disabled />
-                                                        {/* RadioGroup's value is help react to get the group's value, but we don't need to get it, so we can write any in it */}
-                                                        <input
-                                                            className="!outline-none !border-none text-base !bg-transparent"
-                                                            placeholder={
-                                                                t("Option") +
-                                                                " " +
-                                                                (optionIndex + 1)
-                                                            }
-                                                            value={option}
-                                                            onChange={getChangeOption(
-                                                                index,
-                                                                optionIndex
-                                                            )}
-                                                        ></input>
-                                                    </Flex>
-                                                </Text>
-                                            );
-                                        })}
-                                    </Flex>
-                                    <Button
-                                        variant="soft"
-                                        size={"1"}
-                                        className="!mt-2"
-                                        onClick={addOption(index)}
-                                    >
-                                        {t("Add Option")}
-                                    </Button>
-                                </RadioGroup.Root>
+                                <>
+                                    <Text>
+                                        {index + 1}. {question.title}
+                                    </Text>
+                                    <RadioGroup.Root>
+                                        <Flex gap="1" className="mt-1" direction="column">
+                                            {question.options.map((option, optionIndex) => {
+                                                return (
+                                                    <Text
+                                                        as="label"
+                                                        size="2"
+                                                        key={optionIndex + "optionKey"}
+                                                    >
+                                                        <Flex gap="2" align={"center"}>
+                                                            <RadioGroup.Item value="any" disabled />
+                                                            {/* RadioGroup's value is help react to get the group's value, but we don't need to get it, so we can write any in it */}
+                                                            <input
+                                                                className="!outline-none !border-none text-base !bg-transparent"
+                                                                placeholder={
+                                                                    t("Option") +
+                                                                    " " +
+                                                                    (optionIndex + 1)
+                                                                }
+                                                                value={option}
+                                                                onChange={getChangeOption(
+                                                                    index,
+                                                                    optionIndex
+                                                                )}
+                                                            ></input>
+                                                        </Flex>
+                                                    </Text>
+                                                );
+                                            })}
+                                        </Flex>
+                                        <Button
+                                            variant="soft"
+                                            size={"1"}
+                                            className="!mt-2"
+                                            onClick={addOption(index)}
+                                        >
+                                            {t("Add Option")}
+                                        </Button>
+                                    </RadioGroup.Root>
+                                </>
                             )}
                             {question.type === "checkbox" && (
                                 <>
+                                    <Text>
+                                        {index + 1}. {question.title}
+                                    </Text>
                                     <Flex gap="1" className="mt-1" direction="column">
                                         {question.options.map((option, optionIndex) => {
                                             return (
@@ -191,37 +196,43 @@ export default function Main() {
                                 </>
                             )}
                             {question.type === "select" && (
-                                <Select.Root defaultValue={"0"}>
-                                    <Select.Trigger></Select.Trigger>
-                                    {/* trigger is itself */}
-                                    <Select.Content className="block">
-                                        {question.options.map((option, optionIndex) => {
-                                            return (
-                                                <Select.Item
-                                                    key={optionIndex + "optionKey"}
-                                                    // value={option}
-                                                    value={optionIndex.toString()}
-                                                    // className="!w-44 !h-[25px] !border-none !bg-none hover:!bg-none"
-                                                    disabled
-                                                >
-                                                    {/* {option} */}
-                                                    <input
-                                                        className="!outline-none !border-none !text-base !bg-transparent"
-                                                        placeholder={
-                                                            t("Option") + " " + (optionIndex + 1)
-                                                        }
-                                                        value={option}
-                                                        onChange={getChangeOption(
-                                                            index,
-                                                            optionIndex
-                                                        )}
-                                                    ></input>
-                                                </Select.Item>
-                                            );
-                                        })}
-                                        <Select.Item value={"..."}></Select.Item>
-                                    </Select.Content>
-                                </Select.Root>
+                                <Flex align={"center"} gap="2">
+                                    <Text>
+                                        {index + 1}. {question.title}
+                                    </Text>
+                                    <Select.Root defaultValue={"0"}>
+                                        <Select.Trigger></Select.Trigger>
+                                        {/* trigger is itself */}
+                                        <Select.Content>
+                                            {question.options.map((option, optionIndex) => {
+                                                return (
+                                                    <Select.Item
+                                                        key={optionIndex + "optionKey"}
+                                                        // value={option}
+                                                        value={optionIndex.toString()}
+                                                        // className="!w-44 !h-[25px] !border-none !bg-none hover:!bg-none"
+                                                        disabled
+                                                    >
+                                                        {/* {option} */}
+                                                        <input
+                                                            className="!outline-none !border-none !text-base !bg-transparent"
+                                                            placeholder={
+                                                                t("Option") +
+                                                                " " +
+                                                                (optionIndex + 1)
+                                                            }
+                                                            value={option}
+                                                            onChange={getChangeOption(
+                                                                index,
+                                                                optionIndex
+                                                            )}
+                                                        ></input>
+                                                    </Select.Item>
+                                                );
+                                            })}
+                                        </Select.Content>
+                                    </Select.Root>
+                                </Flex>
                             )}
                         </Box>
                     );
@@ -233,7 +244,7 @@ export default function Main() {
                 <Dialog.Root open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                     <Dialog.Trigger>
                         {/* Button to open dialog */}
-                        <Button size={"3"} radius="full" className="!text-white">
+                        <Button size={"3"} radius="full" className="!bg-accent-700 !text-white">
                             <Flex gap="1" align={"center"}>
                                 <IoMdAdd size={25} className=" text-white mr-0" />
                                 <Text>{t("Add Question")}</Text>
