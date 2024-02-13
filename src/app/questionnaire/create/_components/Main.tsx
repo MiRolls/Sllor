@@ -212,10 +212,18 @@ export default function Main() {
                                                         value={optionIndex.toString()}
                                                         // className="!w-44 !h-[25px] !border-none !bg-none hover:!bg-none"
                                                         disabled
+                                                        // change force to input tag on user click
+                                                        /*onClick={() => {
+                                                            (
+                                                                document.getElementsByClassName(
+                                                                    `useInput${index}`
+                                                                )[optionIndex] as HTMLInputElement
+                                                            ).focus();
+                                                        }}*/
                                                     >
                                                         {/* {option} */}
                                                         <input
-                                                            className="!outline-none !border-none !text-base !bg-transparent"
+                                                            className={`outline-none border-none h-[14px] !text-[14px] !bg-transparent useInput${index}`}
                                                             placeholder={
                                                                 t("Option") +
                                                                 " " +
