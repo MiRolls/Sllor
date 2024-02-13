@@ -6,7 +6,7 @@ export const SiteLoader = async (): Promise<[boolean, Site | any]> => {
     // tips User in console when SiteLoader be called
     let data: SiteGet;
     try {
-        data = await (await fetch("http://localhost:2333/site/get", { method: "POST" })).json();
+        data = await (await fetch("/site/get", { method: "POST" })).json();
     } catch (error) {
         return [false, error];
     }
