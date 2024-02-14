@@ -2,13 +2,13 @@
 
 const isProd = process.env.NODE_ENV === "production";
 function get_rewrites(origin) {
-    return (isProd ? "/[[[serverURL]]]" : process.env.MIROLLS_URL) + origin;
+    return `http://localhost:${process.env.MIROLLS_PORT}` + origin;
 }
 const rewrites = () => {
     return [
         {
             source: "/site/get",
-            destination: get_rewrites("site/get"),
+            destination: get_rewrites("/site/get"),
         },
     ];
 };

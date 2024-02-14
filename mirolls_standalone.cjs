@@ -5,31 +5,37 @@ const filePath = `${distPath}/standalone/server.js`;
 const originMtJSON = "theme.mirolls.json";
 const destinationMtJSON = `${distPath}/standalone/theme.mirolls.json`;
 
+fixNextJSBug();
+
 // ReadFile
-fs.readFile(filePath, "utf8", (err, data) => {
-    if (err) {
-        console.error(err);
-        return;
-    }
-
-    // Add some thing
-    const modifiedContent = data.replace(
-        /\'0.0.0.0\'/g,
-        '"0.0.0.0"; const serverURL = process.env.SERVERURL;'
-    );
-
-    // change /[[[serverURL]]] to serverURL + "
-    const finalContent = modifiedContent.replace(/\"\/\[\[\[serverURL\]\]\]/g, 'serverURL + "');
-
-    // Write File
-    fs.writeFile(filePath, finalContent, "utf8", err => {
+function writeFile() {
+    fs.readFile(filePath, "utf8", (err, data) => {
         if (err) {
             console.error(err);
             return;
         }
-        console.log("[MIROLLS] File write successfully.");
-    });
 
+        // Add some thing
+        const modifiedContent = data.replace(
+            /\'0.0.0.0\'/g,
+            '"0.0.0.0"; const serverURL = process.env.SERVERURL;'
+        );
+
+        // change /[[[serverURL]]] to serverURL + "
+        const finalContent = modifiedContent.replace(/\"\/\[\[\[serverURL\]\]\]/g, 'serverURL + "');
+
+        // Write File
+        fs.writeFile(filePath, finalContent, "utf8", err => {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.log("[MIROLLS] File write successfully.");
+        });
+    });
+}
+
+function copyMiRollsFiles() {
     /* copy mt.json */
     //create streams
     const readStream = fs.createReadStream(originMtJSON);
@@ -42,7 +48,9 @@ fs.readFile(filePath, "utf8", (err, data) => {
         }
         console.log("[MIROLLS] mt.json copy completed.");
     });
+}
 
+function fixNextJSBug() {
     /* Fix bug, when use production mode, all static files will throw 404 not found*/
     /* Fix method: copy filepath ./.next/static to ./.next/standalone/.next/static*/
     const staticPath = `${distPath}/static`;
@@ -54,4 +62,4 @@ fs.readFile(filePath, "utf8", (err, data) => {
         }
         console.log("[MIROLLS] Static files copy completed.");
     });
-});
+}
