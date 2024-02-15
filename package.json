@@ -8,11 +8,11 @@
         "node": ">=18"
     },
     "scripts": {
-        "dev": "cross-env NODE_ENV=development MIROLLS_URL=http://localhost:2333/ next dev & node server/mirolls.mjs",
-        "serve": "cross-env NODE_ENV=development MIROLLS_URL=http://localhost:2333/ next dev",
+        "dev": "cross-env NODE_ENV=development MIROLLS_PORT=2333 next dev & node server/mirolls.mjs",
+        "serve": "cross-env NODE_ENV=development MIROLLS_PORT=2333 next dev",
         "test-build": "cross-env NODE_ENV=production next build",
         "build": "cross-env NODE_ENV=production next build && node mirolls_standalone.cjs",
-        "start": "SERVERURL=http://localhost:2333 PORT=8080 MIROLLS_URL=http://localhost:2333/ next start",
+        "start": "node ./.next/standalone/server.js",
         "lint": "next lint",
         "mock": "node server/mirolls.mjs"
     },
