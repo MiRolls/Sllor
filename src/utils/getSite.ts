@@ -1,12 +1,11 @@
 import { SiteGet } from "@/interfaces/response/site";
-import axios from "axios";
 import { Site } from "../interfaces/site";
 
 export const SiteLoader = async (): Promise<[boolean, Site | any]> => {
     // tips User in console when SiteLoader be called
     let data: SiteGet;
     try {
-        data = await (await fetch("/site/get", { method: "POST" })).json();
+        data = await (await fetch("/site/get", { method: "POST", cache: "no-store" })).json();
     } catch (error) {
         return [false, error];
     }
