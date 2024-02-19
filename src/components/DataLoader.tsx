@@ -6,7 +6,6 @@ import ErrorBox from "./ErrorBox";
 import Layout from "./Layout";
 import { useControl } from "@/store/control";
 import { useDark } from "@/store/dark";
-import LoadHandle from "./LoadHandle";
 import { useEffect, useState } from "react";
 import createI18n from "@/language";
 import { useSite } from "@/store/site";
