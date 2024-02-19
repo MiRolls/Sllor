@@ -3,11 +3,10 @@
     "frame": "nextJS",
     "start": {
         "type": "exec",
-        "command": "PORT=${THEME_PORT} node ./.next/standalone/server.js",
-        "dependencies": ["node@latest"]
+        "command": "PORT=${THEME_PORT} node ./.next/standalone/server.js"
     },
     "init": {
-        "download-method": "git",
+        "dependencies": ["node@latest"],
         "command": ["npm i -g pnpm", "pnpm i", "MIROLLS_PORT=${MIROLLS_PORT} pnpm build"]
     },
     "config": {

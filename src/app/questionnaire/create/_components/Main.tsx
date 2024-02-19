@@ -104,11 +104,12 @@ export default function Main() {
                 {questionnaire.questions.map((question, index) => {
                     return (
                         <Box key={index + "questionKey"} className="mt-3">
+                            <input
+                                className="outline-none border-none bg-transparent"
+                                value={`${index + 1}. ${question.title}`}
+                            ></input>
                             {question.type === "radio" && (
                                 <>
-                                    <Text>
-                                        {index + 1}. {question.title}
-                                    </Text>
                                     <RadioGroup.Root>
                                         <Flex gap="1" className="mt-1" direction="column">
                                             {question.options.map((option, optionIndex) => {
@@ -152,9 +153,6 @@ export default function Main() {
                             )}
                             {question.type === "checkbox" && (
                                 <>
-                                    <Text>
-                                        {index + 1}. {question.title}
-                                    </Text>
                                     <Flex gap="1" className="mt-1" direction="column">
                                         {question.options.map((option, optionIndex) => {
                                             return (
@@ -194,66 +192,56 @@ export default function Main() {
                                 </>
                             )}
                             {question.type === "select" && (
-                                <Flex align={"center"} gap="2">
-                                    <Text>
-                                        {index + 1}. {question.title}
-                                    </Text>
-                                    <Box>
-                                        <Button variant="soft" onClick={showSelectContent(index)}>
-                                            {question.options[0] === ""
-                                                ? t("Option") + " 1"
-                                                : question.options[0]}
-                                            <MdKeyboardArrowDown />
-                                        </Button>
-                                        {/* act as select.content */}
-                                        <AnimatePresence>
-                                            {showSelectContentNumber === index && (
-                                                <>
-                                                    <Box
-                                                        className="w-full left-0 top-0  absolute h-screen z-10 bg-transparent"
-                                                        onClick={showSelectContent(-1)}
-                                                    ></Box>
-                                                    <motion.div
-                                                        className="origin-top-left absolute rounded-sm ml-1 p-2 mt-[-30px] z-20 shadow-xl bg-background"
-                                                        initial={{ opacity: 0, scale: 0.95 }}
-                                                        animate={{ opacity: 1, scale: 1 }}
-                                                        exit={{ opacity: 0, scale: 0.95 }}
-                                                        transition={{ duration: 0.075 }}
-                                                    >
-                                                        {question.options.map(
-                                                            (option, optionIndex) => {
-                                                                return (
-                                                                    <Box
-                                                                        key={
-                                                                            optionIndex +
-                                                                            "optionKey"
-                                                                        }
-                                                                        className="pl-2"
-                                                                    >
-                                                                        {/* {option} */}
-                                                                        <input
-                                                                            className={`outline-none border-none h-[15px] !text-[14px] !bg-transparent useInput${index}`}
-                                                                            placeholder={
-                                                                                t("Option") +
-                                                                                " " +
-                                                                                (optionIndex + 1)
-                                                                            }
-                                                                            value={option}
-                                                                            onChange={getChangeOption(
-                                                                                index,
-                                                                                optionIndex
-                                                                            )}
-                                                                        ></input>
-                                                                    </Box>
-                                                                );
-                                                            }
-                                                        )}
-                                                    </motion.div>
-                                                </>
-                                            )}
-                                        </AnimatePresence>
-                                    </Box>
-                                </Flex>
+                                <Box>
+                                    <Button variant="soft" onClick={showSelectContent(index)}>
+                                        {question.options[0] === ""
+                                            ? t("Option") + " 1"
+                                            : question.options[0]}
+                                        <MdKeyboardArrowDown />
+                                    </Button>
+                                    {/* act as select.content */}
+                                    <AnimatePresence>
+                                        {showSelectContentNumber === index && (
+                                            <>
+                                                <Box
+                                                    className="w-full left-0 top-0  absolute h-screen z-10 bg-transparent"
+                                                    onClick={showSelectContent(-1)}
+                                                ></Box>
+                                                <motion.div
+                                                    className="origin-top-left absolute rounded-sm ml-1 p-2 mt-[-30px] z-20 shadow-xl bg-background"
+                                                    initial={{ opacity: 0, scale: 0.95 }}
+                                                    animate={{ opacity: 1, scale: 1 }}
+                                                    exit={{ opacity: 0, scale: 0.95 }}
+                                                    transition={{ duration: 0.075 }}
+                                                >
+                                                    {question.options.map((option, optionIndex) => {
+                                                        return (
+                                                            <Box
+                                                                key={optionIndex + "optionKey"}
+                                                                className="pl-2"
+                                                            >
+                                                                {/* {option} */}
+                                                                <input
+                                                                    className={`outline-none border-none h-[15px] !text-[14px] !bg-transparent useInput${index}`}
+                                                                    placeholder={
+                                                                        t("Option") +
+                                                                        " " +
+                                                                        (optionIndex + 1)
+                                                                    }
+                                                                    value={option}
+                                                                    onChange={getChangeOption(
+                                                                        index,
+                                                                        optionIndex
+                                                                    )}
+                                                                ></input>
+                                                            </Box>
+                                                        );
+                                                    })}
+                                                </motion.div>
+                                            </>
+                                        )}
+                                    </AnimatePresence>
+                                </Box>
                             )}
                         </Box>
                     );
@@ -298,7 +286,7 @@ export default function Main() {
                             </AnimatePresence>
                             <Flex className="gap-1 !justify-end mt-2">
                                 <Dialog.Close>
-                                    <Button variant="soft" color="gray">
+                                    <Button variant="surface" color="gray">
                                         {t("Cancel")}
                                     </Button>
                                 </Dialog.Close>
