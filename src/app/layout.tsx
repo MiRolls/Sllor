@@ -1,14 +1,18 @@
 import "./globals.css";
 import Loader from "./_components/Loader";
 import getSite from "@/utils/getSite";
+import DataLoader from "@/components/DataLoader";
+import { Site } from "@/interfaces/site";
+import type { Metadata } from "next";
 
-export async function generateMetadata() {
+export async function generateMetadata(): Promise<Metadata> {
     const site = await getSite();
+    // console.log(site);
     if (site[0]) {
         return {
             title: site[1].name,
-            description: site[1].introduce,
-            icon: site[1].logo,
+            description: site[1]["short-introduce"],
+            icons: site[1].logo,
         };
     } else {
         return {
@@ -18,16 +22,22 @@ export async function generateMetadata() {
 }
 
 async function RootLayout({ children }: { children: React.ReactNode }) {
-    const siteData = await getSite();
+    const isGetData = true;
+    const siteData: [boolean, Site | null] = await getSite();
     return (
         <html>
-            <head>
-                <link rel="icon" href="" id="icon" />
-                <title id="title"></title>
-                <meta name="description" content=""></meta>
-            </head>
+            {/* <head> */}
+            {/* <link rel="icon" href="" id="icon" /> */}
+            {/* <title id="title"></title> */}
+            {/* <meta name="description" content=""></meta> */}
+            {/* </head> */}
             <body>
-                <Loader>{children}</Loader>
+                {isGetData ? (
+                    <DataLoader data={siteData}>{children}</DataLoader>
+                ) : (
+                    <Loader>{children}</Loader>
+                )}
+                {/* {children} */}
             </body>
         </html>
     );

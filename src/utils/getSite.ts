@@ -6,9 +6,19 @@ export const SiteLoader = async (): Promise<[boolean, Site | any]> => {
     // tips User in console when SiteLoader be called
     let data: SiteGet;
     try {
-        data = await (await fetch(apiList.getSite, { method: "POST", cache: "no-store" })).json();
-    } catch (error) {
-        return [false, error];
+        if (typeof window === "undefined") {
+            // const localURL = `http://${headers().get("host")}`;
+            const localURL = "http://localhost:" + process.env.MIROLLS_PORT;
+            data = await (
+                await fetch(localURL + apiList.getSite, { method: "POST", cache: "no-store" })
+            ).json();
+        } else {
+            data = await (
+                await fetch(apiList.getSite, { method: "POST", cache: "no-store" })
+            ).json();
+        }
+    } catch (_) {
+        return [false, null];
     }
     // server impossible return ```code !== 200```
     // Create i18n

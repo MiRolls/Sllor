@@ -10,10 +10,10 @@ import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { ControlState, useControl } from "@/store/control";
 import "@/app/special.css";
+import { t } from "i18next";
 
 const NavBar = () => {
     const site = useSite(state => (state as SiteState).site);
-    const [t, _] = useTranslation();
 
     // Get dark api
     const stateDark = useDark(state => (state as DarkState).dark);

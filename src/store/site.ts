@@ -21,15 +21,15 @@ export const useSite = create(
         },
         changeSite: (value: Site) => {
             // Change DOM
-            const title = document.getElementById("title") as HTMLTitleElement;
-            const icon = document.getElementById("icon") as HTMLLinkElement;
-            const description = document.querySelector(
-                'meta[name="description"]'
-            ) as HTMLMetaElement;
+            // const title = document.getElementById("title") as HTMLTitleElement;
+            // const icon = document.getElementById("icon") as HTMLLinkElement;
+            // const description = document.querySelector(
+            // 'meta[name="description"]'
+            // ) as HTMLMetaElement;
 
-            title.innerText = value.name;
-            icon.href = value.logo;
-            description.content = value["short-introduce"];
+            // title.innerText = value.name;
+            // icon.href = value.logo;
+            // description.content = value["short-introduce"];
 
             set(() => ({
                 site: value,

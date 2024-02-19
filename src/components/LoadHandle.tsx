@@ -1,26 +1,11 @@
-// "use server";
 "use client";
-import "@radix-ui/themes/styles.css";
-import { Site } from "../interfaces/site";
-import ErrorBox from "./ErrorBox";
-import Layout from "./Layout";
+import createI18n from "@/language";
 import { useControl } from "@/store/control";
 import { useDark } from "@/store/dark";
-import LoadHandle from "./LoadHandle";
-import { useEffect, useState } from "react";
-import createI18n from "@/language";
 import { useSite } from "@/store/site";
+import React, { useEffect, useState } from "react";
 
-export const DataLoader = ({
-    children,
-    data,
-}: {
-    children: React.ReactNode;
-    data: [boolean, Site | null];
-}) => {
-    const [state, setState] = useState("loading");
-    const control = useControl(state => (state as any).control);
-    const show = useControl(state => (state as any).show);
+export default function LoadHandle({ data }: { data: [boolean, any] }) {
     const stateDark = useDark(state => (state as any).dark);
     const changeUseSite = useSite(state => (state as any).changeSite);
     const changeDark: any = useDark(state => (state as any).changeDark);
@@ -47,13 +32,10 @@ export const DataLoader = ({
 
     useEffect(() => {
         if (data[0] === true) {
-            createI18n((data[1] as Site).lang);
+            createI18n(data[1].lang);
             controlHandle();
             darkHandle();
             changeUseSite(data[1]);
-            setState("success");
-        } else {
-            setState("error");
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -63,19 +45,5 @@ export const DataLoader = ({
         document.documentElement.className = `${stateDark}-theme`;
         document.documentElement.style.colorScheme = stateDark;
     }, [stateDark]);
-
-    if (state === "success") {
-        return (
-            <>
-                {/* <LoadHandle data={data}></LoadHandle> */}
-                <Layout data={data[1] as Site} dark={stateDark} control={control} show={show}>
-                    {children}
-                </Layout>
-            </>
-        );
-    } else if (state === "error") {
-        return <ErrorBox></ErrorBox>;
-    }
-};
-
-export default DataLoader;
+    return <></>;
+}

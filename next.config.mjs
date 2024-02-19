@@ -7,8 +7,8 @@ function get_rewrites(origin) {
 const rewrites = () => {
     return [
         {
-            source: "/site/get",
-            destination: get_rewrites("/site/get"),
+            source: "/api/v1/:path*",
+            destination: get_rewrites("/api/v1/:path*"),
         },
     ];
 };
