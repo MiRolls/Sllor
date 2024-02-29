@@ -21,11 +21,8 @@ export const SiteLoader = async (): Promise<[boolean, Site | any]> => {
     } catch (error) {
         return [false, (error as any).toString()];
     }
-    // server impossible return ```code !== 200```
-    // Create i18n
-    // await createI18n(data.data.lang);
-    // Change Site
-    // changeSite(data.data);
+    // server impossible return ```code !== 200``` status
+
     return [true, data.data];
 };
 
@@ -48,6 +45,12 @@ async function getSite() {
     } else {
         if (typeof (globalThis as any).site === "undefined") {
             (globalThis as any).site = SiteLoader();
+            // set loading the site time
+            (globalThis as any).getSiteTime = Date.now();
+            // if get site time more than 120s, get again the site
+            if (Date.now() - (globalThis as any).getSiteTime > 120000) {
+                (globalThis as any).site = SiteLoader();
+            }
         }
         // } else {
         // if promise is loading, waiting for promise done and return the site
