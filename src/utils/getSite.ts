@@ -3,12 +3,13 @@ import { Site } from "../interfaces/site";
 import apiList from "./apiList";
 
 export const SiteLoader = async (): Promise<[boolean, Site | any]> => {
+    console.log("GET!");
     // tips User in console when SiteLoader be called
     let data: SiteGet;
     try {
         if (typeof window === "undefined") {
             // const localURL = `http://${headers().get("host")}`;
-            const localURL = "http://localhost:" + process.env.MIROLLS_PORT;
+            const localURL = process.env.MIROLLS_URL;
             data = await (
                 await fetch(localURL + apiList.getSite, { method: "POST", cache: "no-store" })
             ).json();
@@ -17,8 +18,8 @@ export const SiteLoader = async (): Promise<[boolean, Site | any]> => {
                 await fetch(apiList.getSite, { method: "POST", cache: "no-store" })
             ).json();
         }
-    } catch (_) {
-        return [false, null];
+    } catch (error) {
+        return [false, (error as any).toString()];
     }
     // server impossible return ```code !== 200```
     // Create i18n

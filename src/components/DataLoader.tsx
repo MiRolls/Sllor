@@ -15,7 +15,7 @@ export const DataLoader = ({
     data,
 }: {
     children: React.ReactNode;
-    data: [boolean, Site | null];
+    data: [boolean, Site | null | string];
 }) => {
     const [state, setState] = useState("loading");
     const control = useControl(state => (state as any).control);
@@ -45,6 +45,7 @@ export const DataLoader = ({
     };
 
     useEffect(() => {
+        console.log(data);
         if (data[0] === true) {
             createI18n((data[1] as Site).lang);
             controlHandle();

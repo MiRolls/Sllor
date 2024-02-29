@@ -23,7 +23,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 async function RootLayout({ children }: { children: React.ReactNode }) {
     const isGetData = true;
-    const siteData: [boolean, Site | null] = await getSite();
+    const siteData: [boolean, Site | string | null] = await getSite();
+
     return (
         <html>
             {/* <head> */}
