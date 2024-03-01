@@ -47,7 +47,7 @@ export default function Main() {
         const tempQuestionnaire = { ...questionnaire };
         tempQuestionnaire.questions.push(question as any);
         setQuestionnaire(tempQuestionnaire);
-        console.log(questionnaire);
+        // console.log(questionnaire);
         setIsDialogOpen(false);
     }
     function getChangeOption(questionNumber: number, optionNumber: number) {
@@ -73,6 +73,13 @@ export default function Main() {
             setShowSelectContentNumber(questionNumber);
         };
     }
+    function changeQuestionTitle(questionNumber: number) {
+        return (event: any) => {
+            const tempQuestionnaire = { ...questionnaire };
+            tempQuestionnaire.questions[questionNumber].title = event.target.value;
+            setQuestionnaire(tempQuestionnaire);
+        };
+    }
 
     useEffect(() => {
         // console.log(questionnaire);
@@ -87,7 +94,7 @@ export default function Main() {
             {/* Title */}
             <textarea
                 placeholder={t("New Questionnaire")}
-                className="[resize:none] bg-transparent !border-none !outline-none h-auto block font-bold !text-3xl sm:!text-4xl w-full text-center"
+                className="[resize:none] bg-transparent !border-none !outline-none !h-[90px] block font-bold !text-3xl sm:!text-4xl w-full text-center"
                 onChange={event =>
                     setQuestionnaire({ ...questionnaire, title: event.target.value })
                 }
@@ -104,10 +111,15 @@ export default function Main() {
                 {questionnaire.questions.map((question, index) => {
                     return (
                         <Box key={index + "questionKey"} className="mt-3">
-                            <input
-                                className="outline-none border-none bg-transparent"
-                                value={`${index + 1}. ${question.title}`}
-                            ></input>
+                            <Flex>
+                                <Text className="select-none">{index + 1}.</Text>
+                                <textarea
+                                    className="[resize:none] bg-transparent !border-none !outline-none h-8 w-11/12"
+                                    value={question.title}
+                                    onChange={changeQuestionTitle(index)}
+                                ></textarea>
+                            </Flex>
+
                             {question.type === "radio" && (
                                 <>
                                     <RadioGroup.Root>
