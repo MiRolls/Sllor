@@ -2,6 +2,7 @@
 import { Box, Button, Callout, Checkbox, Dialog, Flex, RadioGroup, Text } from "@radix-ui/themes";
 import { MdErrorOutline, MdKeyboardArrowDown } from "react-icons/md";
 import React, { useEffect, useRef, useState } from "react";
+import { AutoTextArea } from "react-textarea-auto-witdth-height";
 import { IoMdAdd } from "react-icons/io";
 import {
     Question,
@@ -92,13 +93,13 @@ export default function Main() {
     return (
         <Flex className="p-10 sm:p-32 min-h-full w-full" direction={"column"} align={"center"}>
             {/* Title */}
-            <textarea
+            <AutoTextArea
                 placeholder={t("New Questionnaire")}
-                className="[resize:none] bg-transparent !border-none !outline-none !h-[90px] block font-bold !text-3xl sm:!text-4xl w-full text-center"
-                onChange={event =>
+                className="[resize:none] bg-transparent !border-none !outline-none relative !overflow-hidden block font-bold !text-3xl sm:!text-4xl w-full text-center-textarea"
+                onChange={(event: any) =>
                     setQuestionnaire({ ...questionnaire, title: event.target.value })
                 }
-                onKeyDown={event => {
+                onKeyDown={(event: any) => {
                     if (event.key === "Enter") {
                         event.preventDefault();
                     }
@@ -113,11 +114,11 @@ export default function Main() {
                         <Box key={index + "questionKey"} className="mt-3">
                             <Flex>
                                 <Text className="select-none">{index + 1}.</Text>
-                                <textarea
-                                    className="[resize:none] bg-transparent !border-none !outline-none h-8 w-11/12"
+                                <AutoTextArea
+                                    className="[resize:none] bg-transparent !border-none !outline-none relative overflow-hidden w-11/12"
                                     value={question.title}
                                     onChange={changeQuestionTitle(index)}
-                                ></textarea>
+                                ></AutoTextArea>
                             </Flex>
 
                             {question.type === "radio" && (
