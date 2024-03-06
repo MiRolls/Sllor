@@ -45,13 +45,16 @@ export const DataLoader = ({
     };
 
     useEffect(() => {
-        console.log(data);
+        // console.log(data);
         if (data[0] === true) {
             createI18n((data[1] as Site).lang);
             controlHandle();
             darkHandle();
             changeUseSite(data[1]);
             setState("success");
+            // set css var
+            // const body = document.body;
+            // body.style.setProperty("--background-color", "lightgray");
         } else {
             setState("error");
         }

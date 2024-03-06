@@ -21,7 +21,7 @@ export default function Layout({
     show: Boolean;
 }) {
     return (
-        <Theme accentColor={data["main-color"] as any} appearance={dark}>
+        <Theme accentColor={data["main-color"] as any} appearance={dark} id="root">
             {/* Alert Dialog when MiRolls was error */}
 
             {/* Main of Sllor */}

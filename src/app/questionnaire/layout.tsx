@@ -28,6 +28,7 @@ const QuestionnaireLayout = ({ children }: { children: ReactNode }) => {
                 name: t("Create"),
                 icon: <IoAdd />,
                 action: () => {
+                    console.log(111);
                     router.push("/questionnaire/create");
                 },
             },
