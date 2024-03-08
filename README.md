@@ -8,7 +8,7 @@ Welcome to use and experience Sllor's charm with MiRolls.
 
 ## Features
 
--   pass
+- pass
 
 ## Build
 

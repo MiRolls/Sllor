@@ -8,18 +8,18 @@ let jsonObject;
 const head = "/api/v1";
 
 fs.readFile(jsonfilePath, "utf8", (err, data) => {
-    if (err) {
-        console.error("error:", err);
-        return;
-    }
-    jsonObject = JSON.parse(data);
+  if (err) {
+    console.error("error:", err);
+    return;
+  }
+  jsonObject = JSON.parse(data);
 });
 
 app.post(head + "/site/get", (req, res) => {
-    console.log(`Access get site`);
-    res.send(JSON.stringify(jsonObject["get-site"]));
+  console.log(`Access get site`);
+  res.send(JSON.stringify(jsonObject["get-site"]));
 });
 
 app.listen(port, () => {
-    console.log(`Model server is running at ${port}`);
+  console.log(`Model server is running at ${port}`);
 });

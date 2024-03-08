@@ -6,23 +6,25 @@ import { Sign } from "crypto";
 import React, { useState } from "react";
 
 export default function Loader({
-    children,
-    data,
+  children,
+  data,
 }: {
-    children: React.ReactNode;
-    data?: [boolean, Site];
+  children: React.ReactNode;
+  data?: [boolean, Site];
 }) {
-    const [gotData, setGotData] = useState<[boolean, any]>();
+  const [gotData, setGotData] = useState<[boolean, any]>();
 
-    if (typeof data === "undefined") {
-        getSite().then(res => {
-            setGotData(res);
-        });
-    } else {
-        setGotData(data);
-    }
+  if (typeof data === "undefined") {
+    getSite().then((res) => {
+      setGotData(res);
+    });
+  } else {
+    setGotData(data);
+  }
 
-    return (
-        typeof gotData !== "undefined" && <DataLoader data={gotData as any}> {children}</DataLoader>
-    );
+  return (
+    typeof gotData !== "undefined" && (
+      <DataLoader data={gotData as any}> {children}</DataLoader>
+    )
+  );
 }

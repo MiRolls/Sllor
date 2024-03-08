@@ -4,11 +4,13 @@ import { Box } from "@radix-ui/themes";
 import React from "react";
 
 export default function CloseBox() {
-    const changeShow = useControl(state => (state as any).changeShow);
+  const changeShow = useControl((state) => (state as any).changeShow);
 
-    function close() {
-        changeShow(false);
-    }
+  function close() {
+    changeShow(false);
+  }
 
-    return <Box className="md:hidden ml-[80%] w-1/5 h-full" onClick={close}></Box>;
+  return (
+    <Box className="ml-[80%] h-full w-1/5 md:hidden" onClick={close}></Box>
+  );
 }

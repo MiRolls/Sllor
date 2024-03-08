@@ -3,35 +3,41 @@
 @tailwind utilities;
 
 .text-shadow {
-    text-shadow: 0 2px 0 var(--tw-shadow-color);
+  text-shadow: 0 2px 0 var(--tw-shadow-color);
 }
 
 .text-shadow-md {
-    text-shadow: 0 2px 2px var(--tw-shadow-color);
+  text-shadow: 0 2px 2px var(--tw-shadow-color);
 }
 
 .text-shadow-lg {
-    text-shadow: 0 0 3px var(--tw-shadow-color), 0 0 5px var(--tw-shadow-color);
+  text-shadow:
+    0 0 3px var(--tw-shadow-color),
+    0 0 5px var(--tw-shadow-color);
 }
 
 .text-shadow-2xl {
-    text-shadow: 0 0 3px var(--tw-shadow-color), 0 0 5px var(--tw-shadow-color);
+  text-shadow:
+    0 0 3px var(--tw-shadow-color),
+    0 0 5px var(--tw-shadow-color);
 }
 
 .text-shadow-3xl {
-    text-shadow: 0px 13px 50px var(--tw-shadow-color), -5px 12px 45px var(--tw-shadow-color),
-        5px 12px 45px var(--tw-shadow-color);
+  text-shadow:
+    0px 13px 50px var(--tw-shadow-color),
+    -5px 12px 45px var(--tw-shadow-color),
+    5px 12px 45px var(--tw-shadow-color);
 }
 
 .gradient-white-main {
-    background: linear-gradient(to bottom, var(--accent-a1), var(--accent-10));
-    -webkit-background-clip: text;
-    color: transparent;
-    display: inline-block;
+  background: linear-gradient(to bottom, var(--accent-a1), var(--accent-10));
+  -webkit-background-clip: text;
+  color: transparent;
+  display: inline-block;
 }
 
 p {
-    white-space: normal;
+  white-space: normal;
 }
 
 /* Scroll bar */
@@ -51,25 +57,25 @@ p {
 }
 */
 #root * {
-    --sb-track-color: rgba(0, 0, 0, 0);
-    --sb-thumb-color: var(--accent-7);
-    --sb-size: 15px;
+  --sb-track-color: rgba(0, 0, 0, 0);
+  --sb-thumb-color: var(--accent-7);
+  --sb-size: 15px;
 
-    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
 }
 
 #root *::-webkit-scrollbar {
-    width: var(--sb-size);
+  width: var(--sb-size);
 }
 
 #root *::-webkit-scrollbar-track {
-    background: var(--sb-track-color);
-    border-radius: 10px;
+  background: var(--sb-track-color);
+  border-radius: 10px;
 }
 
 #root *::-webkit-scrollbar-thumb {
-    background: var(--sb-thumb-color);
-    border-radius: 10px;
+  background: var(--sb-thumb-color);
+  border-radius: 10px;
 }
 
 /* * {
@@ -92,5 +98,5 @@ p {
 */
 
 .text-center-textarea * {
-    text-align: center;
+  text-align: center;
 }

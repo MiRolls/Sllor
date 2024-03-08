@@ -1,6 +1,6 @@
 module.exports = {
-    extends: ["next/core-web-vitals"],
-    rules: {
-        "react-hooks/exhaustive-deps": "off",
-    },
+  extends: ["next/core-web-vitals"],
+  rules: {
+    "react-hooks/exhaustive-deps": "off",
+  },
 };
