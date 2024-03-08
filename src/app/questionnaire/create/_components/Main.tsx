@@ -120,6 +120,11 @@ export default function Main() {
                                             className="[resize:none] bg-transparent !border-none !outline-none relative overflow-hidden w-11/12"
                                             value={question.title}
                                             onChange={changeQuestionTitle(index)}
+                                            onKeyDown={(event: any) => {
+                                                if (event.key === "Enter") {
+                                                    event.preventDefault();
+                                                }
+                                            }}
                                         ></AutoTextArea>
                                     </Flex>
 
@@ -140,19 +145,27 @@ export default function Main() {
                                                                         disabled
                                                                     />
                                                                     {/* RadioGroup's value is help react to get the group's value, but we don't need to get it, so we can write any in it */}
-                                                                    <input
-                                                                        className="!outline-none !border-none text-base !bg-transparent"
+                                                                    <AutoTextArea
+                                                                        className="[resize:none] !outline-none w-11/12 !border-none text-base !bg-transparent"
                                                                         placeholder={
                                                                             t("Option") +
                                                                             " " +
                                                                             (optionIndex + 1)
                                                                         }
+                                                                        onKeyDown={(event: any) => {
+                                                                            if (
+                                                                                event.key ===
+                                                                                "Enter"
+                                                                            ) {
+                                                                                event.preventDefault();
+                                                                            }
+                                                                        }}
                                                                         value={option}
                                                                         onChange={getChangeOption(
                                                                             index,
                                                                             optionIndex
                                                                         )}
-                                                                    ></input>
+                                                                    ></AutoTextArea>
                                                                 </Flex>
                                                             </Text>
                                                         );
