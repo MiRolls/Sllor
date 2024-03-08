@@ -5,6 +5,7 @@ import showPage from "../config/showPage";
 import { SiteState, useSite } from "../store/site";
 import { Site } from "../interfaces/site";
 import { t } from "i18next";
+import Link from "next/link";
 
 const IndexTitle = () => {
     const site: Site = useSite(state => (state as SiteState).site);
@@ -32,9 +33,11 @@ const IndexTitle = () => {
                     <Heading className="text-accent-500 sm:text-left text-center">
                         {site["short-introduce"]}
                     </Heading>
-                    <Button className="!bg-accent-500 !mt-4 w-fit">
-                        {t("Getting Started")} <BsArrowReturnLeft className="stroke-1" />
-                    </Button>
+                    <Link href={"/questionnaire"}>
+                        <Button className="!bg-accent-500 !mt-4 w-fit">
+                            {t("Getting Started")} <BsArrowReturnLeft className="stroke-1" />
+                        </Button>
+                    </Link>
                 </Flex>
                 <Flex className="!hidden lg:!block h-full " justify="center" align="center">
                     {/* Card */}
