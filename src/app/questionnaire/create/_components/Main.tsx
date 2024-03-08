@@ -199,14 +199,14 @@ export default function Main() {
                             >
                               <Flex gap="2" align={"center"}>
                                 <Checkbox disabled />
-                                <input
-                                  className="!border-none !bg-transparent text-base !outline-none"
+                                <AutoTextArea
+                                  className="[resize:none] w-11/12 !border-none !bg-transparent text-base !outline-none"
                                   placeholder={
                                     t("Option") + " " + (optionIndex + 1)
                                   }
                                   value={option}
                                   onChange={getChangeOption(index, optionIndex)}
-                                ></input>
+                                ></AutoTextArea>
                               </Flex>
                             </Text>
                           );
@@ -252,8 +252,8 @@ export default function Main() {
                                     className="pl-2"
                                   >
                                     {/* {option} */}
-                                    <input
-                                      className={`h-[15px] border-none !bg-transparent !text-[14px] outline-none useInput${index}`}
+                                    <AutoTextArea
+                                      className={`w-24 [resize:none] border-none !bg-transparent !text-[14px] outline-none`}
                                       placeholder={
                                         t("Option") + " " + (optionIndex + 1)
                                       }
@@ -262,7 +262,7 @@ export default function Main() {
                                         index,
                                         optionIndex,
                                       )}
-                                    ></input>
+                                    ></AutoTextArea>
                                   </Box>
                                 );
                               })}
