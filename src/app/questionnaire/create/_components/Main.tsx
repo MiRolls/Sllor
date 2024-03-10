@@ -16,9 +16,11 @@ import {
   Flex,
   RadioGroup,
   Text,
+  TextField,
 } from '@radix-ui/themes'
 
 import {
+  InputAndTextarea,
   Question,
   Questionnaire,
   RadioCheckboxAndSelect,
@@ -93,6 +95,13 @@ export default function Main() {
       setQuestionnaire(tempQuestionnaire)
     }
   }
+  function changeInputPlaceholder(questionNumber: number, placeholder: string) {
+    const tempQuestionnaire = { ...questionnaire }
+    ;(
+      tempQuestionnaire.questions[questionNumber] as InputAndTextarea
+    ).placeholder = placeholder
+    setQuestionnaire(tempQuestionnaire)
+  }
 
   useEffect(() => {
     // console.log(questionnaire);
@@ -111,8 +120,12 @@ export default function Main() {
           align={'center'}
         >
           {/**
+           *
+           *
            * Title
            * Can change the height of the textarea by changing the padding of the parent element
+           *
+           *
            * */}
           <AutoTextArea
             placeholder={t('New Questionnaire')}
@@ -128,15 +141,23 @@ export default function Main() {
           />
 
           {/**
+           *
+           *
            * Render Questions
            * The min-h-2.w-11/12...Box is the container of the questions
+           *
+           *
            * */}
           <Box className="min-h-2 w-11/12 py-2 sm:min-h-10 sm:w-4/5 sm:py-10">
             {questionnaire.questions.map((question, index) => {
               return (
                 /**
+                 *
+                 *
                  * The title of the question
                  * The number of the question + . + the title of the question
+                 *
+                 *
                  */
                 <Box key={index + 'questionKey'} className="mt-3">
                   <Flex>
@@ -154,8 +175,12 @@ export default function Main() {
                   </Flex>
 
                   {/**
+                   *
+                   *
                    * The options of the question
                    * If the type of the question is radio, render this part
+                   *
+                   *
                    */}
                   {question.type === 'radio' && (
                     <>
@@ -205,7 +230,11 @@ export default function Main() {
                   )}
 
                   {/**
+                   *
+                   *
                    * If the type of the question is checkbox, render this part
+                   *
+                   *
                    */}
                   {question.type === 'checkbox' && (
                     <>
@@ -244,14 +273,18 @@ export default function Main() {
                   )}
 
                   {/**
+                   *
+                   *
                    * If the type of the question is select, render this part
+                   *
+                   *
                    */}
                   {question.type === 'select' && (
                     <Box>
                       <Button
                         variant="soft"
                         onClick={showSelectContent(index)}
-                        className="max-w-full"
+                        className="relative max-w-full overflow-clip"
                       >
                         {question.options[0] === ''
                           ? t('Option') + ' 1'
@@ -298,6 +331,24 @@ export default function Main() {
                           </>
                         )}
                       </AnimatePresence>
+                    </Box>
+                  )}
+                  {/**
+                   *
+                   *
+                   * If the type of the question is input, render this part
+                   *
+                   *
+                   */}
+                  {question.type === `input` && (
+                    <Box className="mt-1">
+                      <input
+                        className="w-full !border-b-[1px] border-b-black text-slate-600 outline-none focus:border-b-accent-600"
+                        value={question.placeholder}
+                        onChange={(event: any) =>
+                          changeInputPlaceholder(index, event.target.value)
+                        }
+                      ></input>
                     </Box>
                   )}
                 </Box>
