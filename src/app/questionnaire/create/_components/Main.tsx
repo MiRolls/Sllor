@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
-import React, { useEffect, useRef, useState } from 'react'
-import { IoMdAdd } from 'react-icons/io'
-import { MdErrorOutline, MdKeyboardArrowDown } from 'react-icons/md'
-import { AutoTextArea } from 'react-textarea-auto-witdth-height'
-import { AnimatePresence, LayoutGroup, motion } from 'framer-motion'
-import { t } from 'i18next'
+import React, { useEffect, useRef, useState } from "react";
+import { IoMdAdd } from "react-icons/io";
+import { MdErrorOutline, MdKeyboardArrowDown } from "react-icons/md";
+import { AutoTextArea } from "react-textarea-auto-witdth-height";
+import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
+import { t } from "i18next";
 
 import {
   Box,
@@ -17,108 +17,93 @@ import {
   RadioGroup,
   Text,
   TextField,
-} from '@radix-ui/themes'
+} from "@radix-ui/themes";
 
 import {
   InputAndTextarea,
   Question,
   Questionnaire,
   RadioCheckboxAndSelect,
-} from '../../../../interfaces/questionnaire'
-import CreateQuestion from './CreateQuestion'
+} from "../../../../interfaces/questionnaire";
+import CreateQuestion from "./CreateQuestion";
 
 export default function Main() {
   // global page questionnaire
   const [questionnaire, setQuestionnaire] = useState({
-    title: '',
+    title: "",
     questions: [],
-  } as Questionnaire)
-  const DialogComponent = useRef(null)
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const [isShowError, setIsShowError] = useState(false)
-  const [showSelectContentNumber, setShowSelectContentNumber] = useState(-1)
+  } as Questionnaire);
+  const DialogComponent = useRef(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isShowError, setIsShowError] = useState(false);
+  const [showSelectContentNumber, setShowSelectContentNumber] = useState(-1);
 
   // add a question to the questionnaire
   function addQuestion() {
     // first, check
-    const question: Question = (DialogComponent.current as any).getQuestion()
-    if (
-      question.type === 'checkbox' ||
-      question.type === 'radio' ||
-      question.type === 'select'
-    ) {
-      if (
-        typeof question.options === 'undefined' ||
-        (question.options as string[]).length < 1
-      ) {
+    const question: Question = (DialogComponent.current as any).getQuestion();
+    if (question.type === "checkbox" || question.type === "radio" || question.type === "select") {
+      if (typeof question.options === "undefined" || (question.options as string[]).length < 1) {
         // user leaves blank at options question
-        console.log(question)
-        setIsShowError(true)
-        ;(DialogComponent.current as any).cleanTempQuestion()
-        return
+        console.log(question);
+        setIsShowError(true);
+        (DialogComponent.current as any).cleanTempQuestion();
+        return;
       }
     }
     // the other types of question can leave blank
-    const tempQuestionnaire = { ...questionnaire }
-    tempQuestionnaire.questions.push(question as any)
-    setQuestionnaire(tempQuestionnaire)
+    const tempQuestionnaire = { ...questionnaire };
+    tempQuestionnaire.questions.push(question as any);
+    setQuestionnaire(tempQuestionnaire);
     // console.log(questionnaire);
-    setIsDialogOpen(false)
+    setIsDialogOpen(false);
   }
   function getChangeOption(questionNumber: number, optionNumber: number) {
     return (event: any) => {
-      const tempQuestionnaire = { ...questionnaire }
-      ;(
-        tempQuestionnaire.questions[questionNumber] as RadioCheckboxAndSelect
-      ).options[optionNumber] = event.target.value
-      setQuestionnaire(tempQuestionnaire)
-    }
+      const tempQuestionnaire = { ...questionnaire };
+      (tempQuestionnaire.questions[questionNumber] as RadioCheckboxAndSelect).options[
+        optionNumber
+      ] = event.target.value;
+      setQuestionnaire(tempQuestionnaire);
+    };
   }
   function addOption(questionNumber: number) {
     return (event: any) => {
-      const tempQuestionnaire = { ...questionnaire }
-      ;(
-        tempQuestionnaire.questions[questionNumber] as RadioCheckboxAndSelect
-      ).options.push('')
-      setQuestionnaire(tempQuestionnaire)
-    }
+      const tempQuestionnaire = { ...questionnaire };
+      (tempQuestionnaire.questions[questionNumber] as RadioCheckboxAndSelect).options.push("");
+      setQuestionnaire(tempQuestionnaire);
+    };
   }
   function showSelectContent(questionNumber: number) {
     return (event: any) => {
-      setShowSelectContentNumber(questionNumber)
-    }
+      setShowSelectContentNumber(questionNumber);
+    };
   }
   function changeQuestionTitle(questionNumber: number) {
     return (event: any) => {
-      const tempQuestionnaire = { ...questionnaire }
-      tempQuestionnaire.questions[questionNumber].title = event.target.value
-      setQuestionnaire(tempQuestionnaire)
-    }
+      const tempQuestionnaire = { ...questionnaire };
+      tempQuestionnaire.questions[questionNumber].title = event.target.value;
+      setQuestionnaire(tempQuestionnaire);
+    };
   }
   function changeInputPlaceholder(questionNumber: number, placeholder: string) {
-    const tempQuestionnaire = { ...questionnaire }
-    ;(
-      tempQuestionnaire.questions[questionNumber] as InputAndTextarea
-    ).placeholder = placeholder
-    setQuestionnaire(tempQuestionnaire)
+    const tempQuestionnaire = { ...questionnaire };
+    (tempQuestionnaire.questions[questionNumber] as InputAndTextarea).placeholder = placeholder;
+    setQuestionnaire(tempQuestionnaire);
   }
 
   useEffect(() => {
     // console.log(questionnaire);
-  }, [questionnaire])
+  }, [questionnaire]);
 
   useEffect(() => {
-    setIsShowError(false)
-  }, [isDialogOpen])
+    setIsShowError(false);
+  }, [isDialogOpen]);
 
   return (
-    <Flex className="h-full w-full" direction={'column'} align={'center'}>
+    <Flex className="h-full w-full" direction={"column"} align={"center"}>
       <Box className="scroll-bar relative h-full w-full overflow-scroll">
-        <Flex
-          className="w-full p-6 sm:p-32"
-          direction={'column'}
-          align={'center'}
-        >
+        <Flex className="w-full p-6 sm:p-32" direction={"column"} align={"center"}>
           {/**
            *
            *
@@ -128,14 +113,14 @@ export default function Main() {
            *
            * */}
           <AutoTextArea
-            placeholder={t('New Questionnaire')}
+            placeholder={t("New Questionnaire")}
             className="text-center-textarea relative block w-full !overflow-hidden !border-none bg-transparent !text-3xl font-bold !outline-none [resize:none] sm:!text-4xl"
             onChange={(event: any) =>
               setQuestionnaire({ ...questionnaire, title: event.target.value })
             }
             onKeyDown={(event: any) => {
-              if (event.key === 'Enter') {
-                event.preventDefault()
+              if (event.key === "Enter") {
+                event.preventDefault();
               }
             }}
           />
@@ -159,7 +144,7 @@ export default function Main() {
                  *
                  *
                  */
-                <Box key={index + 'questionKey'} className="mt-3">
+                <Box key={index + "questionKey"} className="mt-3">
                   <Flex>
                     <Text className="select-none">{index + 1}.</Text>
                     <AutoTextArea
@@ -167,8 +152,8 @@ export default function Main() {
                       value={question.title}
                       onChange={changeQuestionTitle(index)}
                       onKeyDown={(event: any) => {
-                        if (event.key === 'Enter') {
-                          event.preventDefault()
+                        if (event.key === "Enter") {
+                          event.preventDefault();
                         }
                       }}
                     ></AutoTextArea>
@@ -182,48 +167,39 @@ export default function Main() {
                    *
                    *
                    */}
-                  {question.type === 'radio' && (
+                  {question.type === "radio" && (
                     <>
                       <RadioGroup.Root>
                         <Flex gap="1" className="mt-1" direction="column">
                           {question.options.map((option, optionIndex) => {
                             return (
-                              <Text
-                                as="label"
-                                size="2"
-                                key={optionIndex + 'optionKey'}
-                              >
-                                <Flex gap="2" align={'center'}>
+                              <Text as="label" size="2" key={optionIndex + "optionKey"}>
+                                <Flex gap="2" align={"center"}>
                                   <RadioGroup.Item value="any" disabled />
                                   {/* RadioGroup's value is help react to get the group's value, but we don't need to get it, so we can write any in it */}
                                   <AutoTextArea
                                     className="w-11/12 !border-none !bg-transparent text-base !outline-none [resize:none]"
-                                    placeholder={
-                                      t('Option') + ' ' + (optionIndex + 1)
-                                    }
+                                    placeholder={t("Option") + " " + (optionIndex + 1)}
                                     onKeyDown={(event: any) => {
-                                      if (event.key === 'Enter') {
-                                        event.preventDefault()
+                                      if (event.key === "Enter") {
+                                        event.preventDefault();
                                       }
                                     }}
                                     value={option}
-                                    onChange={getChangeOption(
-                                      index,
-                                      optionIndex,
-                                    )}
+                                    onChange={getChangeOption(index, optionIndex)}
                                   ></AutoTextArea>
                                 </Flex>
                               </Text>
-                            )
+                            );
                           })}
                         </Flex>
                         <Button
                           variant="soft"
-                          size={'1'}
+                          size={"1"}
                           className="!mt-2"
                           onClick={addOption(index)}
                         >
-                          {t('Add Option')}
+                          {t("Add Option")}
                         </Button>
                       </RadioGroup.Root>
                     </>
@@ -236,38 +212,32 @@ export default function Main() {
                    *
                    *
                    */}
-                  {question.type === 'checkbox' && (
+                  {question.type === "checkbox" && (
                     <>
                       <Flex gap="1" className="mt-1" direction="column">
                         {question.options.map((option, optionIndex) => {
                           return (
-                            <Text
-                              as="label"
-                              size="2"
-                              key={optionIndex + 'optionKey'}
-                            >
-                              <Flex gap="2" align={'center'}>
+                            <Text as="label" size="2" key={optionIndex + "optionKey"}>
+                              <Flex gap="2" align={"center"}>
                                 <Checkbox disabled />
                                 <AutoTextArea
                                   className="w-11/12 !border-none !bg-transparent text-base !outline-none [resize:none]"
-                                  placeholder={
-                                    t('Option') + ' ' + (optionIndex + 1)
-                                  }
+                                  placeholder={t("Option") + " " + (optionIndex + 1)}
                                   value={option}
                                   onChange={getChangeOption(index, optionIndex)}
                                 ></AutoTextArea>
                               </Flex>
                             </Text>
-                          )
+                          );
                         })}
                       </Flex>
                       <Button
                         variant="soft"
-                        size={'1'}
+                        size={"1"}
                         className="!mt-2"
                         onClick={addOption(index)}
                       >
-                        {t('Add Option')}
+                        {t("Add Option")}
                       </Button>
                     </>
                   )}
@@ -279,16 +249,14 @@ export default function Main() {
                    *
                    *
                    */}
-                  {question.type === 'select' && (
+                  {question.type === "select" && (
                     <Box>
                       <Button
                         variant="soft"
                         onClick={showSelectContent(index)}
                         className="relative max-w-full overflow-clip"
                       >
-                        {question.options[0] === ''
-                          ? t('Option') + ' 1'
-                          : question.options[0]}
+                        {question.options[0] === "" ? t("Option") + " 1" : question.options[0]}
                         <MdKeyboardArrowDown />
                       </Button>
                       {/* act as select.content */}
@@ -308,24 +276,16 @@ export default function Main() {
                             >
                               {question.options.map((option, optionIndex) => {
                                 return (
-                                  <Box
-                                    key={optionIndex + 'optionKey'}
-                                    className="pl-2"
-                                  >
+                                  <Box key={optionIndex + "optionKey"} className="pl-2">
                                     {/* {option} */}
                                     <AutoTextArea
                                       className={`w-24 border-none !bg-transparent !text-[14px] outline-none [resize:none]`}
-                                      placeholder={
-                                        t('Option') + ' ' + (optionIndex + 1)
-                                      }
+                                      placeholder={t("Option") + " " + (optionIndex + 1)}
                                       value={option}
-                                      onChange={getChangeOption(
-                                        index,
-                                        optionIndex,
-                                      )}
+                                      onChange={getChangeOption(index, optionIndex)}
                                     ></AutoTextArea>
                                   </Box>
-                                )
+                                );
                               })}
                             </motion.div>
                           </>
@@ -345,14 +305,12 @@ export default function Main() {
                       <input
                         className="w-full !border-b-[1px] border-b-black text-slate-600 outline-none focus:border-b-accent-600"
                         value={question.placeholder}
-                        onChange={(event: any) =>
-                          changeInputPlaceholder(index, event.target.value)
-                        }
+                        onChange={(event: any) => changeInputPlaceholder(index, event.target.value)}
                       ></input>
                     </Box>
                   )}
                 </Box>
-              )
+              );
             })}
           </Box>
 
@@ -364,37 +322,30 @@ export default function Main() {
             <Dialog.Root open={isDialogOpen} onOpenChange={setIsDialogOpen}>
               <Dialog.Trigger>
                 {/* Button to open dialog */}
-                <Button
-                  size={'3'}
-                  radius="full"
-                  className="!bg-accent-700 !text-white"
-                >
-                  <Flex gap="1" align={'center'}>
+                <Button size={"3"} radius="full" className="!bg-accent-700 !text-white">
+                  <Flex gap="1" align={"center"}>
                     <IoMdAdd size={25} className=" mr-0 text-white" />
-                    <Text>{t('Add Question')}</Text>
+                    <Text>{t("Add Question")}</Text>
                   </Flex>
                 </Button>
               </Dialog.Trigger>
               <LayoutGroup>
                 <Dialog.Content>
-                  <Dialog.Title>{t('Add Question')}</Dialog.Title>
-                  <CreateQuestion
-                    onInput={() => setIsDialogOpen(false)}
-                    ref={DialogComponent}
-                  />
+                  <Dialog.Title>{t("Add Question")}</Dialog.Title>
+                  <CreateQuestion onInput={() => setIsDialogOpen(false)} ref={DialogComponent} />
                   {/* If user leaves blank */}
                   <AnimatePresence>
                     {isShowError && (
                       <motion.div
                         layout
                         initial={{ opacity: 0.7, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
+                        animate={{ opacity: 1, height: "auto" }}
                       >
                         <Callout.Root color="red" size="1" className="mt-2">
                           <Callout.Icon>
-                            <MdErrorOutline size={'17'} />
+                            <MdErrorOutline size={"17"} />
                           </Callout.Icon>
-                          <Callout.Text>{t('Do not leave blank')}</Callout.Text>
+                          <Callout.Text>{t("Do not leave blank")}</Callout.Text>
                         </Callout.Root>
                       </motion.div>
                     )}
@@ -402,10 +353,10 @@ export default function Main() {
                   <Flex className="mt-2 !justify-end gap-1">
                     <Dialog.Close>
                       <Button variant="surface" color="gray">
-                        {t('Cancel')}
+                        {t("Cancel")}
                       </Button>
                     </Dialog.Close>
-                    <Button onClick={addQuestion}>{t('OK')}</Button>
+                    <Button onClick={addQuestion}>{t("OK")}</Button>
                   </Flex>
                 </Dialog.Content>
               </LayoutGroup>
@@ -414,5 +365,5 @@ export default function Main() {
         </Flex>
       </Box>
     </Flex>
-  )
+  );
 }
