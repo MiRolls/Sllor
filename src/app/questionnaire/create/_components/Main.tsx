@@ -107,7 +107,10 @@ export default function Main() {
           direction={"column"}
           align={"center"}
         >
-          {/* Title */}
+          {/**
+           * Title
+           * Can change the height of the textarea by changing the padding of the parent element
+           * */}
           <AutoTextArea
             placeholder={t("New Questionnaire")}
             className="text-center-textarea relative block w-full !overflow-hidden !border-none bg-transparent !text-3xl font-bold !outline-none [resize:none] sm:!text-4xl"
@@ -121,11 +124,17 @@ export default function Main() {
             }}
           />
 
-          {/* 84.5 116 */}
-          {/* Render Questions */}
+          {/**
+           * Render Questions
+           * The min-h-2.w-11/12...Box is the container of the questions
+           * */}
           <Box className="min-h-2 w-11/12 py-2 sm:min-h-10 sm:w-4/5 sm:py-10">
             {questionnaire.questions.map((question, index) => {
               return (
+                /**
+                 * The title of the question
+                 * The number of the question + . + the title of the question
+                 */
                 <Box key={index + "questionKey"} className="mt-3">
                   <Flex>
                     <Text className="select-none">{index + 1}.</Text>
@@ -141,6 +150,10 @@ export default function Main() {
                     ></AutoTextArea>
                   </Flex>
 
+                  {/**
+                   * The options of the question
+                   * If the type of the question is radio, render this part
+                   */}
                   {question.type === "radio" && (
                     <>
                       <RadioGroup.Root>
@@ -187,6 +200,10 @@ export default function Main() {
                       </RadioGroup.Root>
                     </>
                   )}
+
+                  {/**
+                   * If the type of the question is checkbox, render this part
+                   */}
                   {question.type === "checkbox" && (
                     <>
                       <Flex gap="1" className="mt-1" direction="column">
@@ -200,7 +217,7 @@ export default function Main() {
                               <Flex gap="2" align={"center"}>
                                 <Checkbox disabled />
                                 <AutoTextArea
-                                  className="[resize:none] w-11/12 !border-none !bg-transparent text-base !outline-none"
+                                  className="w-11/12 !border-none !bg-transparent text-base !outline-none [resize:none]"
                                   placeholder={
                                     t("Option") + " " + (optionIndex + 1)
                                   }
@@ -222,6 +239,10 @@ export default function Main() {
                       </Button>
                     </>
                   )}
+
+                  {/**
+                   * If the type of the question is select, render this part
+                   */}
                   {question.type === "select" && (
                     <Box>
                       <Button variant="soft" onClick={showSelectContent(index)}>
@@ -253,7 +274,7 @@ export default function Main() {
                                   >
                                     {/* {option} */}
                                     <AutoTextArea
-                                      className={`w-24 [resize:none] border-none !bg-transparent !text-[14px] outline-none`}
+                                      className={`w-24 border-none !bg-transparent !text-[14px] outline-none [resize:none]`}
                                       placeholder={
                                         t("Option") + " " + (optionIndex + 1)
                                       }
@@ -277,7 +298,10 @@ export default function Main() {
             })}
           </Box>
 
-          {/* Dialog */}
+          {/**
+           * Dialog
+           * The Dialog to add the question
+           *  */}
           <Box className="mt-5 block">
             <Dialog.Root open={isDialogOpen} onOpenChange={setIsDialogOpen}>
               <Dialog.Trigger>
