@@ -36,6 +36,7 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@innei/prettier": "^0.12.4",
     "@types/node": "20.11.13",
     "@types/react": "^18.2.64",
     "autoprefixer": "^10.4.18",
