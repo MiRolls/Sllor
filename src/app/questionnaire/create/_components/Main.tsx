@@ -16,6 +16,7 @@ import {
   Flex,
   RadioGroup,
   Text,
+  TextArea,
   TextField,
 } from "@radix-ui/themes";
 
@@ -307,6 +308,24 @@ export default function Main() {
                         value={question.placeholder}
                         onChange={(event: any) => changeInputPlaceholder(index, event.target.value)}
                       ></input>
+                    </Box>
+                  )}
+                  {/**
+                   *
+                   *
+                   *
+                   * If the type of the question is textarea, render this part
+                   *
+                   *
+                   */}
+                  {question.type === `textarea` && (
+                    <Box className="mt-1">
+                      <TextArea
+                        // className="w-full text-slate-600 border-[1px] border-black focus:border-accent-600"
+                        className="w-full text-slate-600-textarea"
+                        value={question.placeholder}
+                        onChange={(event: any) => changeInputPlaceholder(index, event.target.value)}
+                      ></TextArea>
                     </Box>
                   )}
                 </Box>
