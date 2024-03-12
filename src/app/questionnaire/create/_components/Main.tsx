@@ -15,6 +15,7 @@ import {
   Dialog,
   Flex,
   RadioGroup,
+  Slider,
   Text,
   TextArea,
   TextField,
@@ -91,6 +92,38 @@ export default function Main() {
     const tempQuestionnaire = { ...questionnaire };
     (tempQuestionnaire.questions[questionNumber] as InputAndTextarea).placeholder = placeholder;
     setQuestionnaire(tempQuestionnaire);
+  }
+  function changeSlider(
+    questionNumber: number,
+    type: "startNumber" | "endNumber" | "unit",
+    value: number
+  ) {
+    function canBeConvertedToNumber(str: any): boolean {
+      let num = Number(str);
+      return !isNaN(num);
+    }
+
+    if (!canBeConvertedToNumber(value)) {
+      return false;
+    }
+
+    if (type === "startNumber") {
+      const tempQuestionnaire = { ...questionnaire };
+      (tempQuestionnaire.questions[questionNumber] as any).range[0] = value;
+      setQuestionnaire(tempQuestionnaire);
+    } else if (type === "endNumber") {
+      const tempQuestionnaire = { ...questionnaire };
+      (tempQuestionnaire.questions[questionNumber] as any).range[1] = value;
+      setQuestionnaire(tempQuestionnaire);
+    } else if (type === "unit") {
+      const tempQuestionnaire = { ...questionnaire };
+      (tempQuestionnaire.questions[questionNumber] as any).unit = value;
+      setQuestionnaire(tempQuestionnaire);
+    } else {
+      console.error("Invalid type of change slider function");
+      return;
+    }
+    return true;
   }
 
   useEffect(() => {
@@ -326,6 +359,62 @@ export default function Main() {
                         value={question.placeholder}
                         onChange={(event: any) => changeInputPlaceholder(index, event.target.value)}
                       ></TextArea>
+                    </Box>
+                  )}
+                  {/**
+                   *
+                   *
+                   * If the type of the question is date, render this part
+                   *
+                   *
+                   */}
+                  {question.type === "slider" && (
+                    <Box>
+                      {/* Slider Control */}
+                      <Slider className="w-full mt-3 mb-3" disabled></Slider>
+                      {/* Slider Content */}
+                      <Flex justify={"between"} gap="3">
+                        <input
+                          type="text"
+                          className="border-none outline-none text-left flex-1"
+                          placeholder={t("Start Number")}
+                          value={question.range[0]}
+                          onChange={(event: any) => {
+                            changeSlider(index, "startNumber", event.target.value)
+                              ? event.preventDefault()
+                              : null;
+                          }}
+                        />
+
+                        <input
+                          type="text"
+                          className="border-none outline-none text-center flex-1"
+                          placeholder={t("Unit")}
+                          value={question.unit}
+                          onChange={(event: any) => {
+                            changeSlider(index, "unit", event.target.value)
+                              ? event.preventDefault()
+                              : null;
+                          }}
+                        />
+
+                        <input
+                          type="text"
+                          className="border-none outline-none text-right flex-1"
+                          placeholder={t("End Number")}
+                          value={question.range[1]}
+                          onChange={(event: any) => {
+                            changeSlider(index, "endNumber", event.target.value)
+                              ? event.preventDefault()
+                              : null;
+                          }}
+                        />
+                      </Flex>
+                      <Flex justify={"between"} className="text-slate-600">
+                        <Text className="flex-1 text-left">{t("Start Number")}</Text>
+                        <Text className="flex-1 text-center">{t("Unit")}</Text>
+                        <Text className="flex-1 text-right">{t("End Number")}</Text>
+                      </Flex>
                     </Box>
                   )}
                 </Box>

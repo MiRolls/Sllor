@@ -27,5 +27,8 @@
   "5. Unit": "5. 单位",
   "Add Option": "添加选项",
   "Option": "选项",
-  "Do not leave blank": "选项不能为空诶"
+  "Do not leave blank": "选项不能为空诶",
+  "Unit": "单元",
+  "Start Number": "起始数",
+  "End Number": "末尾数"
 }
