@@ -2,24 +2,12 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
-import { MdErrorOutline, MdKeyboardArrowDown } from "react-icons/md";
+import { MdErrorOutline } from "react-icons/md";
 import { AutoTextArea } from "react-textarea-auto-witdth-height";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { t } from "i18next";
 
-import {
-  Box,
-  Button,
-  Callout,
-  Checkbox,
-  Dialog,
-  Flex,
-  RadioGroup,
-  Slider,
-  Text,
-  TextArea,
-  TextField,
-} from "@radix-ui/themes";
+import { Box, Button, Callout, Dialog, Flex, Text } from "@radix-ui/themes";
 
 import {
   InputAndTextarea,
@@ -29,6 +17,7 @@ import {
 } from "../../../../interfaces/questionnaire";
 import CreateQuestion from "./CreateQuestion";
 import QuestionEditor from "./QuestionEditor";
+import ErrorBox from "./ErrorBox";
 
 export default function Main() {
   // global page questionnaire
@@ -38,7 +27,8 @@ export default function Main() {
   } as Questionnaire);
   const DialogComponent = useRef(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [isShowError, setIsShowError] = useState(false);
+  const [isShowLeaveBlankError, setIsShowLeaveBlankError] = useState(false);
+  const [isShowNumberSizeError, setIsShowNumberSizeError] = useState(false);
 
   // add a question to the questionnaire
   function addQuestion() {
@@ -48,7 +38,7 @@ export default function Main() {
       if (typeof question.options === "undefined" || (question.options as string[]).length < 1) {
         // user leaves blank at options question
         console.log(question);
-        setIsShowError(true);
+        setIsShowLeaveBlankError(true);
         (DialogComponent.current as any).cleanTempQuestion();
         return;
       }
@@ -125,7 +115,7 @@ export default function Main() {
   }, [questionnaire]);
 
   useEffect(() => {
-    setIsShowError(false);
+    setIsShowLeaveBlankError(false);
   }, [isDialogOpen]);
 
   return (
@@ -190,22 +180,11 @@ export default function Main() {
                   <Dialog.Title>{t("Add Question")}</Dialog.Title>
                   <CreateQuestion onInput={() => setIsDialogOpen(false)} ref={DialogComponent} />
                   {/* If user leaves blank */}
-                  <AnimatePresence>
-                    {isShowError && (
-                      <motion.div
-                        layout
-                        initial={{ opacity: 0.7, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                      >
-                        <Callout.Root color="red" size="1" className="mt-2">
-                          <Callout.Icon>
-                            <MdErrorOutline size={"17"} />
-                          </Callout.Icon>
-                          <Callout.Text>{t("Do not leave blank")}</Callout.Text>
-                        </Callout.Root>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+
+                  <ErrorBox
+                    isShowLeaveBlankError={isShowLeaveBlankError}
+                    isShowNumberSizeError={isShowNumberSizeError}
+                  ></ErrorBox>
                   <Flex className="mt-2 !justify-end gap-1">
                     <Dialog.Close>
                       <Button variant="surface" color="gray">

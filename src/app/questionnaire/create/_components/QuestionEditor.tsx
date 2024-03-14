@@ -50,7 +50,7 @@ const QuestionEditor: React.FC<QuestionEditorProps> = ({
            *
            *
            */
-          <Box key={index + "questionKey"} className="mt-3">
+          <Box key={index + "questionKey"} className="mt-4">
             <Flex>
               <Text className="select-none">{index + 1}.</Text>
               <AutoTextArea
