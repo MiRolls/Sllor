@@ -36,17 +36,22 @@ const CreateQuestion = forwardRef(({ onInput }: createQuestionProps, ref: any) =
   }
   function changeRangeStartNumber(event: any) {
     const startNumber: number = event.target.value;
-    const range: [number, number] = [startNumber, 0];
-    setTempQuestion({ ...tempQuestion, range });
-  }
-  function changeRangeEndNumber(event: any) {
-    const endNumber: number = event.target.value;
     const range: [number, number] = [
-      typeof tempQuestion.range === "undefined" ? 0 : tempQuestion.range[0],
-      endNumber,
+      startNumber,
+      tempQuestion.range === undefined ? 0 : tempQuestion.range[1],
     ];
     setTempQuestion({ ...tempQuestion, range });
   }
+
+  function changeRangeEndNumber(event: any) {
+    const endNumber: number = event.target.value;
+    const range: [number, number] = [
+      Number(typeof tempQuestion.range === "undefined" ? 0 : tempQuestion.range[0]),
+      Number(endNumber),
+    ];
+    setTempQuestion({ ...tempQuestion, range });
+  }
+
   function changePlaceholder(event: any) {
     const placeholder: string = event.target.value;
     setTempQuestion({ ...tempQuestion, placeholder });
