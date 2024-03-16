@@ -42,7 +42,22 @@ export default function Main() {
         (DialogComponent.current as any).cleanTempQuestion();
         return;
       }
+    } else if (question.type === "slider") {
+      if ((question as any).range[0] >= (question as any).range[1]) {
+        setIsShowNumberSizeError(true);
+        (DialogComponent.current as any).cleanTempQuestion();
+        return;
+        // else if the range is undefined or the unit is undefined
+      } else if (
+        typeof (question as any).range === "undefined" ||
+        typeof (question as any).unit === "undefined"
+      ) {
+        setIsShowLeaveBlankError(true);
+        (DialogComponent.current as any).cleanTempQuestion();
+        return;
+      }
     }
+
     // the other types of question can leave blank
     const tempQuestionnaire = { ...questionnaire };
     tempQuestionnaire.questions.push(question as any);
@@ -180,7 +195,6 @@ export default function Main() {
                   <Dialog.Title>{t("Add Question")}</Dialog.Title>
                   <CreateQuestion onInput={() => setIsDialogOpen(false)} ref={DialogComponent} />
                   {/* If user leaves blank */}
-
                   <ErrorBox
                     isShowLeaveBlankError={isShowLeaveBlankError}
                     isShowNumberSizeError={isShowNumberSizeError}
