@@ -42,7 +42,7 @@ export default function Main() {
         return;
       }
     } else if (question.type === "slider") {
-      if ((question as any).range[0] >= (question as any).range[1]) {
+      if ((question as any).range[0] > (question as any).range[1]) {
         setIsShowNumberSizeError(true);
         return;
         // else if the range is undefined or the unit is undefined

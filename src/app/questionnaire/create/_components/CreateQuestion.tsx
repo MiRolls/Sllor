@@ -40,6 +40,11 @@ const CreateQuestion = forwardRef(({ onInput }: createQuestionProps, ref: any) =
     setTempQuestion({ ...tempQuestion, range });
   }
   function changeRangeEndNumber(event: any) {
+    // if the tempQuestion.range is undefined, then set it to [0, 0]
+    if (typeof tempQuestion.range === "undefined") {
+      setTempQuestion({ ...tempQuestion, range: [0, 0] });
+    }
+
     const endNumber: number = event.target.value;
     const range: [number, number] = [tempQuestion.range![0], endNumber];
     setTempQuestion({ ...tempQuestion, range });
