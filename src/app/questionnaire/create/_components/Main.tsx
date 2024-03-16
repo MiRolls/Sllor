@@ -39,13 +39,11 @@ export default function Main() {
         // user leaves blank at options question
         console.log(question);
         setIsShowLeaveBlankError(true);
-        (DialogComponent.current as any).cleanTempQuestion();
         return;
       }
     } else if (question.type === "slider") {
       if ((question as any).range[0] >= (question as any).range[1]) {
         setIsShowNumberSizeError(true);
-        (DialogComponent.current as any).cleanTempQuestion();
         return;
         // else if the range is undefined or the unit is undefined
       } else if (
@@ -53,7 +51,6 @@ export default function Main() {
         typeof (question as any).unit === "undefined"
       ) {
         setIsShowLeaveBlankError(true);
-        (DialogComponent.current as any).cleanTempQuestion();
         return;
       }
     }
