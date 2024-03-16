@@ -30,5 +30,6 @@
   "Do not leave blank": "Do not leave blank",
   "Unit": "Unit",
   "Start Number": "Start Number",
-  "End Number": "End Number"
+  "End Number": "End Number",
+  "The end number cannot be smaller than the start number": "The end number cannot be smaller than the start number!"
 }

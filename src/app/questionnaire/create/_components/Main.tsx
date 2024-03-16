@@ -184,6 +184,7 @@ export default function Main() {
                   <ErrorBox
                     isShowLeaveBlankError={isShowLeaveBlankError}
                     isShowNumberSizeError={isShowNumberSizeError}
+                    // isShowNumberSizeError={true}
                   ></ErrorBox>
                   <Flex className="mt-2 !justify-end gap-1">
                     <Dialog.Close>
