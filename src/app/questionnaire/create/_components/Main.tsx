@@ -43,7 +43,6 @@ export default function Main() {
       }
     } else if (question.type === "slider") {
       if ((question as any).range[0] > (question as any).range[1]) {
-        console.log(question);
         setIsShowNumberSizeError(true);
         return;
         // else if the range is undefined or the unit is undefined

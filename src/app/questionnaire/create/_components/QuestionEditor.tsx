@@ -241,41 +241,48 @@ const QuestionEditor: React.FC<QuestionEditorProps> = ({
                 <Slider className="w-full mt-3 mb-3" disabled></Slider>
                 {/* Slider Content */}
                 <Flex justify={"between"} gap="3">
-                  <input
-                    type="text"
-                    className="border-none outline-none text-left flex-1"
-                    placeholder={t("Start Number")}
-                    value={question.range[0]}
-                    onChange={(event: any) => {
-                      changeSlider(index, "startNumber", event.target.value)
-                        ? event.preventDefault()
-                        : null;
-                    }}
-                  />
-
-                  <input
-                    type="text"
-                    className="border-none outline-none text-center flex-1"
-                    placeholder={t("Unit")}
-                    value={question.unit}
-                    onChange={(event: any) => {
-                      changeSlider(index, "unit", event.target.value)
-                        ? event.preventDefault()
-                        : null;
-                    }}
-                  />
-
-                  <input
-                    type="text"
-                    className="border-none outline-none text-right flex-1"
-                    placeholder={t("End Number")}
-                    value={question.range[1]}
-                    onChange={(event: any) => {
-                      changeSlider(index, "endNumber", event.target.value)
-                        ? event.preventDefault()
-                        : null;
-                    }}
-                  />
+                  <Box className="flex-1">
+                    <input
+                      type="text"
+                      className="border-none outline-none text-left w-full"
+                      // className="border-none outline-none text-left"
+                      placeholder={t("Start Number")}
+                      value={question.range[0]}
+                      onChange={(event: any) => {
+                        changeSlider(index, "startNumber", event.target.value)
+                          ? event.preventDefault()
+                          : null;
+                      }}
+                    />
+                  </Box>
+                  <Box className="flex-1">
+                    <input
+                      type="text"
+                      className="border-none outline-none text-center w-full"
+                      // className="border-none outline-none text-center"
+                      placeholder={t("Unit")}
+                      value={question.unit}
+                      onChange={(event: any) => {
+                        changeSlider(index, "unit", event.target.value)
+                          ? event.preventDefault()
+                          : null;
+                      }}
+                    />
+                  </Box>
+                  <Box className="flex-1">
+                    <input
+                      type="text"
+                      className="border-none outline-none text-right w-full"
+                      // className="border-none outline-none text-right"
+                      placeholder={t("End Number")}
+                      value={question.range[1]}
+                      onChange={(event: any) => {
+                        changeSlider(index, "endNumber", event.target.value)
+                          ? event.preventDefault()
+                          : null;
+                      }}
+                    />
+                  </Box>
                 </Flex>
                 <Flex justify={"between"} className="text-slate-600">
                   <Text className="flex-1 text-left">{t("Start Number")}</Text>
