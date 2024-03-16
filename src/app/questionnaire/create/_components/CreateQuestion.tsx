@@ -112,7 +112,7 @@ const CreateQuestion = forwardRef(({ onInput }: createQuestionProps, ref: any) =
           onChange={changeRangeStartNumber}
           type={"number"}
           tips={t("3. Start Number")}
-          placeholder={"0"}
+          placeholder={"1"}
         ></QuestionOption>
       ) : (
         /* Question No.3.3 Placeholder */
@@ -132,12 +132,14 @@ const CreateQuestion = forwardRef(({ onInput }: createQuestionProps, ref: any) =
             onChange={changeRangeEndNumber}
             tips={t("4. End Number")}
             type={"number"}
+            placeholder="100"
           ></QuestionOption>
           {/* Question No 5 Unit */}
           <QuestionOption
             onChange={changeUnit}
             type={"number"}
             tips={t("5. Unit")}
+            placeholder="5"
           ></QuestionOption>
         </>
       )}
